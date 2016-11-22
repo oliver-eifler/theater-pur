@@ -1,0 +1,48 @@
+{
+  "name": "theater-pur",
+  "version": "0.0.1",
+  "description": "Theater Pur Website and Blog",
+  "main": "gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oliver Jean Eifler",
+  "license": "MIT",
+  "devDependencies": {
+    "css-mqpacker": "^5.0.1",
+    "cssnano": "^3.7.3",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-postcss": "^0.8.0",
+    "grunt-responsive-images": "^0.1.9",
+    "grunt-rollup": "^0.7.1",
+    "grunt-sass": "^1.2.1",
+    "grunt-svg2png": "^0.2.7",
+    "grunt-svgstore": "^1.0.0",
+    "pixrem": "^3.0.1",
+    "postcss-raw": "^0.1.2"
+  },
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "imagemin-webp": "^4.0.0",
+    "svg2png": "^3.0.1",
+    "svgo": "^0.6.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliver-eifler/theater-pur"
+  },
+  "keywords": [
+    "Olli",
+    "Page"
+  ],
+  "bugs": {
+    "url": "https://github.com/oliver-eifler/theater-pur/issues"
+  },
+  "homepage": "https://github.com/oliver-eifler/theater-pur#readme"
+}

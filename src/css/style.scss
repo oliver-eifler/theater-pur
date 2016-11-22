@@ -1,0 +1,261 @@
+@import 'lib/functions';
+
+@import 'components/reset';
+
+@function color-contrast($color,$amount: 100%) {
+  @if (lightness( $color ) > 50) {
+    //@return #000000; // Lighter color, return black
+    @return darken($color, $amount)
+  }
+  @else {
+    //@return #FFFFFF; // Darker color, return white
+    @return lighten($color, $amount)
+  }
+}
+$dark-text-default: #000 !default;
+$light-text-default: #fff !default;
+
+// Compares contrast of a given color to the light/dark arguments and returns whichever is most "contrasty"
+@function color-contrast2($color, $dark: $dark-text-default, $light: $light-text-default) {
+  @if $color == null {
+    @return null;
+  }
+  @else {
+    $yiq: (red($color) * 299 + green($color) * 587 + blue($color) * 114) / 1000;
+    @return if($yiq >= 128, $dark, $light);
+  }
+}
+
+$color-main: #5c940d;
+$color-main-hover: darken($color-main,5%);
+$color-main-link: color-contrast($color-main);
+$color-main-link-hover: color-contrast($color-main-hover);
+
+$color-menu: #F08800;//#e07700;
+$color-menu-hover: darken($color-menu,5%);
+$color-menu-link: color-contrast($color-menu);
+$color-menu-link-hover: color-contrast($color-menu-hover);
+
+$color-btn: #d8d8d8;//#F0DD44;//color-contrast($color-menu,20%);//#f08c00;
+$color-btn-hover: darken($color-btn,5%);
+$color-btn-link: color-contrast($color-btn);
+$color-btn-link-hover: color-contrast($color-btn-hover);
+
+$color-hidden: #d8d8d8;//color-contrast($color-menu,20%);//#f08c00;
+$color-hidden-hover: darken($color-hidden,5%);
+$color-hidden-link: color-contrast($color-hidden);
+$color-hidden-link-hover: color-contrast($color-hidden-hover);
+
+.nav {
+  position: relative;
+  background: $color-menu;
+  line-height:1.5;
+}
+.nav--vstretch,.nav-links li {
+  display: flex;
+  align-items: stretch;
+}
+.nav--vcenter,.nav-links a {
+  display: flex;
+  align-items: center;
+}
+.nav a,.nav-button {
+  //color:#ffffff;
+  text-decoration: none;
+ //transition: all .5s linear;
+}
+.nav a:hover,.nav-button:hover {
+  //color:#ffffff;
+  text-decoration: none;
+}
+.nav-mainlink {
+  position:relative;
+  display: flex;
+  flex: 0 0 auto;
+  max-width:50%;
+  align-items: center;
+  padding: .5rem 1.5rem;
+  font-weight: bold;
+  background-color: $color-main;
+  color:$color-main-link;
+}
+.nav-mainlink:hover {
+  color:$color-main-link-hover;
+  background-color: $color-main-hover;
+}
+.nav-mainarrow {
+  color:$color-main;
+  //align-self:stretch;
+  width:1rem;
+  flex:0 0 auto;
+  svg {width:100%;height:100%;fill:currentColor;}
+}
+.nav-mainlink:hover ~ .nav-mainarrow {
+  color:$color-main-hover;
+}
+.nav-button {
+  position:relative;
+  flex: 0 1 auto;
+
+  padding: 0 1rem;
+  outline: 0;
+  border:0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: $color-btn;
+  color: $color-btn-link;
+  cursor:pointer;
+  overflow:visible;
+}
+
+.nav-button.hidden {
+  visibility:hidden;
+  position:absolute;
+  z-index:-1;
+  left:0;
+}
+
+.nav-button::after {
+  content: attr(count);
+  position:absolute;
+  left:0;
+  top:50%;
+  transform: translate(-50%,-50%);
+
+  box-sizing: border-box;
+  display:flex;
+  font-size: 80%;
+  line-height:1;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid $color-menu;
+  border-radius: 50%;
+  background: $color-menu-link;
+  color: $color-menu;
+}
+.nav-button:hover {
+  color: $color-btn-link-hover;
+  background:$color-btn-hover;
+}
+.nav-button:hover::after {
+   //order-color: $color-btn-hover;
+   transform: translate(-50%,-50%) scale(1.1);
+ }
+.nav-links {
+  position: relative;
+
+  justify-content: flex-end;
+  flex: 1 1 auto;
+
+  overflow: hidden;
+  margin-right:.5rem;
+}
+.nav-links a {
+  flex: 0 0 auto;
+
+  padding:0 .5rem;
+  color: $color-menu-link;
+}
+.nav-links a:hover {
+  background-color: $color-menu-hover;
+  color: $color-menu-link-hover;
+}
+
+.nav-links li {
+  flex: 0 0 auto;
+  padding: 0 .5rem;
+}
+.nav-links li.hidden {
+  display:none;
+}
+
+
+.nav-hidden-links {
+  position: absolute;
+  background: $color-hidden;
+  right: 0;
+  top: 100%;
+}
+
+.nav-hidden-links a {
+  display:block;
+  text-align:right;
+  color: $color-hidden-link;
+  padding: .5rem 1.5rem .5rem 1rem;
+}
+.nav-hidden-links a:hover {
+  color: $color-hidden-link-hover;
+  background-color: $color-hidden-hover;
+  padding: .5rem 1.5rem .5rem 1rem;
+}
+
+.nav-hidden-links.hidden {
+  display: none;
+}
+
+.nav-hidden-links li {
+  display:block;
+  padding: .5rem 0;
+}
+.nav-hidden-links li.hidden {
+  display:none;
+}
+
+/*
+-- Demo Styles
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #fefefe;
+}
+
+body {
+padding:0;
+  margin:0;
+}
+
+h5 {
+  text-align: center;
+  margin: auto;
+  font-size: 0.8rem;
+  line-height: 140%;
+  margin-top: 1rem;
+  max-width: 50ex;
+}
+
+p {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  font-family: Helvetica, sans-serif;
+}
+.banner {
+  padding:1rem;
+}
+/* logo */
+.logo {
+  position: relative;
+  max-width:20em;
+  border:4px solid #000;
+  border-radius:.5rem;
+  background-color: #fff;
+  & > div {padding-top:(120/270)*100%;}
+  & > svg {position:absolute;width:100%;height:100%;top:0;left:0;}
+}
+.pattern {
+  background:
+          linear-gradient(45deg, #343702 0%, #184500 20%, #187546 30%, #006782 40%, #0b1284 50%, #760ea1 60%, #83096e 70%, #840b2a 80%, #b13e12 90%, #e27412 100%);
+  //background-size: 470px 470px, 970px 970px, 410px 410px, 610px 610px, 530px 530px, 730px 730px, 100% 100%;
+  background-color: #840b2a;
+}

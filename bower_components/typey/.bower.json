@@ -1,0 +1,32 @@
+{
+  "name": "typey",
+  "homepage": "http://github.com/jptaranto/typey",
+  "author": [
+    "Jack Taranto"
+  ],
+  "description": "A complete framework for working with typography in sass.",
+  "main": [
+    "stylesheets/_typey.scss"
+  ],
+  "keywords": [
+    "sass",
+    "typography"
+  ],
+  "license": "GPL-2.0",
+  "ignore": [
+    "typey.gemspec",
+    "sache.json",
+    "lib"
+  ],
+  "version": "1.0.3",
+  "_release": "1.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.3",
+    "commit": "367ccc7ce014344059fdbcd9ff132aa235293729"
+  },
+  "_source": "https://github.com/jptaranto/typey.git",
+  "_target": "^1.0.3",
+  "_originalSource": "typey",
+  "_direct": true
+}
