@@ -342,16 +342,16 @@ html {
   }
 
 }
-.social .icon-youtube .wide {
+.social .icon-youtube.wide {
   display:none;
 }
 @media (min-width: 32em) {
   .social .icon-youtube {
     width:5em;
-    & .small {
+    &.small {
       display:none;
     }
-    & .wide {
+    &.wide {
       display:inline-block;
     }
   }

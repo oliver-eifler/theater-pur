@@ -387,7 +387,7 @@ html {
   fill: #cd201f;
 }
 
-.social .icon-youtube .wide {
+.social .icon-youtube.wide {
   display: none;
 }
 
@@ -395,10 +395,10 @@ html {
   .social .icon-youtube {
     width: 5em;
   }
-  .social .icon-youtube .small {
+  .social .icon-youtube.small {
     display: none;
   }
-  .social .icon-youtube .wide {
+  .social .icon-youtube.wide {
     display: inline-block;
   }
 }
