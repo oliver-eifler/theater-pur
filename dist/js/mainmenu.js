@@ -64,8 +64,10 @@
             $hlinks.classList.toggle('hidden');
 
         if (!$hlinks.classList.contains('hidden')) {
+            $btn.classList.add('active');
             doc.addEventListener('click', onClickOutside, false);
         } else {
+            $btn.classList.remove('active');
             doc.removeEventListener('click', onClickOutside, false);
         }
 
