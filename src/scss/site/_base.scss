@@ -1,0 +1,121 @@
+/* base page layout */
+@import "../config";
+@import "../components/normalize";
+
+/* normalize styles */
+@include normalize();
+
+/* Base Styling */
+html {
+  background-color: base($colors);
+  -webkit-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+body {
+  //font-family: $sansSerifFont;
+  position: relative;
+  //margin: 0;
+  padding: 0;
+  color: #000;
+  color: text($colors);
+  background-color: inherit;
+}
+img {
+  max-width:100%;
+  vertical-align: bottom;
+}
+.icon {
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+  width: 1em;
+  height: 1em; //lineheight
+  fill: currentColor;
+}
+/*Typography*/
+p {
+  margin: $leading 0;
+  .icon {
+    height:1.5em;
+    margin-right:.25em;
+  }
+}
+.hug {
+  margin-top:0 !important;
+}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $serifFont;
+    font-wight:bold;
+
+    color: hilight($colors);
+    // Change heading typefaces here
+    margin: $leading 0;
+    line-height: $leading;
+    .icon {
+      height:$leading;
+      margin-right:.25em;
+    }
+  }
+
+  h1 {
+    font-size: 2 * $scale * 1rem;
+    line-height: 2 * $leading;
+    //margin-top: 2 * $leading;
+    .icon {
+      height: 2 *$leading;
+    }
+  }
+
+  h2,.big {
+    font-size: 1.5*$scale * 1rem;
+    line-height: 1.5*$leading;
+    //margin-top: $leading;
+    .icon {
+      height:1.5*$leading;
+    }
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+  h4,h5,h6 {
+    font-size: $scale / 2 * 1rem;
+  }
+
+article {
+  margin: 0 auto;
+  max-width:60em;
+  & > * {
+    margin:0;
+  }
+  & > *+*,&:first-child {
+    margin-top:$leading;
+  }
+}
+footer {
+  margin: 0 auto;
+  margin-top: 3em;
+  max-width:60em;
+  text-align:center;
+  font-size: $scale / 2 * 1rem;
+
+  & > * {
+    margin:0;
+  }
+  &:first-child {
+    margin-top:$leading;
+  }
+}
+@import "helper";

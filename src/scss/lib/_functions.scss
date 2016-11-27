@@ -98,12 +98,21 @@
 @function contrast($color) {
   @return if(lightness($color) < 51, #FFF, #000)
 }
+@function color-contrast($color,$amount: 100%) {
+  @if (lightness( $color ) > 50) {
+    //@return #000000; // Lighter color, return black
+    @return darken($color, $amount)
+  } @else {
+    //@return #FFFFFF; // Darker color, return white
+    @return lighten($color, $amount)
+  }
+}
 
 @function strip-unit ($num) {
   @return $num / ($num * 0 + 1);
 }
 
-@function px2em ($pixels,$base: 16) {
+@function px2em ($pixels,$base: $baseFontSize) {
 
   // $base could be in em or px (no unit = px).
   // Adjust accordingly to create a $divisor that

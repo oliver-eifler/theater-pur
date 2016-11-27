@@ -1,0 +1,43 @@
+/* Main Config File */
+@import 'lib/functions';
+@import 'lib/theme';
+
+$color-page: #fefefe;
+$colors: getColors($color-page);
+$color-extra: #FF8A00;
+$color-hover: #F10087;
+
+//$color-link: #67a281;
+$color-link: #2164f4;
+
+$color-link-hover: $color-hover;
+
+//$color-link-visited: #3c624b;
+$color-link-visited: #2164f4;
+
+
+
+
+$color-brand: #F08800; //#e07700;
+$color-codepen: #000;
+$color-facebook: #3b5998;
+$color-github: #333;
+$color-google: #dc4e41;
+$color-twitter: #55acee;
+$color-youtube: #cd201f;
+
+$monospaceFont: Consolas, monaco, monospace, monospace;
+$sansSerifFont: Verdana, Geneva, sans-serif;
+$serifFont: Georgia, Georgia, Times, Times New Roman, serif;
+
+$baseFontSize: 16; // in pixels. This would result in 16px on desktop
+$baseLineHeight: 1.5; // how large the line height is as a multiple of font size
+$leading: $baseLineHeight * 1rem;
+// Rate of growth for headings
+// I actually like this to be slightly smaller then the leading. Makes for tight headings.
+$scale: 1.414;
+
+
+$normalize-vertical-rhythm: true !default;
+$base-font-family: $sansSerifFont;
+

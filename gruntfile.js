@@ -14,25 +14,25 @@ module.exports = function (grunt) {
             assets: 'src',
             components: 'src/js/components'
         },
-/* SVG ICON STUFF */
+        /* SVG ICON STUFF */
         svg2png: {
             iconpng: {
                 // specify files in array format with multiple src-dest mapping
                 files: [
                     // rasterize all SVG files in "img" and its subdirectories to "img/png"
-                    { cwd: '<%= dir.assets %>/svg/icons/', src: ['**/*.svg'], dest: '<%= dir.build %>/icons/' }
+                    {cwd: '<%= dir.assets %>/svg/icons/', src: ['**/*.svg'], dest: '<%= dir.build %>/icons/'}
                 ]
             }
         },
         svgstore: {
-            iconsvg : {
-                options: {prefix:"icon-",includeTitleElement:false},
+            iconsvg: {
+                options: {prefix: "icon-", includeTitleElement: false},
                 files: {
                     '<%= dir.release %>/images/icons.svg': ['<%= dir.build %>/icons/*.svg'],
                 },
             },
         },
-/* IMAGE STUFF */
+        /* IMAGE STUFF */
         imagemin: {                          // Task
             iconpng: {                         // Another target
                 options: {                       // Target options
@@ -63,7 +63,8 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,                  // Enable dynamic expansion
-                    cwd: '<%= dir.assets %>/svg/icons/', src: ['**/*.svg'], dest: '<%= dir.build %>/icons/'                }]
+                    cwd: '<%= dir.assets %>/svg/icons/', src: ['**/*.svg'], dest: '<%= dir.build %>/icons/'
+                }]
             }
         },
         responsive_images: {
@@ -83,19 +84,19 @@ module.exports = function (grunt) {
                 }]
             }
         },
-/* JAVASCRIPT STUFF */
+        /* JAVASCRIPT STUFF */
         rollup: {
             options: {
                 format: 'iife',
                 banner: '<%= banner %>'
             },
             /*
-            jsInline: {
-                options: {format: 'es'},
-                'dest': '<%= dir.build %>/js/inline.js',
-                'src': '<%= dir.assets %>/js/inline.js' // Only one source file is permitted
-            },
-            */
+             jsInline: {
+             options: {format: 'es'},
+             'dest': '<%= dir.build %>/js/inline.js',
+             'src': '<%= dir.assets %>/js/inline.js' // Only one source file is permitted
+             },
+             */
             jsKickstart: {
                 options: {
                     moduleName: 'olli'
@@ -104,14 +105,14 @@ module.exports = function (grunt) {
                 'src': '<%= dir.assets %>/js/kickstart.js' // Only one source file is permitted
             },
             /*
-            jsAsync: {
-                options: {
-                    moduleName: 'olli'
-                },
-                'dest': '<%= dir.build %>/js/async.js',
-                'src': '<%= dir.assets %>/js/async.js' // Only one source file is permitted
-            },
-            */
+             jsAsync: {
+             options: {
+             moduleName: 'olli'
+             },
+             'dest': '<%= dir.build %>/js/async.js',
+             'src': '<%= dir.assets %>/js/async.js' // Only one source file is permitted
+             },
+             */
             jsPage: {
                 'dest': '<%= dir.build %>/js/page.js',
                 'src': '<%= dir.assets %>/js/page.js' // Only one source file is permitted
@@ -175,7 +176,7 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= dir.assets %>/css',
+                    cwd: '<%= dir.assets %>/scss',
                     src: ['*.scss'],
                     dest: '<%= dir.build %>/css',
                     ext: '.css'
@@ -190,7 +191,7 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     processors: [
-                        require('pixrem')() // rem to pixel the result
+                        //require('pixrem')() // rem to pixel the result
                     ]
                 },
                 files: [{
@@ -204,9 +205,15 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     processors: [
-                        require('pixrem')(), // rem to pixel the result
+                        //require('pixrem')(), // rem to pixel the result
                         require('css-mqpacker')(), // rem to pixel the result
-                        require('cssnano')({safe: true,autoprefixer:false,normalizeURL:false}) // minify the result
+                        require('cssnano')({
+                                safe: false,
+                                autoprefixer: false,
+                                normalizeURL: false,
+                                discardComments: {removeAll: true}
+                            }
+                        ) // minify the result
                     ]
                 },
                 files: [{
@@ -246,7 +253,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-svgstore');
     // Default task(s).
-    grunt.registerTask('icons',['imagemin:iconsvg','svgstore:iconsvg','svg2png:iconpng','imagemin:iconpng']);
+    grunt.registerTask('icons', ['imagemin:iconsvg', 'svgstore:iconsvg', 'svg2png:iconpng', 'imagemin:iconpng']);
     grunt.registerTask('dev-js', ['rollup', 'uglify:dev']);
     grunt.registerTask('dist-js', ['rollup', 'uglify:dist']);
     grunt.registerTask('dev-css', ['sass', 'postcss:dev']);
