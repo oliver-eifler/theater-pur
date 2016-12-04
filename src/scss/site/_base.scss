@@ -109,8 +109,13 @@ footer {
   margin-top: 3em;
   max-width:60em;
   text-align:center;
-  font-size: $scale / 2 * 1rem;
-
+  & .icon-olli {
+    width:3em;
+    height:3em;
+    line-height:1;
+    vertical-align: middle;
+  }
+  & a,& span {display:inline-block;}
   & > * {
     margin:0;
   }

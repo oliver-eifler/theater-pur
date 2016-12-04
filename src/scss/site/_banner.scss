@@ -5,7 +5,7 @@ font-size:16px;
   padding: 1em;
   display: flex;
   align-items: flex-end;
-  //flex-wrap: wrap;
+  & > * {display:inline-block;}
 }
 .pattern {
   background: linear-gradient(45deg, #343702 0%, #184500 20%, #187546 30%, #006782 40%, #0b1284 50%, #760ea1 60%, #83096e 70%, #840b2a 80%, #b13e12 90%, #e27412 100%);
@@ -14,24 +14,32 @@ font-size:16px;
 
 .logo {
   flex: 8 1 80%;
-  position: relative;
   max-width: 20em;
+  /*
+  max-width: 20em;
+  position: relative;
   border: 4px solid #000;
   border-radius: .5em;
   background-color: #fff;
-  & > div {
-    padding-top: (120/270)*100%;
-  }
+  */
   & > svg {
+    width: 100%;
+    height: auto;
+    border: 4px solid #000;
+    border-radius: .5em;
+    background-color: #fff;
+    /*
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
+    */
   }
 }
 .social {
   display: inline-block;
+  float:right;
   flex: 2 1 20%;
   text-align: right;
   li {

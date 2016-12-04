@@ -24,19 +24,35 @@ $color-hidden-link-hover: color-contrast($color-hidden-hover);
 /* font-size: 16px */
 
 .nav {
+  display:block;
+
   position: relative;
   background: $color-menu;
   line-height: 1.5;
-}
+  * {
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+  }
+  & > * {
+    vertical-align: middle;
+  }
+  &:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    width:1px;
+    margin-right:-1px;
+  }
 
-.nav--vstretch, .nav-links li {
+}
+.ext .nav {
   display: flex;
   align-items: stretch;
-}
-
-.nav--vcenter, .nav-links a {
-  display: flex;
-  align-items: center;
+  &:before {
+    display:none;
+  }
 }
 
 .nav a, .nav-button {
@@ -51,15 +67,19 @@ $color-hidden-link-hover: color-contrast($color-hidden-hover);
 }
 
 .nav-mainlink {
+  //display:inline-block;
+
   position: relative;
-  display: flex;
-  flex: 0 0 auto;
   max-width: 50%;
-  align-items: center;
   padding: .5em 1.5em;
   font-weight: bold;
   background-color: $color-main;
   color: $color-main-link;
+}
+.ext .nav-mainlink {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
 }
 
 .nav-mainlink:hover {
@@ -70,15 +90,13 @@ $color-hidden-link-hover: color-contrast($color-hidden-hover);
 $fontsize:$baseFontSize*0.8;
 
 .nav-button {
-  position: relative;
-  flex: 0 1 auto;
+  flex: 0 0 auto;
 
+  position: relative;
   padding: 0 0 0 px2em($baseFontSize+4,$fontsize);
   outline: 0;
   border: 0;
-  //font-family: inherit;
   font-size: px2em($fontsize);
-  //line-height: 1.5;
   font-weight: bold;
 
   background: $color-btn;
@@ -141,21 +159,33 @@ $fontsize:$baseFontSize*0.8;
 }
 
 .nav-links {
+  //display:inline-block;
+  text-align:right;
   position: relative;
-
+  margin-right: .5rem;
+}
+.ext .nav-links {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
   justify-content: flex-end;
   flex: 1 1 auto;
-
-  overflow: hidden;
-  margin-right: .5rem;
 }
 
 .nav-links a {
-  flex: 0 0 auto;
+  //display:inline-block;
 
   padding: 0 .5em;
   color: $color-menu-link;
 }
+.ext .nav-links a {
+  display: flex;
+  align-items: center;
+
+  flex: 0 0 auto;
+
+}
+
 
 .nav-links a:hover {
   background-color: $color-menu-hover;
@@ -163,8 +193,15 @@ $fontsize:$baseFontSize*0.8;
 }
 
 .nav-links li {
-  flex: 0 0 auto;
+  //display:inline-block;
+
   padding: 0 .5em;
+}
+.ext .nav-links li {
+  display: flex;
+  align-items: stretch;
+
+  flex: 0 0 auto;
 }
 
 .nav-links li.hidden {

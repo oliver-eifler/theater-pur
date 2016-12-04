@@ -3,6 +3,7 @@ node_modules
 _backup
 build
 components
+bower_components
 images
 dist/images
 webfonts

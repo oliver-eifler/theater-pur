@@ -2,72 +2,117 @@
  * Created by darkwolf on 12.11.2016.
  * The Header MainMenu based on GreedyNav by lukejacksonn (https://github.com/lukejacksonn/GreedyNav)
  */
-!(function(win,doc) {
+!(function (win, doc) {
 
 
-    var $nav = doc.querySelector('nav.greedy');
-    var $btn = $nav.querySelector('button');
-    var $vlinks = $nav.querySelector('.links');
-    var $hlinks = $nav.querySelector('.hidden-links');
+    var $nav = doc.querySelector('.nav');
+    var $btn = $nav.querySelector('.nav-button'), btnWidth;
+    var $vlinks = $nav.querySelector('.nav-links');
+    var $hlinks = $nav.querySelector('.nav-hidden-links');
 
-    var numOfItems = 0;
-    var totalSpace = 0;
+    var totalItems = 0;
     var breakWidths = [];
 
-    // Get initial state
-    for (var i=0;i<$vlinks.children.length;i++) {
+    function build() {
+        //clone nodes
+        totalItems = 0;
+        for (var i = 0, node; i < $vlinks.children.length; i++) {
+            node = $vlinks.children[i].cloneNode(true);
+            node.classList.add('hidden');
+            $hlinks.appendChild(node);
+            totalItems++;
+        }
+        $btn.setAttribute('count', totalItems);
+    }
 
-        totalSpace += $vlinks.children[i].offsetWidth;
-        numOfItems += 1;
-        breakWidths.push(totalSpace);
-    };
+    function measure() {
+        // Get initial state
+        var totalSpace=0;
+        breakWidths=[];
+        for (var i = 0; i < $vlinks.children.length; i++) {
+
+            totalSpace += $vlinks.children[i].offsetWidth;
+            breakWidths.push(totalSpace);
+        }
+        btnWidth = $btn.offsetWidth;
+    }
+
+    function showItem(i, bShow) {
+        var v = $vlinks.children[i], h = $hlinks.children[i];
+        if (bShow) {
+            v.classList.remove('hidden');
+            h.classList.add('hidden');
+        } else {
+            v.classList.add('hidden');
+            h.classList.remove('hidden');
+        }
+    }
+
+    function onClickOutside(event) {
+        var isClickInside = $btn.contains(event.target) || $hlinks.contains(event.target);
+        if (!isClickInside) {
+            togglePulldown(false);
+            /* force hide*/
+        }
+    }
+    function togglePulldown(bForce) {
+        if (bForce === true)
+            $hlinks.classList.remove('hidden');
+        else if (bForce === false)
+            $hlinks.classList.add('hidden');
+        else
+            $hlinks.classList.toggle('hidden');
+
+        if (!$hlinks.classList.contains('hidden')) {
+            $btn.classList.add('active');
+            doc.addEventListener('click', onClickOutside, false);
+        } else {
+            $btn.classList.remove('active');
+            doc.removeEventListener('click', onClickOutside, false);
+        }
+
+        return !$hlinks.classList.contains('hidden');
+    }
 
     function check() {
 
         // Get instant state
-        availableSpace = $vlinks.offsetWidth;
-        numOfVisibleItems = $vlinks.children.length;
-        requiredSpace = breakWidths[numOfVisibleItems - 1];
-        if ($btn.classList.contains('hidden'))
-            availableSpace -= $btn.offsetWidth;
-        /*
-         Check if there is not enough space for the visible links or
-         if there is space available for the hidden link
-         */
-        if (availableSpace < breakWidths[numOfVisibleItems - 1]) {
+        var visibleItems = totalItems,
+            hiddenItems = 0,
+            btnVisible = !($btn.classList.contains('hidden')),
+            availableSpace = $vlinks.offsetWidth,
+            maxSpace = availableSpace + (btnVisible?btnWidth:0),
+            minSpace = maxSpace - btnWidth;
+
+        /*Max Items*/
+        while (visibleItems) {
+            availableSpace = hiddenItems?minSpace:maxSpace;
+            if (availableSpace < breakWidths[--visibleItems]) {
+                showItem(visibleItems, false);
+                hiddenItems++;
+            } else {
+                showItem(visibleItems, true);
+            }
+            //visibleItems--;
+        }
+
+        if (!hiddenItems) {
+            $btn.classList.add('hidden');
+        } else {
+            $btn.setAttribute('count', hiddenItems);
             if ($btn.classList.contains('hidden')) {
                 $btn.classList.remove('hidden');
-                //availableSpace = $vlinks.offsetWidth;
-            }
-
-            while (availableSpace < breakWidths[numOfVisibleItems - 1]) {
-                $hlinks.insertBefore($vlinks.children[numOfVisibleItems - 1], $hlinks.firstChild);
-                numOfVisibleItems--;
-            }
-        } else if (availableSpace > breakWidths[numOfVisibleItems]) {
-            while (availableSpace > breakWidths[numOfVisibleItems]) {
-                $vlinks.appendChild($hlinks.removeChild($hlinks.firstChild));
-                numOfVisibleItems++;
             }
         }
 
-        if (true) {
-            $btn.setAttribute('count', $hlinks.children.length);
-            if (!$hlinks.children.length) {
-                $btn.classList.add('hidden');
-            }
-        }
     }
 
-
-
-
-
+    build();
+    measure();
     check();
-    window.addEventListener('resize', check);
-    $btn.addEventListener('click',function() {
-        $hlinks.classList.toggle('hidden');
-    })
+    win.addEventListener('resize', check, false);
+    $btn.addEventListener('click', function () {
+        togglePulldown();
+    }, false);
 
-
-})(window,document);
+})(window, document);
