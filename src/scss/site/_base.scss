@@ -94,9 +94,14 @@ p {
     font-size: $scale / 2 * 1rem;
   }
 
-article {
-  margin: 0 auto;
+article {  }
+.wrapper-narrow {
+  margin:0 auto;
+  padding: 0 1em;
   max-width:60em;
+}
+.text {
+  margin-top: 3*$leading;
   & > * {
     margin:0;
   }
@@ -104,23 +109,60 @@ article {
     margin-top:$leading;
   }
 }
+.hero {
+  padding: 5*$leading 0;
+  color: #fff;
+  background-color: #0b1284;
+  text-align: center;
+}
+.hero-wrapper {
+  & * {
+    margin:0;
+  }
+  & *+* {
+    margin-top:$leading;
+  }
+}
+.hero-title,.hero-text {
+  color: inherit;
+}
+
+
+
+
 footer {
   margin: 0 auto;
   margin-top: 3em;
   max-width:60em;
   text-align:center;
+  & * {
+    margin:0;
+  }
+  & > *+* {
+    margin-top:$leading;
+  }
+}
+.olli {
+  text-align:left;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+
   & .icon-olli {
     width:3em;
     height:3em;
-    line-height:1;
-    vertical-align: middle;
+    margin-right:.5em;
+    flex: 0 0 auto;
   }
-  & a,& span {display:inline-block;}
-  & > * {
-    margin:0;
-  }
-  &:first-child {
-    margin-top:$leading;
-  }
+.olli-legende {
+  font-size:80%;
+  line-height:1.5;
+  text-align:right;
+  padding: 0 .5em;
+  border-top:1px solid #000;
+}
+
+
+
 }
 @import "helper";

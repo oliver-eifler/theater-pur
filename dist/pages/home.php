@@ -1,16 +1,13 @@
 <?php
 $this->created = 1465034394;
 $this->modified = 1474816719;
-$this->title = "'Mein Freund Harvey'";
-$this->subtitle = "Krimikomödie von Holger Ptacek";
-$this->description = "Mein Freund Harvey eine Krimikomödie von Holger Ptacek";
+$this->title = "\"Mein Freund Harvey\"";
+$this->subtitle = "eine irre Komödie von Mary Chase";
+$this->description = "eine irre Komödie von Mary Chase";
 ?>
-<article>
-    <h1>"Mein Freund Harvey"</h1>
+<div class="text wrapper-narrow">
 
-    <p class="hug">Krimikomödie von Holger Ptacek</p>
-
-    <h2>Inhalt<br>Bla</h2>
+    <h2>Inhalt</h2>
 
     <img src="images/harvey-impressions-01.jpg"/>
 
@@ -120,4 +117,4 @@ $this->description = "Mein Freund Harvey eine Krimikomödie von Holger Ptacek";
             Wer ist denn nun eigentlich wirklich verrückt?
         </small>
     </p>
-</article>
+</div>

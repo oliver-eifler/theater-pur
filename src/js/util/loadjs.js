@@ -7,7 +7,8 @@ export default function loadjs(src, cb) {
     script.src = src;
     script.async = true;
     if (cb && typeof(cb) === "function") {
-        script.onload = cb;
+        script.onload = cb.bind(script,true);
+        script.onerror = cb.bind(script,false);
     }
     ref.parentNode.insertBefore(script, ref.nextSibling);
     return script;

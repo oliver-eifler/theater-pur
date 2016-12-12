@@ -70,7 +70,6 @@ $color-hidden-link-hover: color-contrast($color-hidden-hover);
   //display:inline-block;
 
   position: relative;
-  max-width: 50%;
   padding: .5em 1.5em;
   font-weight: bold;
   background-color: $color-main;
@@ -80,6 +79,7 @@ $color-hidden-link-hover: color-contrast($color-hidden-hover);
   display: flex;
   flex: 0 0 auto;
   align-items: center;
+  max-width: 50%;
 }
 
 .nav-mainlink:hover {

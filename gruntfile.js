@@ -97,15 +97,13 @@ module.exports = function (grunt) {
              'src': '<%= dir.assets %>/js/inline.js' // Only one source file is permitted
              },
              */
-            /*
             jsKickstart: {
                 options: {
-                    moduleName: 'olli'
+                    moduleName: 'µ'
                 },
                 'dest': '<%= dir.build %>/js/kickstart.js',
                 'src': '<%= dir.assets %>/js/kickstart.js' // Only one source file is permitted
             },
-            */
             /*
              jsAsync: {
              options: {
@@ -140,7 +138,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    //'<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
+                    '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
                     //'<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
                     //'<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
                     '<%= dir.release %>/js/site.js': [/*'<%= dir.components %>/native.history.js',*/ '<%= dir.build %>/js/site.js'],
@@ -157,7 +155,7 @@ module.exports = function (grunt) {
                     banner: '<%= banner %>\n/** @const */var DEBUG = true;\n'
                 },
                 files: {
-                    //'<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
+                    '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
                     //'<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
                     //'<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
                     '<%= dir.release %>/js/site.js': [/*'<%= dir.components %>/native.history.js',*/ '<%= dir.build %>/js/site.js'],

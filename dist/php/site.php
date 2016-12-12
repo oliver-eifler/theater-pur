@@ -1,6 +1,7 @@
 <?php
 require_once('php/class/basesite.class.php');
 require_once('php/components.php');
+require_once('php/tool/geopattern_loader.php');
 
 class Site extends BaseSite
 {
@@ -48,15 +49,18 @@ class Site extends BaseSite
         //<link rel="canonical" href="http://example.com/wordpress/seo-plugin/">
         /*Build the filelist*/
         $files = [];
-        $files["css/site.css"] = Component::get("CacheBust","css/site.css");
-        $files["js/site.js"] = Component::get("CacheBust","js/site.js");
-        $files["js/html5shiv.min.js"] = Component::get("CacheBust","js/html5shiv.min.js");
+        $files["site.css"] = Component::get("CacheBust","css/site.css");
+        $files["nav.js"] = Component::get("CacheBust","js/site.js");
+        $files["html5shiv.js"] = Component::get("CacheBust","js/html5shiv.min.js");
 
-        $html.="<script>var _files=".json_encode($files).";console.log(_files);</script>";
+        $html.="<link rel='stylesheet' href='".Component::get("CacheBust",$files["site.css"])."'>";
+        //$html.="<script id='sitejs' async src='".Component::get("CacheBust",$files["nav.js"])."'></script>";
+        $html.="<!--[if lt IE 9]><script src='".Component::get("CacheBust",$files["html5shiv.js"])."'></script><![endif]-->";
+        $html.= "<script data-id='kickstart'>";
+        $html.=     file_get_contents("js/kickstart.js");
+        $html.=     "µ.i(".json_encode($files).");";
+        $html.= "</script>";
 
-        $html.="<link rel='stylesheet' href='".Component::get("CacheBust","css/site.css")."'>";
-        $html.="<script id='sitejs' async src='".Component::get("CacheBust","js/site.js")."'></script>";
-        $html.="<!--[if lt IE 9]><script src='".Component::get("CacheBust","js/html5shiv.min.js")."'></script><![endif]-->";
 
         $html .= "</head>";
             $html .= $this->htmlBody();
@@ -67,17 +71,32 @@ class Site extends BaseSite
 
     protected function htmlBody()
     {
+        $page = $this->pagedata;
+        $geopattern = new \RedeyeVentures\GeoPattern\GeoPattern();
+        $geopattern->setString($page->title);
+        $bgImage = $geopattern->toDataURL();
+        $bgColor = $geopattern->getBackgroundColor();
+
+
         $html = "";
         $html .= "<body>";
         $html .= Component::get("Banner");
         $html .= Component::get("MainNav");
 
-        $html .= "<main>";
-        $html .= Component::get("Content");
-        $html .= "</main>";
+        $html .= "<main><article>";
+
+            $html .= "<div class='hero' style='background-color: {$bgColor};background-image: {$bgImage}'>";
+                $html .= "<div class='hero-wrapper wrapper-narrow'>";
+                    $html .= "<h1 class='hero-title'>".$page->title."</h1>";
+                    $html .= "<p class='hero-text'>".$page->subtitle."</p>";
+                $html .= "</div>";
+            $html .= "</div>";
+
+            $html .= Component::get("Content");
+        $html .= "</article></main>";
 
         $html .= "<footer>";
-        $html .= Component::get("Footer");
+            $html .= Component::get("Footer");
         $html .= "</footer>";
 
         $html .= "</body>";
