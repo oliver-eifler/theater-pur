@@ -13,6 +13,7 @@ class BaseSite extends _registry
 {
     protected $pagedata = null;
     protected $path = "";
+    protected $pathes = ["php/","css/","js/","images/svg/"];
     public function __construct($path="")
     {
         $this->path = $path;
@@ -25,10 +26,31 @@ class BaseSite extends _registry
     protected function init($path) {return $this;}
     public function render() {
         if ($this->pagedata->request_json)
-            return $this->renderJSON();
-        return $this->renderHTML();
+            $content = $this->renderJSON();
+        else
+            $content = $this->renderHTML();
+
+        $page = $this->pagedata;
+        $lmodified = $page->modified;
+        $md5 = md5($content);
+
+        header("Etag: $md5");
+        //make sure caching is turned on
+        header('Cache-Control: public');
+        if (/*(isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $lmodified > 0 && @strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $lmodified)||*/
+            (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == $md5)) {
+            header('HTTP/1.1 304 Not Modified');
+            exit();
+        }
+        if ($lmodified > 0) {
+            header('Last-Modified: '.gmdate("D, d M Y H:i:s", $lmodified)." GMT");
+        }
+        if ($this->pagedata->request_json)
+            header("Content-type: application/json; charset=utf-8");
+        echo $content;
+        return $this;
     }
-    public function renderHTML() {return $this;}
-    public function renderJSON() {return $this;}
+    public function renderHTML() {return "";}
+    public function renderJSON() {return "";}
 }
 ?>

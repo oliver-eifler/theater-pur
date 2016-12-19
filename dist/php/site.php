@@ -24,8 +24,7 @@ class Site extends BaseSite
 
     public function renderHTML()
     {
-        echo $this->HTML();
-        return $this;
+        return $this->HTML();
     }
     public function renderJSON()
     {
@@ -34,10 +33,7 @@ class Site extends BaseSite
         $json['title'] = $page->title;
         $json['content'] = $page->html;
 
-        header("Content-type: application/json; charset=utf-8");
-        //sleep(10000);
-        echo json_encode($json);
-        return $this;
+        return json_encode($json);
     }
 
     protected function HTML()
@@ -53,13 +49,17 @@ class Site extends BaseSite
         $files["nav.js"] = Component::get("CacheBust","js/site.js");
         $files["html5shiv.js"] = Component::get("CacheBust","js/html5shiv.min.js");
 
-        $html.="<link rel='stylesheet' href='".Component::get("CacheBust",$files["site.css"])."'>";
+        //$html.="<link rel='stylesheet' href='".$files["site.css"]."'>";
         //$html.="<script id='sitejs' async src='".Component::get("CacheBust",$files["nav.js"])."'></script>";
-        $html.="<!--[if lt IE 9]><script src='".Component::get("CacheBust",$files["html5shiv.js"])."'></script><![endif]-->";
+        $html.="<!--[if lt IE 9]><script src='".$files["html5shiv.js"]."'></script><![endif]-->";
         $html.= "<script data-id='kickstart'>";
         $html.=     file_get_contents("js/kickstart.js");
         $html.=     "µ.i(".json_encode($files).");";
         $html.= "</script>";
+        $html.= "<style data-id='sitecss'>";
+        $html.=     file_get_contents("css/site.css");
+        $html.=     "µ.i(".json_encode($files).");";
+        $html.= "</style>";
 
 
         $html .= "</head>";
@@ -95,10 +95,12 @@ class Site extends BaseSite
             $html .= Component::get("Content");
         $html .= "</article></main>";
 
-        $html .= "<footer>";
+        $html .= "<footer class='footer'>";
             $html .= Component::get("Footer");
         $html .= "</footer>";
-
+        $html.= "<script data-id='domready'>";
+        $html.=     "µ.ready(true);";
+        $html.= "</script>";
         $html .= "</body>";
         return $html;
     }

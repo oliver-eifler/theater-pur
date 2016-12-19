@@ -5,63 +5,51 @@ font-size:16px;
   padding: 1em;
   display: flex;
   align-items: flex-end;
-  & > * {display:inline-block;}
+  & * {
+    display: inline-block;
+  }
 }
+
 .pattern {
   background: linear-gradient(45deg, #343702 0%, #184500 20%, #187546 30%, #006782 40%, #0b1284 50%, #760ea1 60%, #83096e 70%, #840b2a 80%, #b13e12 90%, #e27412 100%);
   background-color: #840b2a;
 }
 
-.logo {
-  flex: 8 1 80%;
-  max-width: 20em;
-  /*
-  max-width: 20em;
-  position: relative;
-  border: 4px solid #000;
+.banner svg {
+  padding: .25em;
+  border: .25em solid #000;
   border-radius: .5em;
   background-color: #fff;
-  */
-  & > svg {
-    width: 100%;
-    height: auto;
-    border: 4px solid #000;
-    border-radius: .5em;
-    background-color: #fff;
-    /*
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    */
-  }
 }
+
+.logo {
+  flex: 8 1 80%;
+  max-width: 21em;
+}
+
+.logo-pur {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
 .social {
-  display: inline-block;
-  float:right;
+  float: right;
   flex: 2 1 20%;
   text-align: right;
   li {
-    display: inline-block;
     padding: .25em;
   }
   margin: -0.25em;
+  margin-left: 0;
 
-  & a {
-    display: inline-block;
-    padding: 3px;
-    border: 1px solid #000;
-    background: #fff;
-    border-radius: 4px;
-    &:hover .icon {
+  & a:hover .icon {
       opacity: 1;
     }
-  }
   & .icon {
     opacity: .70;
-    width: 2em;
-    height: 2em;
+    width: 2em+1em;
+    height: 2em+1em;
     transition: .5s opacity;
   }
   /* icon vendor color */
@@ -73,12 +61,12 @@ font-size:16px;
   }
   & .icon-youtube--wide {
     /* 5*2 */
-    width: 5em;
+    width: 5em+1em;
     display: none;
   }
 }
 
-@media (min-width: 32em) {
+@media (min-width: 34em) {
   .social {
     & .icon-youtube--small {
       display: none;

@@ -7,9 +7,7 @@ import {doc, win} from './globals';
 import ready from './event/domready';
 import mainmenu from './component/mainmenu';
 
-
-
-ready(function() {
+µ.ready(function() {
     console.log("Site Code startet");
     mainmenu.init();
 });

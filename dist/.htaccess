@@ -224,7 +224,7 @@ AddDefaultCharset utf-8
 
 # `FileETag None` doesn't work in all cases.
 <IfModule mod_headers.c>
-    Header unset ETag
+    #Header unset ETag
     #Header set Cache-Control "max-age=86400, public, must-revalidate"
 </IfModule>
 

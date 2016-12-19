@@ -25,19 +25,23 @@ $color-github: #333;
 $color-google: #dc4e41;
 $color-twitter: #55acee;
 $color-youtube: #cd201f;
+$color-olli: #6e3c85;
+
+$color-olli-blue: #204060;
 
 $monospaceFont: Consolas, monaco, monospace, monospace;
 $sansSerifFont: Verdana, Geneva, sans-serif;
-$serifFont: Georgia, Georgia, Times, Times New Roman, serif;
+$serifFont: Georgia, Times, Times New Roman, serif;
 
-$baseFontSize: 16; // in pixels. This would result in 16px on desktop
-$baseLineHeight: 1.5; // how large the line height is as a multiple of font size
-$leading: $baseLineHeight * 1rem;
+/*normalize*/
+$base-boxsizing: border-box !default;
+$base-font: $sansSerifFont;
+$base-fontsize: 16;
+$base-lineheight: 1.5;
+$base-monospace: $monospaceFont;
+
+$leading: $base-lineheight * 1rem;
+$leading-em: $base-lineheight * 1em;
 // Rate of growth for headings
 // I actually like this to be slightly smaller then the leading. Makes for tight headings.
 $scale: 1.414;
-
-
-$normalize-vertical-rhythm: true !default;
-$base-font-family: $sansSerifFont;
-

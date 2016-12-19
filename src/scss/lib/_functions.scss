@@ -112,7 +112,7 @@
   @return $num / ($num * 0 + 1);
 }
 
-@function px2em ($pixels,$base: $baseFontSize) {
+@function px2em ($pixels,$base: $base-fontsize) {
 
   // $base could be in em or px (no unit = px).
   // Adjust accordingly to create a $divisor that

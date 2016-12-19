@@ -1,6 +1,6 @@
 <?php
 $this->created = 1465034394;
-$this->modified = 1474816719;
+$this->modified = filemtime(__FILE__);
 $this->title = "\"Mein Freund Harvey\"";
 $this->subtitle = "eine irre Komödie von Mary Chase";
 $this->description = "eine irre Komödie von Mary Chase";
@@ -8,9 +8,7 @@ $this->description = "eine irre Komödie von Mary Chase";
 <div class="text wrapper-narrow">
 
     <h2>Inhalt</h2>
-
     <img src="images/harvey-impressions-01.jpg"/>
-
     <p>Vera Simmons guter Ruf ist bedroht, ihre Tochter findet weder Job noch Mann.
         Schuld ist Onkel Elwood! Der macht mit dem 1,90m großen, unsichtbaren
         Hasen Harvey Kneipentouren und wirft das Geld zum Fenster raus. Klar, der
@@ -21,7 +19,6 @@ $this->description = "eine irre Komödie von Mary Chase";
         auch noch diese Journalistin im Nacken, die ihn nur gar zu gern in Grund und Boden
         schreiben würde! Und bald stellt sich die Frage: Wer ist hier jetzt
         eigentlich verrückt?</p>
-
     <p>"Mein Freund Harvey" von Mary Chase aus dem Jahr 1943 gewann schon 1945 den
         Pulitzer Preis. Längst gehört es zu den Klassikern seines Genres und
         erfreut sich bis heute großer Beliebtheit. Das liegt einmal an der ungeheuer

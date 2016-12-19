@@ -23,9 +23,9 @@ if (!isReady) {
         console.log("waiting...");
         doc[addeventlistener](domContentLoaded, listener = function () {
             doc.removeEventListener(domContentLoaded, listener);
+            console.log("flushing");
             flush();
         }, false);
-
 
     } else {
         //we simpply poll
@@ -42,8 +42,9 @@ if (!isReady) {
 }
 export default function(fn) {
     if(typeof fn != "function") return;
-    if(isReady) return async(fn);
-    fns.push(fn)
+    if(isReady)
+        return async(fn);
+    fns.push(fn);
 
 
 }

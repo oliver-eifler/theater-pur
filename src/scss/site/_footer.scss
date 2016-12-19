@@ -1,0 +1,42 @@
+/* Footer Component */
+.footer {
+  margin-top: 3*$leading;
+  color: info($colors);
+  & * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  & > * + * {
+    margin-top: $leading;
+  }
+  & .icon-big {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.footer-item {
+  padding: $leading/2;
+}
+
+$olli-colors: getColors($color-olli-blue);
+.olli {
+  background-color: base($olli-colors);
+  color: info($olli-colors);
+  padding-bottom: 0;
+  font-size: 80%;
+
+  & .icon-olli {
+    width: 3rem;
+    height: 3rem;
+    fill: $color-olli;
+  }
+}
+
+.olli-legende {
+  margin: 0 -4px;
+  font-size: 80%;
+  text-align: right;
+  padding: 0 8px;
+  border-top: 1px solid divider($olli-colors);
+}

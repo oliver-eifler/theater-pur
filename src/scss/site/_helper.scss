@@ -7,3 +7,25 @@
   padding:0;
   border:0;
 }
+/* table */
+.tl {
+  display:table;
+}
+.ti {
+  display:table-cell;
+  vertical-align: top;
+}
+.ti + .ti {
+  padding-left: 8px;
+}
+.ti-mid {
+  vertical-align:middle;
+}
+/* Block Wrapper*/
+.inline {
+  display: inline-block;
+}
+.center {
+  margin-left:auto;
+  margin-right:auto;
+}

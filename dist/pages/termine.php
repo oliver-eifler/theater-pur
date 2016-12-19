@@ -1,6 +1,6 @@
 <?php
 $this->created = 1465034394;
-$this->modified = 1474816719;
+$this->modified = filemtime(__FILE__);
 $this->title = "Termine";
 $this->subtitle = "Wann und wo Sie unsere Vorstellungen sehen können";
 $this->description = "Unsere Termine, Wann und wo Sie unsere Vorstellungen sehen können";

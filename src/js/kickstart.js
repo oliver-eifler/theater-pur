@@ -4,7 +4,7 @@
  */
 import {doc, win, html} from './globals'
 import loadJS from './util/loadjs'
-import supports from './util/checkstyle'
+import createCmdQueue from './util/ready'
 
 var kickstart = function () {
         /* Here comes the sloth code */
@@ -14,7 +14,7 @@ var kickstart = function () {
     classList = ("classList" in html),
     svg = !!document.createElementNS && !!document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect,
     flexbox = (s.flexBasis !== undefined || s.msFlexPack !== undefined),
-    hasClass, addClass, removeClass,setClass;
+    hasClass, addClass, removeClass, setClass;
 
 function classReg(className) {
     return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
@@ -44,7 +44,7 @@ else {
         html.className = html.className.replace(classReg(c), ' ');
     };
 }
-setClass=function(c,set) {
+setClass = function (c, set) {
     if (set)
         addClass(c);
     else
@@ -52,8 +52,8 @@ setClass=function(c,set) {
 };
 
 var sClass = ['js'
-,(svg ? "" : "no-") + "svg"
-,(flexbox ? "" : "no-") + "flex"
+    , (svg ? "" : "no-") + "svg"
+    , (flexbox ? "" : "no-") + "flex"
 ];
 
 html.className = html.className.replace('no-js', sClass.join(' '));
@@ -62,15 +62,14 @@ kickstart.i/*nit*/ = function (filelist) {
 
     if (querySelectorAll && classList && flexbox) {
         var className = "ext",
-            finish = function(success) {
-            clearTimeout( fallback );
-            setClass(className,success);
-        }
+            finish = function (success) {
+                clearTimeout(fallback);
+                setClass(className, success);
+            }
         addClass(className);
-        var fallback = setTimeout(finish, 8000 );
-        loadJS(filelist["nav.js"],finish);
+        var fallback = setTimeout(finish, 8000);
+        loadJS(filelist["nav.js"], finish);
     }
-
 };
-
+kickstart.ready = createCmdQueue();
 export default kickstart;
