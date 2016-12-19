@@ -5,6 +5,7 @@
 /* Base Styling */
 html {
   background-color: base($colors);
+  @include fluid-type(font-size, 20rem, 60rem, (12/$base-fontsize)*1rem, 1rem);
 }
 
 body {
@@ -85,11 +86,12 @@ article {  }
   max-width:60em;
 }
 .text {
-  margin-top: 3*$leading;
+  margin-top:1em;
+  margin-top: 1*$leading;
   & > * {
     margin:0;
   }
-  & > *+*,&:first-child {
+  & > *+* {
     margin-top:1em;
     margin-top:$leading;
   }
@@ -99,18 +101,39 @@ article {  }
   color: #fff;
   background-color: #0b1284;
   text-align: center;
-}
-.hero-wrapper {
   & * {
-    margin:0;
+    margin-top:0;
   }
   & *+* {
     margin-top:$leading;
   }
 }
+.hero-wrapper {
+}
 .hero-title,.hero-text {
   color: inherit;
 }
-
+.hero-image {
+  position:relative;
+  margin-bottom: -5*$leading;
+  & > img {
+    position:relative;
+    z-index:10;
+    width:30em;
+    max-width:100%;
+    border: 1em solid divider($colors);
+    border-radius:.5em;
+  }
+  &:before {
+    content: "";
+    position:absolute;
+    z-index:0;
+    left:0;
+    right:0;
+    top:50%;
+    bottom:0;
+    background-color: base($colors);
+  }
+}
 
 @import "helper";

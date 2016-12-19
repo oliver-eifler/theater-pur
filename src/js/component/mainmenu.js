@@ -5,6 +5,7 @@
 import {doc, win} from '../globals';
 import fastdom from '../util/fastdom';
 import resizeObserver from '../event/resize-observer';
+import fontsizeObserver from '../event/fontsize-observer';
 
 
 
@@ -18,7 +19,7 @@ export default (function() {
         hItems=[],
         breakWidths = [],
         isVisible = [],
-        bBusy=false,bTrigger=false;
+        bBusy=false,bTrigger=false,bFontSizeChanged=false;
 
     function init() {
         $nav = doc.querySelector('.nav');
@@ -34,14 +35,20 @@ export default (function() {
             togglePulldown();
         }, false);
         resizeObserver.bind("mainmenu",function() {
-            if (!bBusy) {
-                check();
-            } else {
-                bTrigger = true;
-            }
+            onResize();
+        });
+        fontsizeObserver.bind("mainmenu",function() {
+            bFontSizeChanged=true;
+            onResize();
         });
     }
-
+    function onResize() {
+        if (!bBusy) {
+            check();
+        } else {
+            bTrigger = true;
+        }
+    }
 
     function build() {
         //clone nodes
@@ -67,7 +74,7 @@ export default (function() {
 
             totalSpace += item.offsetWidth;
             breakWidths.push(totalSpace);
-            isVisible.push(true);
+            isVisible.push(null);
         });
         btnWidth = $btn.offsetWidth;
     }
@@ -123,6 +130,10 @@ export default (function() {
         // Get instant state
         bBusy = true;
         fastdom.measure(function(){
+            if (bFontSizeChanged==true) {
+                measure();
+                bFontSizeChanged = false;
+            }
             var visibleItems = totalItems,
                 hiddenItems = 0,
                 btnVisible = !($btn.classList.contains('hidden')),

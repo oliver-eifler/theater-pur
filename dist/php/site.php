@@ -90,6 +90,13 @@ class Site extends BaseSite
                     $html .= "<h1 class='hero-title'>".$page->title."</h1>";
                     $html .= "<p class='hero-text'>".$page->subtitle."</p>";
                 $html .= "</div>";
+
+            if ($page->image && file_exists($page->image)) {
+                $html .= "<div class='hero-image'>";
+                    $html .= "<img src='".$page->image."' alt='".$page->title."'>";
+                $html .= "</div>";
+            }
+
             $html .= "</div>";
 
             $html .= Component::get("Content");

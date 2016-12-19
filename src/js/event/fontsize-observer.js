@@ -9,28 +9,30 @@ export default (function () {
         fontnode,
         eventType,
         transitionStyle,
-        fontSize;
+        fontSize,
+        bInit = false;
     //Find prefixed transitionend event and transition style
-    var transitions = {
-        'transition': 'transitionend',
-        'WebkitTransition': 'webkitTransitionEnd',
-        'MozTransition': 'transitionend',
-        'OTransition': 'otransitionend'
-    };
-    for (var t in transitions) {
-        if (html.style[t] !== undefined) {
-            eventType = transitions[t];
-            transitionStyle = t;
-            break;
+    function init() {
+        var transitions = {
+            'transition': 'transitionend',
+            'WebkitTransition': 'webkitTransitionEnd',
+            'MozTransition': 'transitionend',
+            'OTransition': 'otransitionend'
+        };
+        for (var t in transitions) {
+            if (html.style[t] !== undefined) {
+                eventType = transitions[t];
+                transitionStyle = t;
+                break;
+            }
         }
     }
-
     function getNode() {
         if (!fontnode) {
             fontnode = doc.createElement("div");
-            fontnode.style.cssText = "position:absolute;width:1em;height:1em;left:-1em;top:-1em;";
+            fontnode.style.cssText = "position:absolute;width:1em;height:1em;left:-1em;top:-1em;z-index:-1;";
             if (transitionStyle)
-                fontnode.style[transitionStyle] = "font-size 1ms linear";
+                fontnode.style[transitionStyle] = "height 1ms linear";
             html.getElementsByTagName("body")[0].appendChild(fontnode);
         }
         return fontnode;
@@ -43,6 +45,12 @@ export default (function () {
     }
 
     FontSizeObserver.bind = function (key, fn) {
+        if (!bInit) {
+            init();
+            fontSize = getSize();
+            eventType && getNode().addEventListener(eventType, onEvent, false);
+            bInit = true;
+        }
         listeners[key] = {
             fn: fn
         };
@@ -74,9 +82,6 @@ export default (function () {
             }
         }
     }
-    //Init
-    fontSize = getSize();
-    eventType && getNode().addEventListener(eventType, onEvent, false);
     /**
      * Expose 'FontSizeObserver'
      */

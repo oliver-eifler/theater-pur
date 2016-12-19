@@ -4,11 +4,11 @@ $this->modified = filemtime(__FILE__);
 $this->title = "\"Mein Freund Harvey\"";
 $this->subtitle = "eine irre Komödie von Mary Chase";
 $this->description = "eine irre Komödie von Mary Chase";
+$this->image = "images/harvey-impressions-01.jpg";
 ?>
 <div class="text wrapper-narrow">
 
     <h2>Inhalt</h2>
-    <img src="images/harvey-impressions-01.jpg"/>
     <p>Vera Simmons guter Ruf ist bedroht, ihre Tochter findet weder Job noch Mann.
         Schuld ist Onkel Elwood! Der macht mit dem 1,90m großen, unsichtbaren
         Hasen Harvey Kneipentouren und wirft das Geld zum Fenster raus. Klar, der
@@ -30,7 +30,7 @@ $this->description = "eine irre Komödie von Mary Chase";
         verhaftet sein in der Realität? In jedem Fall ist es unser Humor, der uns
         zu guten Mitmenschen werden lässt.</p>
 
-    <h2>SchauspielerInnen</h2>
+    <h2>Schau&shy;spieler&shy;Innen</h2>
 
     <p>Barthl Sailer <i>(Elwood)</i><br>
         Elke Harbeck <i>(Vera, seine Schwester)</i><br>
@@ -49,7 +49,7 @@ $this->description = "eine irre Komödie von Mary Chase";
 
     <p><img src="images/harvey-impressions-02.jpg"/></p>
 
-    <h2>Impressionen...</h2>
+    <h2>Impres&shy;sionen&shy;...</h2>
     <p class="impress"><img src="images/harvey-impressions-03.jpg"
                             class="border"/><br>
         <small>Foto: Fotograf</small>
