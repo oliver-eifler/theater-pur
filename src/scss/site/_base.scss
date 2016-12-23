@@ -1,11 +1,31 @@
 /* base page layout */
-@import "../config";
 @import "../components/normalize";
 
 /* Base Styling */
 html {
   background-color: base($colors);
-  @include fluid-type(font-size, 20rem, 60rem, (12/$base-fontsize)*1rem, 1rem);
+  //@include fluid-type(font-size, 20em, 60em, (12/16)*1rem, 1rem);
+  @media screen and (max-width: 28em) {
+    font-size: 75%;
+  }
+@media screen and (min-width: 28em) {
+  font-size: 80%;
+}
+  @media screen and (min-width: 36em) {
+    font-size: 85%;
+  }
+  @media screen and (min-width: 44em) {
+    font-size: 90%;
+  }
+  @media screen and (min-width: 52em) {
+    font-size: 95%;
+  }
+  @media screen and (min-width: 60em) {
+    font-size: 100%;
+  }
+
+
+
 }
 
 body {
@@ -44,7 +64,7 @@ p {
   h5,
   h6 {
     font-family: $serifFont;
-    font-wight:bold;
+    font-weight:bold;
 
     color: hilight($colors);
     // Change heading typefaces here
@@ -79,17 +99,21 @@ p {
     font-size: $scale / 2 * 1rem;
   }
 
-article {  }
+article {
+  margin-bottom: 3*$leading;
+}
+section {
+  padding:$leading 1em;
+}
 .wrapper-narrow {
-  margin:0 auto;
-  padding: 0 1em;
+  margin-left: auto;
+  margin-right: auto;
   max-width:60em;
 }
 .text {
-  margin-top:1em;
-  margin-top: 1*$leading;
   & > * {
-    margin:0;
+    margin-top:0;
+    margin-bottom:0;
   }
   & > *+* {
     margin-top:1em;
@@ -135,5 +159,23 @@ article {  }
     background-color: base($colors);
   }
 }
-
+.gallery {
+  & > * {
+  }
+  & * {
+    margin:0;
+  }
+}
+.gallery-item {
+  display:inline-block;
+  box-sizing: content-box;
+  padding:0.5em;
+  @include card(2);
+}
+.image {
+  max-width:500px;
+}
+.image-desc {
+  padding: 0 .25em;
+}
 @import "helper";

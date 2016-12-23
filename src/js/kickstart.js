@@ -5,6 +5,8 @@
 import {doc, win, html} from './globals'
 import loadJS from './util/loadjs'
 import createCmdQueue from './util/ready'
+import loadCSS from './util/loadCSS';
+import './util/cssrelpreload'
 
 var kickstart = function () {
         /* Here comes the sloth code */
@@ -14,6 +16,7 @@ var kickstart = function () {
     classList = ("classList" in html),
     svg = !!document.createElementNS && !!document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect,
     flexbox = (s.flexBasis !== undefined || s.msFlexPack !== undefined),
+    cookie = navigator.cookieEnabled,
     hasClass, addClass, removeClass, setClass;
 
 function classReg(className) {
@@ -54,10 +57,14 @@ setClass = function (c, set) {
 var sClass = ['js'
     , (svg ? "" : "no-") + "svg"
     , (flexbox ? "" : "no-") + "flex"
+    , (cookie ? "" : "no-") + "cookie"
+
 ];
 
 html.className = html.className.replace('no-js', sClass.join(' '));
 
+kickstart.ready = createCmdQueue();
+kickstart.loadCSS = loadCSS;
 kickstart.i/*nit*/ = function (filelist) {
 
     if (querySelectorAll && classList && flexbox) {
@@ -70,6 +77,17 @@ kickstart.i/*nit*/ = function (filelist) {
         var fallback = setTimeout(finish, 8000);
         loadJS(filelist["nav.js"], finish);
     }
+    /*
+    kickstart.cache = function () {
+        if (cookie) {
+            loadCSS(filelist["critical.css"], false, 'hidden', function () {
+                console.log(this.href + " loaded");
+            })
+        }
+    }
+    */
+    //µ.ready(function(){µ.loadCSS('@1',false,'hidden',function(){document.cookie=encodeURIComponent('@2');});});
+
 };
-kickstart.ready = createCmdQueue();
 export default kickstart;
+

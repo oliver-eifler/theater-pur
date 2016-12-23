@@ -4,6 +4,8 @@
  */
 import {doc, win} from '../globals';
 import fastdom from '../util/fastdom';
+import {raf,caf} from "../util/raf.js";
+
 import resizeObserver from '../event/resize-observer';
 import fontsizeObserver from '../event/fontsize-observer';
 
@@ -19,6 +21,7 @@ export default (function() {
         hItems=[],
         breakWidths = [],
         isVisible = [],
+        timeoutid = null,
         bBusy=false,bTrigger=false,bFontSizeChanged=false;
 
     function init() {
@@ -43,11 +46,8 @@ export default (function() {
         });
     }
     function onResize() {
-        if (!bBusy) {
-            check();
-        } else {
-            bTrigger = true;
-        }
+        caf(timeoutid);
+        return timeoutid = raf(check);
     }
 
     function build() {
@@ -128,7 +128,6 @@ export default (function() {
     function check() {
 
         // Get instant state
-        bBusy = true;
         fastdom.measure(function(){
             if (bFontSizeChanged==true) {
                 measure();
@@ -154,16 +153,12 @@ export default (function() {
                 }
             fastdom.mutate(function(){
                 if (!hiddenItems) {
+                    togglePulldown(false);
                     btnVisible && $btn.classList.add('hidden');
                 } else {
                     $btn.setAttribute('count', hiddenItems);
                         !btnVisible && $btn.classList.remove('hidden');
                 }
-
-            if (bTrigger)
-                check();
-                bBusy = false;
-                bTrigger = false;
             });
         });
     }

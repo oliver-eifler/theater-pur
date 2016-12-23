@@ -1,11 +1,21 @@
 @import "../config";
 
 /* simplelist */
-.sl,.sl li {
+.sl,.sl li,
+.gl,.gl li{
   list-style: none outside none;
   margin:0;
   padding:0;
   border:0;
+}
+/* gridlist */
+.gl {
+  margin:-.5em;
+  & li {
+    display:inline-block;
+    vertical-align:top;
+    padding:.5em;
+  }
 }
 /* table */
 .tl {
@@ -28,4 +38,19 @@
 .center {
   margin-left:auto;
   margin-right:auto;
+}
+img.center {
+  display:block;
+}
+.text-small {
+  font-size:80%;
+}
+.text-left {
+text-align:left;
+}
+.text-right {
+  text-align:right;
+}
+.text-center {
+  text-align:center;
 }

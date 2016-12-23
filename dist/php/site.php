@@ -45,23 +45,34 @@ class Site extends BaseSite
         //<link rel="canonical" href="http://example.com/wordpress/seo-plugin/">
         /*Build the filelist*/
         $files = [];
+        $files["critical.css"] = Component::get("CacheBust","css/critical.css");
         $files["site.css"] = Component::get("CacheBust","css/site.css");
         $files["nav.js"] = Component::get("CacheBust","js/site.js");
         $files["html5shiv.js"] = Component::get("CacheBust","js/html5shiv.min.js");
+        //$cookie = "critical=".$files["critical.css"]."; expires=Tue, 19 Jan 2038 03:14:07 GMT";
+        $cached = (strcasecmp(($_COOKIE['critical']??""),$files["critical.css"])===0);
+
 
         //$html.="<link rel='stylesheet' href='".$files["site.css"]."'>";
         //$html.="<script id='sitejs' async src='".Component::get("CacheBust",$files["nav.js"])."'></script>";
         $html.="<!--[if lt IE 9]><script src='".$files["html5shiv.js"]."'></script><![endif]-->";
-        $html.= "<script data-id='kickstart'>";
+
+        //if (!$cached) {
+            $html .= "<style id='criticalcss'>";
+            $html .= file_get_contents("css/critical.css");
+            $html .= "</style>";
+        //} else {
+        //    $html.= "<link rel='stylesheet' href='".$files["critical.css"]."'>";
+        //}
+        $html.= "<link rel='preload' href='".$files["site.css"]."' as='style' onload=\"this.rel='stylesheet'\">";
+        $html.= "<noscript><link rel='stylesheet' href='".$files["site.css"]."'></noscript>";
+        $html.= "<script id='kickstart'>";
         $html.=     file_get_contents("js/kickstart.js");
         $html.=     "µ.i(".json_encode($files).");";
+        //if (!$cached) {
+        //    $html .= "µ.ready(function(){µ.loadCSS('" . $files["critical.css"] . "',false,'hidden',function(){document.cookie='" . $cookie . "';});});";
+        //}
         $html.= "</script>";
-        $html.= "<style data-id='sitecss'>";
-        $html.=     file_get_contents("css/site.css");
-        $html.=     "µ.i(".json_encode($files).");";
-        $html.= "</style>";
-
-
         $html .= "</head>";
             $html .= $this->htmlBody();
         $html .= "</html>";
@@ -102,11 +113,12 @@ class Site extends BaseSite
             $html .= Component::get("Content");
         $html .= "</article></main>";
 
-        $html .= "<footer class='footer'>";
+        $html .= "<footer class='nc footer'>";
             $html .= Component::get("Footer");
         $html .= "</footer>";
-        $html.= "<script data-id='domready'>";
+        $html.= "<script id='domready'>";
         $html.=     "µ.ready(true);";
+        //$html.=     "µ.cache();";
         $html.= "</script>";
         $html .= "</body>";
         return $html;
