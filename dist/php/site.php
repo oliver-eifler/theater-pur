@@ -13,8 +13,14 @@ class Site extends BaseSite
             include $tpl;
             $this->html = ob_get_contents();
             ob_end_clean();
-            if ($this->minify === true)
-                $this->html = preg_replace('/\v(?:[\v\h]+)/', '', $this->html);
+            if ($this->minify === true) {
+                //$this->html = preg_replace(array('/<!--(.*)-->/Uis',"/[[:blank:]]+/"),array('',' '),str_replace(array("\n","\r","\t"),'',$this->html));
+                //$this->html = preg_replace('#(/li>)\s+?(</ul)#', '$1$2', $this->html);
+                /* remove whitespaces beetween </tag>...<any other tag>*/
+                $this->html = preg_replace('#(/.*>)\s+?(<)#', '$1$2', $this->html);
+
+            }
+            //$this->html = preg_replace('/\v(?:[\v\h]+)/', '', $this->html);
         };
 
         $render = $render->bindTo($this->pagedata, $this->pagedata);
@@ -96,21 +102,9 @@ class Site extends BaseSite
 
         $html .= "<main><article>";
 
-            $html .= "<div class='hero' style='background-color: {$bgColor};background-image: {$bgImage}'>";
-                $html .= "<div class='hero-wrapper wrapper-narrow'>";
-                    $html .= "<h1 class='hero-title'>".$page->title."</h1>";
-                    $html .= "<p class='hero-text'>".$page->subtitle."</p>";
-                $html .= "</div>";
 
-            if ($page->image && file_exists($page->image)) {
-                $html .= "<div class='hero-image'>";
-                    $html .= "<img src='".$page->image."' alt='".$page->title."'>";
-                $html .= "</div>";
-            }
-
-            $html .= "</div>";
-
-            $html .= Component::get("Content");
+        $html .= Component::get("HeroHeader");
+        $html .= Component::get("Content");
         $html .= "</article></main>";
 
         $html .= "<footer class='nc footer'>";

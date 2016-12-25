@@ -1,7 +1,7 @@
 <?php
 $this->created = 1465034394;
 $this->modified = filemtime(__FILE__);
-$this->minify= true;
+$this->minify = true;
 $this->title = "\"Mein Freund Harvey\"";
 $this->subtitle = "eine irre Komödie von Mary Chase";
 $this->description = "eine irre Komödie von Mary Chase";
@@ -54,13 +54,13 @@ $this->image = "images/harvey-impressions-01.jpg";
     <h2 class="text-center">Impres&shy;sionen&shy;...</h2>
     <div>
         <ul class="gl gallery text-center">
-            <li><?= Component::get("galleryitem","images/harvey-impressions-03.jpg","Vera Simmons (Elke Harbeck) möchte ihren Bruder dauerhaft im Sanatorium untergebracht wissen. Dr. Sanderson (Frauke Gerbig) bemüht sich herauszufinden, wo das Problem ist.","Foto: Fotograf"); ?></li>
-            <li><?= Component::get("galleryitem","images/harvey-impressions-04.jpg","Das Problem ist Onkel Elwood (Barthl Sailer) und sein Freund Harvey. Dabei sind die beiden ganz nett und ihr Charme kommt an. Auch bei der Frau von Prof. Chumley (Sonja Stablo).","Foto: Fotograf"); ?></li>
-            <li><?= Component::get("galleryitem","images/harvey-impressions-05.jpg","Während ihre Mutter Vera im Irrenhaus sind, bemüht sich Myrtle Mae (Jasmin Hoffmann) um einen Job bei der Zeitung. Journalistin Annabelle Ellerbie (Christine Kuchler) interessiert sich jedoch mehr für Skandale.","Foto: Fotograf"); ?></li>
-            <li><?= Component::get("galleryitem","images/harvey-impressions-06.jpg","Mit ihrer zupackenden Art ist Pflegerin Mary Wilson (Sabine Horak) eine große Hilfe im Institut. Und manchmal auch ein großes Problem.","Foto: Fotograf"); ?></li>
-            <li><?= Component::get("galleryitem","images/harvey-impressions-07.jpg","Prof. Chumley (Holger Ptacek) ist nicht wenig überrascht, als er erfährt, dass seine Mitarbeiter die falsche Patientin einsperrten und der richtige getürmt ist. Und zwar mitsamt seiner Frau.","Foto: Fotograf"); ?></li>
-            <li><?= Component::get("galleryitem","images/harvey-impressions-08.jpg","Für Roger Kelly (Stefan Hoffmann) und Dr. Sanderson (Frauke Gerbig) heißt es Abschied nehmen. Und plötzlich wird ihnen klar, wie ungern sie getrennt sein möchten.","Foto: Fotograf"); ?></li>
-            <li><?= Component::get("galleryitem","images/harvey-impressions-09.jpg","Und am Ende fragt sich nicht nur Prof. Chumley (Holger Ptacek):<i>Wer ist denn nun eigentlich wirklich verrückt?</i>","Foto: Fotograf"); ?></li>
+            <li><?= Component::get("galleryitem", "images/harvey-impressions-03.jpg", "Vera Simmons (Elke Harbeck) möchte ihren Bruder dauerhaft im Sanatorium untergebracht wissen. Dr. Sanderson (Frauke Gerbig) bemüht sich herauszufinden, wo das Problem ist.", "Foto: Fotograf"); ?></li>
+            <li><?= Component::get("galleryitem", "images/harvey-impressions-04.jpg", "Das Problem ist Onkel Elwood (Barthl Sailer) und sein Freund Harvey. Dabei sind die beiden ganz nett und ihr Charme kommt an. Auch bei der Frau von Prof. Chumley (Sonja Stablo).", "Foto: Fotograf"); ?></li>
+            <li><?= Component::get("galleryitem", "images/harvey-impressions-05.jpg", "Während ihre Mutter Vera im Irrenhaus sind, bemüht sich Myrtle Mae (Jasmin Hoffmann) um einen Job bei der Zeitung. Journalistin Annabelle Ellerbie (Christine Kuchler) interessiert sich jedoch mehr für Skandale.", "Foto: Fotograf"); ?></li>
+            <li><?= Component::get("galleryitem", "images/harvey-impressions-06.jpg", "Mit ihrer zupackenden Art ist Pflegerin Mary Wilson (Sabine Horak) eine große Hilfe im Institut. Und manchmal auch ein großes Problem.", "Foto: Fotograf"); ?></li>
+            <li><?= Component::get("galleryitem", "images/harvey-impressions-07.jpg", "Prof. Chumley (Holger Ptacek) ist nicht wenig überrascht, als er erfährt, dass seine Mitarbeiter die falsche Patientin einsperrten und der richtige getürmt ist. Und zwar mitsamt seiner Frau.", "Foto: Fotograf"); ?></li>
+            <li><?= Component::get("galleryitem", "images/harvey-impressions-08.jpg", "Für Roger Kelly (Stefan Hoffmann) und Dr. Sanderson (Frauke Gerbig) heißt es Abschied nehmen. Und plötzlich wird ihnen klar, wie ungern sie getrennt sein möchten.", "Foto: Fotograf"); ?></li>
+            <li><?= Component::get("galleryitem", "images/harvey-impressions-09.jpg", "Und am Ende fragt sich nicht nur Prof. Chumley (Holger Ptacek): <i>Wer ist denn nun eigentlich wirklich verrückt?</i>", "Foto: Fotograf"); ?></li>
         </ul>
     </div>
 </section>

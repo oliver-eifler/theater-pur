@@ -143,8 +143,6 @@ section {
   & > img {
     position:relative;
     z-index:10;
-    width:30em;
-    max-width:100%;
     border: 1em solid divider($colors);
     border-radius:.5em;
   }
