@@ -342,7 +342,7 @@ RewriteRule ^bundle/(.*) /quickconcat.php?files=$1 [QSA,L]
 #  cachebuster
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.+)_(\d+)\.(js|css|svgz?|png|jpe?g)$ $1.$3 [QSA]
+RewriteRule ^(.+)_(\d+)\.(js|css|svgz?|gif|png|jpe?g)$ $1.$3 [QSA]
 #
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

@@ -37,17 +37,69 @@ body {
   color: text($colors);
   background-color: inherit;
 }
+/* lego bricks */
+@include legolayout($lego);
+/*
+  .container {
+    padding: $padding-outer-y $padding-outer-x;
+  }
+  .element {
+    padding: ($padding-y / 2) ($padding-x / 2);
+  }
+  .element-full-row {
+    margin: 0 (-$padding-outer-x);
+    padding: ($padding-y / 2) ($padding-x / 2 + $padding-outer-x);
+  }
+  .element-full-row:first-child {
+    margin: (-$padding-outer-y) (-$padding-outer-x) 0;
+    padding: ($padding-y / 2 + $padding-outer-y) ($padding-x / 2 + $padding-outer-x) ($padding-y / 2);
+  }
+  .breakout {
+    margin-left: -$padding-y/2;
+    margin-right: -$padding-y/2;
+
+  }
+ */
+
+/* image boxes with aspect ratio */
+.image {
+  position: relative;
+  display:block;
+  max-width:100%;
+  //overflow:hidden;
+  & > img {
+    position:absolute;
+    display:block;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+  }
+}
+
+
+article {
+}
+section {
+}
+
+
 
 .icon {
   display: inline-block;
   position: relative;
   vertical-align: bottom;
   width: 1em;
-  height: 1em; //lineheight
+  height: $leading-em; //lineheight
   fill: currentColor;
 }
+
+
+
+
+
 /*Typography*/
-p {
+p,.p {
   margin: $leading 0;
   .icon {
     height:1.5em;
@@ -56,6 +108,10 @@ p {
 }
 .hug {
   margin-top:0 !important;
+}
+.leading {
+  margin-top: $leading;
+  margin-bottom: $leading;
 }
   h1,
   h2,
@@ -76,7 +132,7 @@ p {
     }
   }
 
-  h1 {
+  h1,.biggest {
     font-size: 3 * $scale * 1rem;
     line-height: 3 * $leading;
     .icon {
@@ -84,7 +140,7 @@ p {
     }
   }
 
-  h2,.big {
+  h2,.bigger {
     font-size: 2 * $scale * 1rem;
     line-height: 2 * $leading;
     .icon {
@@ -92,59 +148,46 @@ p {
     }
   }
 
-  h3 {
+  h3,.big {
     font-size: $scale * 1rem;
   }
   h4,h5,h6 {
     font-size: $scale / 2 * 1rem;
   }
 
-article {
-  margin-bottom: 3*$leading;
-}
-section {
-  padding:$leading 1em;
-}
+
 .wrapper-narrow {
   margin-left: auto;
   margin-right: auto;
   max-width:60em;
 }
-.text {
-  & > * {
-    margin-top:0;
-    margin-bottom:0;
-  }
-  & > *+* {
-    margin-top:1em;
-    margin-top:$leading;
-  }
-}
+
 .hero {
-  padding: 5*$leading 0;
-  color: #fff;
-  background-color: #0b1284;
+  display:block;
   text-align: center;
-  & * {
-    margin-top:0;
-  }
-  & *+* {
-    margin-top:$leading;
-  }
+  text-shadow: -2px 5px 5px rgba(0, 0, 0, .6);
+  background-color: #840b2a;
+  color: #fff;
 }
 .hero-wrapper {
+  padding:1px;
+  padding: $hero-height/2 0;
 }
 .hero-title,.hero-text {
   color: inherit;
 }
 .hero-image {
+  $padding-x: map-get($lego, padding-x);
+  $padding-y: map-get($lego, padding-y);
+  $padding-outer-x: map-get($lego, padding-outer-x);
+  $padding-outer-y: map-get($lego, padding-outer-y);
+
   position:relative;
-  margin-bottom: -5*$leading;
-  & > img {
+  margin-top: -($hero-height/2);
+  margin-bottom: -($padding-y/2);
+  & > * {
     position:relative;
     z-index:10;
-    border: 1em solid divider($colors);
-    border-radius:.5em;
   }
   &:before {
     content: "";
@@ -158,7 +201,11 @@ section {
   }
 }
 .gallery {
+  list-style: none outside none;
+  padding:0;
   & > * {
+    display:inline-block;
+    vertical-align:top;
   }
   & * {
     margin:0;
@@ -166,14 +213,14 @@ section {
 }
 .gallery-item {
   display:inline-block;
-  box-sizing: content-box;
-  padding:0.5em;
+  padding:.5em;
+  border-radius:.5em;
+  background-color: base($colors);
+  max-width:100%;
   @include card(2);
 }
-.image {
-  max-width:500px;
-}
-.image-desc {
+.gallery-item .caption {
+  display:block;
   padding: 0 .25em;
 }
 @import "helper";

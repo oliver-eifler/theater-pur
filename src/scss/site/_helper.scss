@@ -10,11 +10,8 @@
 }
 /* gridlist */
 .gl {
-  margin:-.5em;
   & li {
     display:inline-block;
-    vertical-align:top;
-    padding:.5em;
   }
 }
 /* table */
@@ -53,4 +50,6 @@ text-align:left;
 }
 .text-center {
   text-align:center;
+}
+.text-deco {
 }

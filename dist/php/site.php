@@ -59,10 +59,6 @@ class Site extends BaseSite
         $cached = (strcasecmp(($_COOKIE['critical']??""),$files["critical.css"])===0);
 
 
-        //$html.="<link rel='stylesheet' href='".$files["site.css"]."'>";
-        //$html.="<script id='sitejs' async src='".Component::get("CacheBust",$files["nav.js"])."'></script>";
-        $html.="<!--[if lt IE 9]><script src='".$files["html5shiv.js"]."'></script><![endif]-->";
-
         //if (!$cached) {
             $html .= "<style id='criticalcss'>";
             $html .= file_get_contents("css/critical.css");
@@ -72,12 +68,16 @@ class Site extends BaseSite
         //}
         $html.= "<link rel='preload' href='".$files["site.css"]."' as='style' onload=\"this.rel='stylesheet'\">";
         $html.= "<noscript><link rel='stylesheet' href='".$files["site.css"]."'></noscript>";
+        $html.="<!--[if lt IE 9]><script src='".$files["html5shiv.js"]."'></script><![endif]-->";
+
         $html.= "<script id='kickstart'>";
         $html.=     file_get_contents("js/kickstart.js");
         $html.=     "µ.i(".json_encode($files).");";
-        //if (!$cached) {
-        //    $html .= "µ.ready(function(){µ.loadCSS('" . $files["critical.css"] . "',false,'hidden',function(){document.cookie='" . $cookie . "';});});";
-        //}
+       /*
+        if (!$cached) {
+            $html .= "µ.ready(function(){µ.loadCSS('" . $files["critical.css"] . "',false,'hidden',function(){document.cookie='" . $cookie . "';});});";
+        }
+       */
         $html.= "</script>";
         $html .= "</head>";
             $html .= $this->htmlBody();
@@ -97,17 +97,18 @@ class Site extends BaseSite
 
         $html = "";
         $html .= "<body>";
+
         $html .= Component::get("Banner");
         $html .= Component::get("MainNav");
 
-        $html .= "<main><article>";
+        $html .= "<article class='container'>";
 
 
         $html .= Component::get("HeroHeader");
         $html .= Component::get("Content");
-        $html .= "</article></main>";
+        $html .= "</article>";
 
-        $html .= "<footer class='nc footer'>";
+        $html .= "<footer class='nc container footer'>";
             $html .= Component::get("Footer");
         $html .= "</footer>";
         $html.= "<script id='domready'>";
@@ -118,4 +119,3 @@ class Site extends BaseSite
         return $html;
     }
 }
-?>

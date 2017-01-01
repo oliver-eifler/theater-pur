@@ -47,6 +47,15 @@
     box-shadow: bottom-shadow($depth,$color), top-shadow($depth,$color);
   }
 }
+@mixin cardtext($depth,$color:black) {
+  @if $depth < 1 {
+    text-shadow: none;
+  } @else if $depth > 5 {
+    @warn "Invalid $depth `#{$depth}` for mixin `card`.";
+  } @else {
+    text-shadow: bottom-shadow($depth,$color), top-shadow($depth,$color);
+  }
+}
 
 @function getColors($color)
 {

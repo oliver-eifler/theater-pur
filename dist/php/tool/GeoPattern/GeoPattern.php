@@ -136,6 +136,7 @@ class GeoPattern {
     public function toDataURI()
     {
         return "data:image/svg+xml;base64,{$this->toBase64()}";
+        //return "data;image/svg+xml,".urlencode($this->toSVG());
     }
 
     public function toDataURL()

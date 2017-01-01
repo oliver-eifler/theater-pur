@@ -14,3 +14,38 @@
   overflow: visible;
   clip: auto;
 }
+
+@mixin legolayout ($var) {
+
+  $padding-x: map-get($var, padding-x);
+  $padding-y: map-get($var, padding-y);
+  $padding-outer-x: map-get($var, padding-outer-x);
+  $padding-outer-y: map-get($var, padding-outer-y);
+
+  .container {
+    padding: $padding-outer-y $padding-outer-x;
+  }
+  .element {
+    padding: ($padding-y / 2) ($padding-x / 2);
+    & .breakout {
+      margin-left: -$padding-x/2;
+      margin-right: -$padding-x/2;
+    }
+  }
+  .element-full-row {
+    margin: 0 (-$padding-outer-x);
+    padding: ($padding-y / 2) ($padding-x / 2 + $padding-outer-x);
+    & .breakout {
+      margin-left: -($padding-x / 2 + $padding-outer-x);
+      margin-right: -($padding-x / 2 + $padding-outer-x);
+    }
+  }
+  .element-full-row:first-child {
+    margin: (-$padding-outer-y) (-$padding-outer-x) 0;
+    padding: ($padding-y / 2 + $padding-outer-y) ($padding-x / 2 + $padding-outer-x) ($padding-y / 2);
+    & .breakout {
+      margin-left: -($padding-x / 2 + $padding-outer-x);
+      margin-right: -($padding-x / 2 + $padding-outer-x);
+    }
+  }
+}

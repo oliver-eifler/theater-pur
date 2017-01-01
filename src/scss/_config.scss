@@ -1,5 +1,6 @@
 /* Main Config File */
 @import 'lib/functions';
+@import 'lib/mixin';
 @import 'lib/theme';
 
 $color-page: #fefefe;
@@ -45,3 +46,11 @@ $leading-em: $base-lineheight * 1em;
 // Rate of growth for headings
 // I actually like this to be slightly smaller then the leading. Makes for tight headings.
 $scale: 1.414;
+
+$lego: (
+        padding-x: 1rem,
+        padding-y: 1rem,
+        padding-outer-x: .5rem,
+        padding-outer-y: $leading
+);
+$hero-height: 8*$leading;
