@@ -205,6 +205,7 @@ p,.p {
   padding:0;
   & > * {
     display:inline-block;
+    max-width:100%;
     vertical-align:top;
   }
   & * {
@@ -220,6 +221,7 @@ p,.p {
   @include card(2);
 }
 .gallery-item .caption {
+  max-width:100%;
   display:block;
   padding: 0 .25em;
 }

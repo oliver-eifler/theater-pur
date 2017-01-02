@@ -32,6 +32,10 @@
       margin-right: -$padding-x/2;
     }
   }
+  .element-list {
+    margin: ($padding-y / -2) ($padding-x / -2);
+  }
+
   .element-full-row {
     margin: 0 (-$padding-outer-x);
     padding: ($padding-y / 2) ($padding-x / 2 + $padding-outer-x);

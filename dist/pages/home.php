@@ -46,9 +46,9 @@ $this->image = "images/harvey-impressions-01.jpg";
     <p>Holger Ptacek</p>
     <div class="p text-center"><div class="gallery-item"><?=Component::get("image","images/harvey-impressions-02.jpg");?></div></div>
 </section>
-<section class="element-full-row wrapper-wide">
+<section class="element wrapper-wide">
     <h2 class="text-center">Impres&shy;sionen&shy;...</h2>
-    <ul class="breakout gallery text-center">
+    <ul class="element-list gallery text-center">
         <li class="element"><?= Component::get("galleryitem", "images/harvey-impressions-03.jpg", "Vera Simmons (Elke Harbeck) möchte ihren Bruder dauerhaft im Sanatorium untergebracht wissen. Dr. Sanderson (Frauke Gerbig) bemüht sich herauszufinden, wo das Problem ist.", "Foto: Fotograf"); ?></li>
         <li class="element"><?= Component::get("galleryitem", "images/harvey-impressions-04.jpg", "Das Problem ist Onkel Elwood (Barthl Sailer) und sein Freund Harvey. Dabei sind die beiden ganz nett und ihr Charme kommt an. Auch bei der Frau von Prof. Chumley (Sonja Stablo).", "Foto: Fotograf"); ?></li>
         <li class="element"><?= Component::get("galleryitem", "images/harvey-impressions-05.jpg", "Während ihre Mutter Vera im Irrenhaus sind, bemüht sich Myrtle Mae (Jasmin Hoffmann) um einen Job bei der Zeitung. Journalistin Annabelle Ellerbie (Christine Kuchler) interessiert sich jedoch mehr für Skandale.", "Foto: Fotograf"); ?></li>
