@@ -5,7 +5,8 @@ build
 components
 bower_components
 images
-dist/images
+dist/**/images
+dist/cache
 webfonts
 docs
 .idea

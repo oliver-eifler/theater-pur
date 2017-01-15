@@ -19,7 +19,10 @@ define('CLASSES', PHP.DIRECTORY_SEPARATOR."class");
 define('RES', PHP.DIRECTORY_SEPARATOR."res");
 
 $config = Config::getInstance();
+$config->imgDir = "images";
 $config->svgDir = "images/svg";
+$config->avatarDir = "images/avatar";
+$config->avatarSize = 128;
 $config->baseTitle = "Theater PUR";
 $config->baseTime = strtotime("2016-12-01");
 

@@ -30,6 +30,14 @@ $olli-colors: getColors($color-olli-blue);
     height: 3rem;
     fill: $color-olli;
   }
+  & a {
+    font-weight: bold;
+    color: text-contrast($color-olli-blue);
+  }
+  & a:hover, & a:focus, & a:active, & a:visited {
+    color: text-contrast($color-olli-blue);
+  }
+
 }
 
 .olli-legende {

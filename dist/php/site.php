@@ -94,7 +94,6 @@ class Site extends BaseSite
         $bgImage = $geopattern->toDataURL();
         $bgColor = $geopattern->getBackgroundColor();
 
-
         $html = "";
         $html .= "<body>";
 
@@ -102,8 +101,6 @@ class Site extends BaseSite
         $html .= Component::get("MainNav");
 
         $html .= "<article class='container'>";
-
-
         $html .= Component::get("HeroHeader");
         $html .= Component::get("Content");
         $html .= "</article>";

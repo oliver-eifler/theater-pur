@@ -7,6 +7,8 @@ require_once('php/class/registry.class.php');
 class Config extends _registry
 {
     protected static $instance = NULL;
+
+
     public static function getInstance()
     {
         if (self::$instance === NULL)

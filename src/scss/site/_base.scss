@@ -1,5 +1,6 @@
 /* base page layout */
 @import "../components/normalize";
+@import "helper";
 
 /* Base Styling */
 html {
@@ -60,14 +61,13 @@ body {
 
   }
  */
-
 /* image boxes with aspect ratio */
 .image {
   position: relative;
   display:block;
   max-width:100%;
   //overflow:hidden;
-  & > img {
+  & img,& picture {
     position:absolute;
     display:block;
     left:0;
@@ -77,42 +77,76 @@ body {
   }
 }
 
-
-article {
-}
-section {
-}
-
-
-
-.icon {
-  display: inline-block;
-  position: relative;
-  vertical-align: bottom;
-  width: 1em;
-  height: $leading-em; //lineheight
-  fill: currentColor;
-}
-
-
-
-
-
-/*Typography*/
-p,.p {
-  margin: $leading 0;
-  .icon {
-    height:1.5em;
-    margin-right:.25em;
+.avatar {
+  border-radius:50%;
+  background-color: base($colors);
+  max-width:100%;
+  width:4em;
+  overflow:hidden;
+  @include card(1);
+  &-small {
+    width:2em;
+  }
+  &-big {
+    width:8em;
   }
 }
-.hug {
-  margin-top:0 !important;
-}
-.leading {
-  margin-top: $leading;
-  margin-bottom: $leading;
-}
+.cast {
+  & .ti {
+    vertical-align:middle;
+  }
+  & .avatar {
+    max-width: 100%;
+    width: 2.5em;
+    margin-top: .25em;
+    margin-bottom: .25em;
+  }
+    & .role {
+      font-style: italic;
+    }
+    & div {
+    }
+  }
+
+  article {
+    /* links */
+    & a {
+      color: $color-brand-2;
+    }
+    & a:hover, & a:focus, & a:active, & a:visited {
+      color: $color-brand-2;
+    }
+  }
+  section {
+  }
+
+
+
+  .icon {
+    display: inline-block;
+    position: relative;
+    vertical-align: bottom;
+    width: 1em;
+    height: $leading-em; //lineheight
+    fill: currentColor;
+  }
+
+
+  /*Typography*/
+  p,.p {
+    margin: $leading 0;
+    .icon {
+      height:1.5em;
+      margin-right:.25em;
+    }
+  }
+  .hug {
+    margin-top:0 !important;
+  }
+  .leading {
+    margin-top: $leading;
+    margin-bottom: $leading;
+  }
   h1,
   h2,
   h3,
@@ -139,7 +173,7 @@ p,.p {
       height: 3 * $leading;
     }
   }
-
+h2 {color:$color-brand-1;}
   h2,.bigger {
     font-size: 2 * $scale * 1rem;
     line-height: 2 * $leading;
@@ -156,73 +190,73 @@ p,.p {
   }
 
 
-.wrapper-narrow {
-  margin-left: auto;
-  margin-right: auto;
-  max-width:60em;
-}
+  .wrapper-narrow {
+    margin-left: auto;
+    margin-right: auto;
+    max-width:60em;
+  }
 
-.hero {
-  display:block;
-  text-align: center;
-  text-shadow: -2px 5px 5px rgba(0, 0, 0, .6);
-  background-color: #840b2a;
-  color: #fff;
-}
-.hero-wrapper {
-  padding:1px;
-  padding: $hero-height/2 0;
-}
-.hero-title,.hero-text {
-  color: inherit;
-}
-.hero-image {
-  $padding-x: map-get($lego, padding-x);
-  $padding-y: map-get($lego, padding-y);
-  $padding-outer-x: map-get($lego, padding-outer-x);
-  $padding-outer-y: map-get($lego, padding-outer-y);
+  .hero {
+    display:block;
+    text-align: center;
+    text-shadow: -2px 5px 5px rgba(0, 0, 0, .6);
+    background-color: #840b2a;
+    color: #fff;
+  }
+  .hero-wrapper {
+    padding:1px;
+    padding: $hero-height/2 0;
+  }
+  .hero-title,.hero-text {
+    color: inherit;
+  }
+  .hero-image {
+    $padding-x: map-get($lego, padding-x);
+    $padding-y: map-get($lego, padding-y);
+    $padding-outer-x: map-get($lego, padding-outer-x);
+    $padding-outer-y: map-get($lego, padding-outer-y);
 
-  position:relative;
-  margin-top: -($hero-height/2);
-  margin-bottom: -($padding-y/2);
-  & > * {
     position:relative;
-    z-index:10;
+    margin-top: -($hero-height/2);
+    margin-bottom: -($padding-y/2);
+    & > * {
+      position:relative;
+      z-index:10;
+    }
+    &:before {
+      content: "";
+      position:absolute;
+      z-index:0;
+      left:0;
+      right:0;
+      top:50%;
+      bottom:0;
+      background-color: base($colors);
+    }
   }
-  &:before {
-    content: "";
-    position:absolute;
-    z-index:0;
-    left:0;
-    right:0;
-    top:50%;
-    bottom:0;
-    background-color: base($colors);
+  .gallery {
+    list-style: none outside none;
+    padding:0;
+    & > * {
+      display:inline-block;
+      max-width:100%;
+      vertical-align:top;
+    }
+    & * {
+      margin:0;
+    }
   }
-}
-.gallery {
-  list-style: none outside none;
-  padding:0;
-  & > * {
+  .gallery-item {
     display:inline-block;
+    padding:.5em;
+    border-radius:.5em;
+    background-color: base($colors);
     max-width:100%;
-    vertical-align:top;
+    @include card(2);
   }
-  & * {
-    margin:0;
+  .gallery-item .caption {
+    max-width:100%;
+    display:block;
+    padding: 0 .25em;
   }
-}
-.gallery-item {
-  display:inline-block;
-  padding:.5em;
-  border-radius:.5em;
-  background-color: base($colors);
-  max-width:100%;
-  @include card(2);
-}
-.gallery-item .caption {
-  max-width:100%;
-  display:block;
-  padding: 0 .25em;
-}
-@import "helper";
+

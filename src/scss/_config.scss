@@ -3,23 +3,19 @@
 @import 'lib/mixin';
 @import 'lib/theme';
 
-$color-page: #fefefe;
-$colors: getColors($color-page);
-$color-extra: #FF8A00;
-$color-hover: #F10087;
-
-//$color-link: #67a281;
-$color-link: #2164f4;
-
-$color-link-hover: $color-hover;
-
-//$color-link-visited: #3c624b;
-$color-link-visited: #2164f4;
-
-
-
+$color-page: #fefef8;
 
 $color-brand: #F08800; //#e07700;
+$color-brand-0: text-contrast($color-page,$color_brand);
+$color-brand-1: text-contrast($color-page,adjust_hue($color_brand,90));
+$color-brand-2: text-contrast($color-page,adjust_hue($color_brand,180));
+$color-brand-3: text-contrast($color-page,adjust_hue($color_brand,270));
+
+
+$colors: getColors($color-page);
+$color-link: $color-brand-2;
+
+
 $color-codepen: #000;
 $color-facebook: #3b5998;
 $color-github: #333;

@@ -2,24 +2,24 @@
 fontsize:16px
 */
 $color-main: #5c940d;
-$color-main-hover: darken($color-main, 10%);
-$color-main-link: color-contrast($color-main);
-$color-main-link-hover: color-contrast($color-main-hover);
+$color-main-hover: darken($color-main, 25%);
+$color-main-link: contrast($color-main);
+//$color-main-link-hover: color-contrast($color-main-hover);
 
 $color-menu: $color-brand; //#e07700;
 $color-menu-hover: darken($color-menu, 25%);
-$color-menu-link: color-contrast($color-menu);
-$color-menu-link-hover: color-contrast($color-menu-hover);
+$color-menu-link: contrast($color-menu);
+//$color-menu-link-hover: color-contrast($color-menu-hover);
 
-$color-btn: darken(#fff, 10%); //#F0DD44;//color-contrast($color-menu,20%);//#f08c00;
+$color-btn: #e0e0e0; //#F0DD44;//color-contrast($color-menu,20%);//#f08c00;
 $color-btn-hover: darken($color-btn, 25%);
-$color-btn-link: color-contrast($color-btn);
-$color-btn-link-hover: color-contrast($color-btn-hover);
+$color-btn-link: contrast($color-btn);
+$color-btn-link-hover: contrast($color-btn-hover);
 
 $color-hidden: $color-btn;
-$color-hidden-hover: darken($color-hidden, 25%);
-$color-hidden-link: color-contrast($color-hidden);
-$color-hidden-link-hover: color-contrast($color-hidden-hover);
+$color-hidden-hover: $color-btn-hover;
+$color-hidden-link: $color-btn-link;
+$color-hidden-link-hover: $color-btn-link-hover;
 
 /* font-size: 16px */
 
@@ -27,15 +27,10 @@ $color-hidden-link-hover: color-contrast($color-hidden-hover);
   display:block;
 
   position: relative;
-  background: $color-menu;
   //line-height: 1.5;
   * {
     position: relative;
     display: inline-block;
-    *display: inline;
-    *zoom: 1;
-  }
-  & > * {
     vertical-align: middle;
   }
   &:before {
@@ -46,38 +41,71 @@ $color-hidden-link-hover: color-contrast($color-hidden-hover);
     width: 1px;
     margin-right: -1px;
   }
-  & li {
+  & li, & a {
     padding:.5em;
+    padding:.5rem;
   }
-}
+  & a {
+    color:inherit;
+    transition: .5s background-color;
+    &:hover {
+      background-color: #000;
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+    &:hover, &:focus, &:visited, &active {
+      color:inherit;
+    }
 
-.nav-a {
-  padding:.5em;
+  }
+  & .hidden {
+    /* only hide it */
+    position:absolute;
+    left:0;
+    z-index:-1;
+    visibility:hidden;
+  }
+
+}
+.nav, .nav-menu {
+  background-color: $color-menu;
   color: $color-menu-link;
-  text-decoration: none;
-  transition: .5s background-color;
 }
 
-.nav-a:hover {
-  //color:inherit;
-  background-color: #840b2a;
-  background-color: rgba(0, 0, 0, 0.25);
-}
-
-.nav-mainlink {
+.nav-main {
   background-color: $color-main;
-  //color: $color-main-link;
-  padding: .5em 1.5em;
-  font-weight: bold;
-  &:hover {
-    background-color: $color-main-hover;
+  color: $color-main-link;
+  font-weight:bold;
+  & li {
+    padding: 0;
+  }
+  & a {
+    padding: .5em 1em;
+  }
+
+}
+
+.nav-menu {
+  margin-right: .5rem;
+}
+
+.nav-hidden {
+  position: absolute;
+  right:0;
+  top:100%;
+
+  background-color: $color-hidden;
+  color: $color-hidden-link;
+  text-align: right;
+  & li , & a {
+    display:block;
   }
 }
 
-$fontsize: $base-fontsize*0.8;
 .nav-button {
+
   flex: 0 0 auto;
 
+  padding: .5rem;
   padding-left: 1.25rem;
   outline: 0;
   border: 0;
@@ -91,7 +119,6 @@ $fontsize: $base-fontsize*0.8;
   & .icon {
     width: 2em;
     height: 1.5em;
-    //margin: 0 px2em(4,$fontsize);;
   }
   & .icon-close,
   &.active .icon-open {
@@ -119,66 +146,52 @@ $fontsize: $base-fontsize*0.8;
     color: $color-menu;
   }
   &:hover {
-    //  color: $color-btn-link-hover;
     background-color: $color-btn-hover;
   }
   &:hover::after {
-    //order-color: $color-btn-hover;
     transform: translate(-50%, -50%) scale(1.1);
   }
 }
 
-.nav-links {
-  margin-right: .5rem;
-}
-
-.nav-hidden-links {
-  position: absolute;
-  background: $color-hidden;
-  right: 0;
-  top: 100%;
-}
-
-.nav-hidden-links a {
-  display: block;
-  text-align: right;
-  color: $color-hidden-link;
-  padding: .5em;
-}
-.nav-hidden-links li {
-  display: block;
-}
-.nav-links li.hidden,.nav-button.hidden {
-  /* only hide it */
-  position:absolute;
-  left:0;
-  z-index:-1;
-  visibility:hidden;
-}
-.nav-hidden-links.hidden,.nav-hidden-links li.hidden {
-  display:none;
-}
-/*extending navbar with flexbox*/
+/* if flexbox and javascript-component supported use flexbox */
 .ext {
-  .nav, .nav-mainlink, .nav-links, .nav-links li {
-    display: flex;
+  & .nav, & .nav-main, & .nav-menu {
+    display:flex;
     align-items: center;
   }
-  .nav-mainlink, .nav-links li {
+  & .nav,& .nav-main {
+    align-items: stretch;
+  }
+  & .nav-main, & .nav-button,
+  .nav-main li, .nav-menu li {
     flex: 0 0 auto;
   }
-  .nav {
-    align-items: stretch;
-    &:before {
-      display: none;
+  & .nav-main li {
+    display:flex;
+    align-items:stretch;
+  }
+  & .nav-main a {
+    display:inline-flex;
+    align-items:center;
+  }
+
+  & .nav-menu {
+    flex: 1 1 auto;
+    //justify-content: flex-end;
+    overflow: hidden;
+    & .toright {
+      margin-left:auto;
+      margin-right:0;
+
     }
   }
-  .nav-mainlink {
-    max-width: 50%;
-  }
-  .nav-links {
-    overflow: hidden;
-    justify-content: flex-end;
-    flex: 1 1 auto;
-  }
+
+
+
+
+
+
+
+
+
 }

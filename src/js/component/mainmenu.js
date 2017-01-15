@@ -25,10 +25,11 @@ export default (function() {
         bBusy=false,bTrigger=false,bFontSizeChanged=false;
 
     function init() {
+
         $nav = doc.querySelector('.nav');
         $btn = $nav.querySelector('.nav-button');
-        $vlinks = $nav.querySelector('.nav-links');
-        $hlinks = $nav.querySelector('.nav-hidden-links');
+        $vlinks = $nav.querySelector('.nav-menu');
+        $hlinks = $nav.querySelector('.nav-hidden');
 
         build();
         measure();

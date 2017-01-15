@@ -7,6 +7,7 @@ require_once('php/class/registry.class.php');
 class PageData extends _registry
 {
     protected static $instance = NULL;
+
     public static function getInstance()
     {
         if (self::$instance === NULL)

@@ -5,6 +5,7 @@
  * Date: 01.01.2017
  * Time: 15:04
  */
+require_once('php/class/registry.class.php');
 require_once('php/class/pagedata.class.php');
 
 class ImageItem {
@@ -27,18 +28,21 @@ class ImageItem {
     }
     public function render($attrs = [],$desc="") {
         $page = PageData::getInstance();
+        $lightbox = false;
         if ($desc == "")
             $desc = ($page->title)." Bild ".($this->index+1);
 
         if (!isset($attrs["class"]))
             $attrs["class"] = "image";
         else
-            $attrs["class"] .= " image";
+            $attrs["class"] = "image ".$attrs["class"];
 
-        if (!isset($attrs["style"]))
-            $attrs["style"] = "width:".$this->width."px;";
-        else
-            $attrs["style"] .= ";width:".$this->width."px;";
+        if (isset($attrs["lightbox"])) {
+            $lightbox = ($attrs["lightbox"] === true);
+            unset($attrs["lightbox"]);
+        }
+
+
 
         $aspect = round($this->height * 100 / $this->width,4);
 
@@ -48,10 +52,30 @@ class ImageItem {
         }
         $html.=" >";
         $html.= "<div style='padding-bottom:".$aspect."%;'></div>";
+        if ($lightbox)
+            $html.= "<picture data-observe='lightbox'>";
         $html.= "<img src='".$this->path."' alt='".$desc."'>";
+        if ($lightbox)
+            $html.= "</picture>";
         $html.= "</div>";
 
         return $html;
+    }
+    public function renderLimitSize($attrs = [],$desc="") {
+        if (!isset($attrs["style"]))
+            $attrs["style"] = "width:".$this->width."px;";
+        else
+            $attrs["style"] = ";width:".$this->width."px;".$attrs["style"];
+
+        return $this->render($attrs,$desc);
+    }
+    public function renderMaxSize($maxSize,$attrs = [],$desc="") {
+        if (!isset($attrs["style"]))
+            $attrs["style"] = "width:".$maxSize.";";
+        else
+            $attrs["style"] = ";width:".$maxSize.";".$attrs["style"];
+
+        return $this->render($attrs,$desc);
     }
 
 
@@ -60,9 +84,41 @@ class ImageItem {
 
 
 
+class ImageList extends _registry
+{
+    protected static $instance = NULL;
+    protected $images = array();
+
+    public static function getInstance()
+    {
+        if (self::$instance === NULL)
+        {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    protected function __construct() {}
+    private function __clone() {}
+
+    public function __invoke($path) {
+        return $this->getFromPath($path);
+    }
+
+    public function getFromPath($path)
+    {
+        $index = md5($path);
+        if (!isset($this->images[$index])) {
+            //create new image
+            $idx = count($this->images);
+            $this->images[$index] = new ImageItem($path,$idx);
+        }
+        return $this->images[$index];
+    }
+}
+/*
 class ImageList
 {
-    static protected $images = array();
+    static protected $images = Config::getInstance()->imageList;
 
     static public function getFromPath($path)
     {
@@ -75,3 +131,4 @@ class ImageList
         return self::$images[$index];
     }
 }
+*/

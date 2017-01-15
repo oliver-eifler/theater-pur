@@ -18,6 +18,9 @@
 .tl {
   display:table;
 }
+.tr {
+  display:table-row;
+}
 .ti {
   display:table-cell;
   vertical-align: top;
@@ -25,7 +28,7 @@
 .ti + .ti {
   padding-left: 8px;
 }
-.ti-mid {
+.ti-mid,.tr-mid > * {
   vertical-align:middle;
 }
 /* Block Wrapper*/

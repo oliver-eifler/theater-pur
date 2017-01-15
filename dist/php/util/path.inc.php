@@ -35,6 +35,13 @@ function getExtension($path)
         return $parts["extension"];
     return "";
 }
+function getDir($path) {
+    $parts = pathinfo($path);
+    if (isset($parts['dirname']))
+        return $parts["dirname"];
+    return "";
+
+}
 function path2cmd($path,&$cmd)
 {
     $rc = false;

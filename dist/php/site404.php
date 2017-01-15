@@ -7,7 +7,8 @@ class Site404 extends BaseSite
 
     protected function init($path)
     {
-        $path ="pages/404.php";
+        $this->pagedata->notFound = true;
+
         $render = function($tpl){
             ob_start();
             include $tpl;
@@ -21,14 +22,14 @@ class Site404 extends BaseSite
     }
     public function renderHTML()
     {
-        header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
-        echo $this->HTML();
-        return $this;
+        return $this->HTML();
     }
     public function renderJSON()
     {
-        header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
-        return $this;
+        $page = $this->pagedata;
+        $json = array();
+        $json['error'] = true;
+        return json_encode($json);
     }
 
     protected function HTML()

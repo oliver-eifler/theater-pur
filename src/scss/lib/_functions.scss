@@ -98,7 +98,16 @@
 @function contrast($color) {
   @return if(lightness($color) < 51, #FFF, #000)
 }
+@function contrast2($color) {
+  @if contrast_ratio($color, #FFF) < 4.5 {
+    @return #000
+  } @else {
+    @return #fff
+  }
+}
+/*
 @function color-contrast($color,$amount: 100%) {
+
   @if (lightness( $color ) > 50) {
     //@return #000000; // Lighter color, return black
     @return darken($color, $amount)
@@ -107,7 +116,7 @@
     @return lighten($color, $amount)
   }
 }
-
+*/
 @function strip-unit ($num) {
   @return $num / ($num * 0 + 1);
 }

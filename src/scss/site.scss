@@ -1,4 +1,5 @@
 @import "config";
+@import "components/text-hover-effects/effects";
 
 /* critical css
 @import 'site/base';
@@ -9,3 +10,42 @@
 @import 'site/footer';
 /* */
 .nc {display:block;opacity:1;}
+.bk-brand-0 {
+  background-color: $color-brand-0;
+  color: text-contrast($color-brand-0);
+}
+.bk-brand-1 {
+  background-color: $color-brand-1;
+  color: text-contrast($color-brand-1);
+}
+.bk-brand-2 {
+  background-color: $color-brand-2;
+  color: text-contrast($color-brand-2);
+}
+.bk-brand-3 {
+  background-color: $color-brand-3;
+  color: text-contrast($color-brand-3);
+}
+.color-test {
+  display:inline-block;
+  width: 4rem;
+  height:4rem;
+}
+.lightbox {
+  position: fixed !important;
+  z-index:9999;
+  left: 0;
+  top: 0;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+
+  img {
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+  }
+}
