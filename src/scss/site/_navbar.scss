@@ -177,13 +177,8 @@ $color-hidden-link-hover: $color-btn-link-hover;
 
   & .nav-menu {
     flex: 1 1 auto;
-    //justify-content: flex-end;
+    justify-content: flex-end;
     overflow: hidden;
-    & .toright {
-      margin-left:auto;
-      margin-right:0;
-
-    }
   }
 
 

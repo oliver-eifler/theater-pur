@@ -9,6 +9,7 @@
  */
 require_once("php/class/component.class.php");
 require_once("php/class/pagedata.class.php");
+require_once("php/class/hyphenator.class.php");
 require_once("php/class/config.class.php");
 
 

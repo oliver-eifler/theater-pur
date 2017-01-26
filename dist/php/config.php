@@ -19,6 +19,7 @@ define('CLASSES', PHP.DIRECTORY_SEPARATOR."class");
 define('RES', PHP.DIRECTORY_SEPARATOR."res");
 
 $config = Config::getInstance();
+$config->pageDir = "pages";
 $config->imgDir = "images";
 $config->svgDir = "images/svg";
 $config->avatarDir = "images/avatar";

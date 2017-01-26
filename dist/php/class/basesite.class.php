@@ -8,6 +8,7 @@
 
 require_once('php/class/registry.class.php');
 require_once('php/class/pagedata.class.php');
+require_once('pages/config.php');
 
 class BaseSite extends _registry
 {
@@ -18,6 +19,7 @@ class BaseSite extends _registry
     {
         $this->path = $path;
         $this->pagedata = PageData::getInstance();
+        $this->pagedata->config = PageConfig::getInstance();
         $this->init($path);
     }
     private function __clone() {}

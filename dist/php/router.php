@@ -61,24 +61,22 @@ $pagedata->url = get_request_scheme() . '://' . $_SERVER['HTTP_HOST'] . $path;
 
 $class = "site";
 
-if ($pagedata->uri=="/404")
-    $class = "site404";
-else if (file_exists("pages".$path.".php")) {
-    $path = "pages" . $path . ".php";
+if (file_exists($config->pageDir.$path.".php")) {
+    $path = $path . ".php";
 }
-else if (file_exists("pages".$path."/index.php")) {
-    $path = "pages".$path."/index.php";
+else if (file_exists($config->pageDir.$path."/index.php")) {
+    $path = $path."/index.php";
 }
 else {
     $class = "site404";
-    $path = "pages/404.php";
+    $path = "/404.php";
 }
-$pagedata->curDir = getDir($path);
-$pagedata->imgDir = getDir($path)."/images";
+$pagedata->curDir = $config->pageDir.getDir($path);
+$pagedata->imgDir = $config->imgDir.getDir($path);
 
 
 
 require_once("php/".$class.".php");
 //ToDo: Check for AJAX Request
-(new $class($path))->render();
+(new $class($config->pageDir.$path))->render();
 exit;

@@ -191,7 +191,7 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     processors: [
-                        //require('pixrem')() // rem to pixel the result
+                        require('pixrem')() // rem to pixel the result
                     ]
                 },
                 files: [{
@@ -205,7 +205,7 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     processors: [
-                        //require('pixrem')(), // rem to pixel the result
+                        require('pixrem')(), // rem to pixel the result
                         require('css-mqpacker')(), // rem to pixel the result
                         require('cssnano')({
                                 safe: false,

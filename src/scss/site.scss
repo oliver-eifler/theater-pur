@@ -1,5 +1,4 @@
 @import "config";
-@import "components/text-hover-effects/effects";
 
 /* critical css
 @import 'site/base';
@@ -7,6 +6,7 @@
 @import 'site/navbar';
 /* */
 /* none critical css */
+@import 'site/shadows';
 @import 'site/footer';
 /* */
 .nc {display:block;opacity:1;}
@@ -47,5 +47,60 @@
     max-width: 90%;
     max-height: 90%;
     margin: auto;
+  }
+}
+
+.badges {
+  & > li .image {
+    transform: rotate(-4deg);
+    transition: all .2s linear;
+  }
+  & > li:nth-child(2n+1) .image {transform: rotate(-6deg);}
+  & > li:nth-child(3n+2) .image {transform: rotate(5deg);}
+  & > li:nth-child(5n+3) .image {transform: rotate(7deg);}
+  & > li:nth-child(7n+5) .image {transform: rotate(-2deg);}
+  & > li:nth-child(11n+7) .image{transform: rotate(3deg);}
+  & > li:hover .image {
+    transform: rotate(0deg);
+  }
+
+}
+
+/* ie < 9 hacks */
+.lt-ie8 {
+ & .inline,
+ & .gl li,
+ & .ti,
+ & .gallery-item,
+ & .nav *,
+ & .image .imagebox {
+    display:inline;
+    zoom:1;
+  }
+  & .clear {
+    zoom:1;
+  }
+}
+.lt-ie9 {
+  & .image.crop img {
+    left:0;
+    top:0;
+  }
+  & .badge-label {
+    position:relative;
+  }
+  & .banner {
+    & .gallery-item {
+      background:none;
+    }
+    & .logo,& .icon {
+      display:inline-block;
+      max-width: 100%;
+      width:auto;
+      height:auto;
+    }
+  & .icon-youtube--wide {
+    display:none;
+  }
   }
 }

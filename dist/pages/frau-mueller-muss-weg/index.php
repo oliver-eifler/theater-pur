@@ -3,8 +3,8 @@ $this->created = 1465034394;
 $this->modified = filemtime(__FILE__);
 $this->minify = true;
 $this->title = "Frau Müller muss weg";
-$this->subtitle = "Eine Komödie über einen Elternabend von Lutz Hübner.";
-$this->description = "Eine Komödie über einen Elternabend von Lutz Hübner.";
+$this->subtitle = "Eine Komödie über einen Eltern&shy;abend von Lutz Hübner.";
+$this->description = "Eine Komödie über einen Eltern&shy;abend von Lutz Hübner.";
 $this->image = $this->imgDir."/plakat.jpg";
 ?>
 <section class="element wrapper-narrow">

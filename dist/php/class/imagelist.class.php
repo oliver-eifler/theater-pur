@@ -26,6 +26,7 @@ class ImageItem {
         }
         $this->index = $index;
     }
+    /*
     public function render($attrs = [],$desc="") {
         $page = PageData::getInstance();
         $lightbox = false;
@@ -33,18 +34,18 @@ class ImageItem {
             $desc = ($page->title)." Bild ".($this->index+1);
 
         if (!isset($attrs["class"]))
-            $attrs["class"] = "image";
+            $attrs["class"] = "imagex";
         else
-            $attrs["class"] = "image ".$attrs["class"];
+            $attrs["class"] = "imagex ".$attrs["class"];
 
         if (isset($attrs["lightbox"])) {
-            $lightbox = ($attrs["lightbox"] === true);
+            //$lightbox = ($attrs["lightbox"] === true);
             unset($attrs["lightbox"]);
         }
 
 
 
-        $aspect = round($this->height * 100 / $this->width,4);
+        $aspect = round($this->height * 100 / $this->width,2);
 
         $html = "<div";
         foreach ($attrs as $key => $value) {
@@ -61,11 +62,54 @@ class ImageItem {
 
         return $html;
     }
+    */
+    public function render($attrs = [],$desc="") {
+        $page = PageData::getInstance();
+        $lightbox = false;
+        $crop = false;
+        if ($desc == "")
+            $desc = ($page->title)." Bild ".($this->index+1);
+        if (isset($attrs["lightbox"])) {
+            //$lightbox = ($attrs["lightbox"] === true);
+            unset($attrs["lightbox"]);
+        }
+        if (isset($attrs["crop"])) {
+            $crop = ($attrs["crop"] === true);
+            unset($attrs["crop"]);
+
+        }
+        $class = "image".($crop?" crop":"");
+
+        if (!isset($attrs["class"]))
+            $attrs["class"] = $class;
+        else
+            $attrs["class"] = $class." ".$attrs["class"];
+
+        $aspect = $crop?100:round($this->height * 100 / $this->width,2);
+
+
+        $html = "<div";
+        foreach ($attrs as $key => $value) {
+            $html .= " " . $key . "='" . $value . "'";
+        }
+        $html.=">";
+        //Inner Image
+            $html .= "<div class='imagebox'>";
+                $html.= "<img src='".$this->path."' alt='".$desc."'>";
+                $html.= "<div style='padding-bottom:".$aspect."%;'></div>";
+            $html .= "</div>";
+
+        $html .= "</div>";
+
+
+        return $html;
+    }
+
     public function renderLimitSize($attrs = [],$desc="") {
         if (!isset($attrs["style"]))
             $attrs["style"] = "width:".$this->width."px;";
         else
-            $attrs["style"] = ";width:".$this->width."px;".$attrs["style"];
+            $attrs["style"] = "width:".$this->width."px;".$attrs["style"];
 
         return $this->render($attrs,$desc);
     }

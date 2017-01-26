@@ -1,17 +1,18 @@
 @import "../config";
 
 /* simplelist */
-.sl,.sl li,
-.gl,.gl li{
+ul,li {
   list-style: none outside none;
   margin:0;
   padding:0;
   border:0;
+  max-width:100%;
 }
 /* gridlist */
 .gl {
   & li {
     display:inline-block;
+    vertical-align:top;
   }
 }
 /* table */
@@ -35,6 +36,9 @@
 .inline {
   display: inline-block;
 }
+.block {
+  display: block;
+}
 .center {
   margin-left:auto;
   margin-right:auto;
@@ -55,4 +59,9 @@ text-align:left;
   text-align:center;
 }
 .text-deco {
+}
+.clear:after {
+  content: "";
+  display: table;
+  clear: both;
 }

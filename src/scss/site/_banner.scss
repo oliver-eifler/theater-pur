@@ -5,32 +5,38 @@ font-size:16px;
   padding: 1em;
   display: flex;
   align-items: flex-end;
+  /*
   & * {
     display: inline-block;
   }
+  */
 }
 
 .pattern {
   background: linear-gradient(45deg, #343702 0%, #184500 20%, #187546 30%, #006782 40%, #0b1284 50%, #760ea1 60%, #83096e 70%, #840b2a 80%, #b13e12 90%, #e27412 100%);
   background-color: #840b2a;
 }
-
+/*
 .banner svg {
   padding: .25em;
   border: .25em solid #000;
   border-radius: .5em;
   background-color: #fff;
 }
-
+*/
 .logo {
-  flex: 8 1 80%;
-  max-width: 21em;
+  float:left;
+//  flex: 8 1 80%;
+  flex: 0 1 324px;
+  max-width:75%;
+  //margin-right:-4px;
+  z-index:100;
 }
 
 .logo-pur {
   width: 100%;
   height: auto;
-  vertical-align: top;
+  //vertical-align: middle;
 }
 .logo-fallback {
   color:#fff;
@@ -40,22 +46,23 @@ font-size:16px;
   margin:0;
 }
 .social {
-  float: right;
-  flex: 2 1 20%;
+  float:right;
+  flex: 1 0 25%;
+  min-width:4em;
   text-align: right;
   li {
-    padding: .25em;
+    //padding: .25em;
   }
-  margin: -0.25em;
-  margin-left: 0;
+  //margin: -0.25em;
+  //margin-left: 0;
 
   & a:hover .icon {
       opacity: 1;
     }
   & .icon {
-    opacity: .70;
-    width: 2em+1em;
-    height: 2em+1em;
+    //opacity: .70;
+    width: 2em;
+    height: 2em;
     transition: .5s opacity;
   }
   /* icon vendor color */
@@ -67,7 +74,7 @@ font-size:16px;
   }
   & .icon-youtube--wide {
     /* 5*2 */
-    width: 5em+1em;
+    width: 5em;
     display: none;
   }
 }

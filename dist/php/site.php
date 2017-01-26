@@ -34,10 +34,15 @@ class Site extends BaseSite
     }
     public function renderJSON()
     {
+        $html = "";
+        $html .= Component::get("HeroHeader");
+        $html .= Component::get("Content");
+
         $page = $this->pagedata;
+
         $json = array();
         $json['title'] = $page->title;
-        $json['content'] = $page->html;
+        $json['content'] = $html;
 
         return json_encode($json);
     }
@@ -45,7 +50,10 @@ class Site extends BaseSite
     protected function HTML()
     {
         $page = $this->pagedata;
-        $html = "<!DOCTYPE html><html class='no-js' lang='de'><head>";
+        $html = "<!DOCTYPE html>";
+        $html .= "<!--[if lt IE 8]> <html class='no-js lt-ie9 lt-ie8' lang='de'> <![endif]-->";
+        $html .= "<!--[if IE 8]>    <html class='no-js lt-ie9' lang='de'> <![endif]-->";
+        $html .= "<!--[if gt IE 8]><!--> <html class='no-js no-ie' lang='de'> <!--<![endif]-->";
 
         $html .= Component::get("MetaData");
         //<link rel="canonical" href="http://example.com/wordpress/seo-plugin/">
@@ -89,13 +97,21 @@ class Site extends BaseSite
     protected function htmlBody()
     {
         $page = $this->pagedata;
+        $href = trim($page->uri,"/");
+        /*
         $geopattern = new \RedeyeVentures\GeoPattern\GeoPattern();
         $geopattern->setString($page->title);
         $bgImage = $geopattern->toDataURL();
         $bgColor = $geopattern->getBackgroundColor();
-
+        */
         $html = "";
         $html .= "<body>";
+        /* additional css for current page only */
+        $html .= "<style>";
+        $html .= "a[href=".$href." i],";
+        $html .= "a[href^=".$href."_ i]";
+        $html .= "{pointer-events:none;opacity: .75}";
+        $html .= "</style>";
 
         $html .= Component::get("Banner");
         $html .= Component::get("MainNav");
@@ -106,8 +122,9 @@ class Site extends BaseSite
         $html .= "</article>";
 
         $html .= "<footer class='nc container footer'>";
-            $html .= Component::get("Footer");
+        $html .= Component::get("Footer");
         $html .= "</footer>";
+
         $html.= "<script id='domready'>";
         $html.=     "µ.ready(true);";
         //$html.=     "µ.cache();";

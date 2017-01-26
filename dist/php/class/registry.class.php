@@ -9,13 +9,22 @@
  * @author Oliver Jean Eifler <oliver.eifler@gmx.de>
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
-class _registry /*implements ArrayAccess, Countable, IteratorAggregate*/
+class _registry implements ArrayAccess, Countable, IteratorAggregate
 {
    /**
     * @var object Instance of registry class
 	*/
     private $data = array();
+    private $null = null;
 
+    public function fromArray($arr=null) {
+        if ($arr == null)
+            return $this;
+        foreach($arr as $key => $value) {
+            $this->data[$key]=$value;
+        }
+        return $this;
+    }
 	/**
 	 * Magic Method to set a registry variable
 	 *
@@ -35,7 +44,7 @@ class _registry /*implements ArrayAccess, Countable, IteratorAggregate*/
 	 */
 	public function __get( $key )
 	{
-		return $this->offsetGet($key);
+	    return $this->offsetGet($key);
 	}
 	/**
 	 * Unset a registry variable
@@ -91,6 +100,15 @@ class _registry /*implements ArrayAccess, Countable, IteratorAggregate*/
     {
         return array_key_exists($offset,$this->data) ? $this->data[$offset] : null;
     }
+
+    public function & getRef($offset)
+    {
+        $ref = null;
+        if (array_key_exists($offset,$this->data))
+            $ref = &$this->data[$offset];
+        return $ref;
+    }
+
     public function clear()
     {
         $this->data = array();
@@ -105,5 +123,14 @@ class _registry /*implements ArrayAccess, Countable, IteratorAggregate*/
    {
         return new ArrayIterator($this->data);
    }
+}
+function registry($arr = array()) {
+    $reg = new _registry();
+    if (is_array($arr))
+    foreach($arr as $key => $value) {
+        $reg[$key]=$value;
+    }
+    return $reg;
+
 }
 ?>

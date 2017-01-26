@@ -5,7 +5,7 @@ $this->minify = true;
 $this->title = "\"Mein Freund Harvey\"";
 $this->subtitle = "eine irre Komödie von Mary Chase";
 $this->description = "eine irre Komödie von Mary Chase";
-$this->image = $this->imgDir."/harvey-impressions-01.jpg";
+$this->image = $this->imgDir."/plakat.jpg";
 ?>
 <section class="element wrapper-narrow">
 
@@ -32,7 +32,7 @@ $this->image = $this->imgDir."/harvey-impressions-01.jpg";
         zu guten Mitmenschen werden lässt.</p>
 </section>
 <section class="element wrapper-narrow">
-    <h2 class="breakout">Schau&shy;spieler&shy;Innen</h2>
+    <h2 class="breakout">SchauspielerInnen</h2>
     <ul class="sl tl cast leading">
         <?= Component::get("cast", "Barthl Sailer", "Elwood"); ?>
         <?= Component::get("cast", "Elke Harbeck", "Vera, seine Schwester"); ?>
@@ -49,22 +49,24 @@ $this->image = $this->imgDir."/harvey-impressions-01.jpg";
     <div class="p text-center leading">
         <div class="gallery-item">
             <div class="caption"><h2>Regie</h2>
+                <div class="leading">
                 <ul class="sl tl cast leading center">
                     <?= Component::get("cast", "Holger Ptacek"); ?>
                 </ul>
+                </div>
             </div>
             <?= Component::get("image", $this->imgDir."/harvey-impressions-02.jpg"); ?></div>
     </div>
 </section>
 <section class="element wrapper-wide">
-    <h2 class="text-center">Impres&shy;sionen&shy;...</h2>
-    <ul class="element-list gallery text-center">
-        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-03.jpg", "Vera Simmons (Elke Harbeck) möchte ihren Bruder dauerhaft im Sanatorium untergebracht wissen. Dr. Sanderson (Frauke Gerbig) bemüht sich herauszufinden, wo das Problem ist.", "Foto: Fotograf"); ?></li>
-        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-04.jpg", "Das Problem ist Onkel Elwood (Barthl Sailer) und sein Freund Harvey. Dabei sind die beiden ganz nett und ihr Charme kommt an. Auch bei der Frau von Prof. Chumley (Sonja Stablo).", "Foto: Fotograf"); ?></li>
-        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-05.jpg", "Während ihre Mutter Vera im Irrenhaus sind, bemüht sich Myrtle Mae (Jasmin Hoffmann) um einen Job bei der Zeitung. Journalistin Annabelle Ellerbie (Christine Kuchler) interessiert sich jedoch mehr für Skandale.", "Foto: Fotograf"); ?></li>
-        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-06.jpg", "Mit ihrer zupackenden Art ist Pflegerin Mary Wilson (Sabine Horak) eine große Hilfe im Institut. Und manchmal auch ein großes Problem.", "Foto: Fotograf"); ?></li>
-        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-07.jpg", "Prof. Chumley (Holger Ptacek) ist nicht wenig überrascht, als er erfährt, dass seine Mitarbeiter die falsche Patientin einsperrten und der richtige getürmt ist. Und zwar mitsamt seiner Frau.", "Foto: Fotograf"); ?></li>
-        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-08.jpg", "Für Roger Kelly (Stefan Hoffmann) und Dr. Sanderson (Frauke Gerbig) heißt es Abschied nehmen. Und plötzlich wird ihnen klar, wie ungern sie getrennt sein möchten.", "Foto: Fotograf"); ?></li>
+    <h2 class="text-center">Impressionen&#x200b;...</h2>
+    <ul class="gl element-list gallery text-center">
+        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-03.jpg", "Vera Simmons (Elke Harbeck) möchte ihren Bruder dauerhaft im Sanatorium untergebracht wissen. Dr. Sanderson (Frauke Gerbig) bemüht sich herauszufinden, wo das Problem ist."); ?></li>
+        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-04.jpg", "Das Problem ist Onkel Elwood (Barthl Sailer) und sein Freund Harvey. Dabei sind die beiden ganz nett und ihr Charme kommt an. Auch bei der Frau von Prof. Chumley (Sonja Stablo)."); ?></li>
+        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-05.jpg", "Während ihre Mutter Vera im Irrenhaus sind, bemüht sich Myrtle Mae (Jasmin Hoffmann) um einen Job bei der Zeitung. Journalistin Annabelle Ellerbie (Christine Kuchler) interessiert sich jedoch mehr für Skandale."); ?></li>
+        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-06.jpg", "Mit ihrer zupackenden Art ist Pflegerin Mary Wilson (Sabine Horak) eine große Hilfe im Institut. Und manchmal auch ein großes Problem."); ?></li>
+        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-07.jpg", "Prof. Chumley (Holger Ptacek) ist nicht wenig überrascht, als er erfährt, dass seine Mitarbeiter die falsche Patientin einsperrten und der richtige getürmt ist. Und zwar mitsamt seiner Frau."); ?></li>
+        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-08.jpg", "Für Roger Kelly (Stefan Hoffmann) und Dr. Sanderson (Frauke Gerbig) heißt es Abschied nehmen. Und plötzlich wird ihnen klar, wie ungern sie getrennt sein möchten."); ?></li>
         <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-09.jpg", "Und am Ende fragt sich nicht nur Prof. Chumley (Holger Ptacek): <i>Wer ist denn nun eigentlich wirklich verrückt?</i>", "Foto: Fotograf"); ?></li>
     </ul>
 </section>

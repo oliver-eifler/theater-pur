@@ -79,6 +79,7 @@
     $_info:     rgba($_hilight, 0.54);
     $_disabled: rgba($_hilight, 0.26);
     $_divider:  rgba($_hilight, 0.12);
+    $_ghost:    rgba($_hilight, 0.05);
 
     @if (lightness($color) < 51) {
       //white on black
@@ -90,6 +91,7 @@
       $_info:     rgba($_hilight, 0.70);
       $_disabled: rgba($_hilight, 0.30);
       $_divider:  rgba($_hilight, 0.12);
+      $_ghost:    rgba($_hilight, 0.05);
     }
   $colors:(
     base: $_color,
@@ -97,7 +99,8 @@
     text: $_text,
     info: $_info,
     disabled: $_disabled,
-    divider: $_divider
+    divider: $_divider,
+    ghost: $_ghost
   );
   @return $colors;
 }
@@ -110,4 +113,5 @@
 @function icon($palette) {@return savemapget($palette,'info');}
 @function disabled($palette) {@return savemapget($palette,'disabled');}
 @function divider($palette) {@return savemapget($palette,'divider');}
+@function ghost($palette) {@return savemapget($palette,'ghost');}
 
