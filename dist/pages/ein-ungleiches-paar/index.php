@@ -15,7 +15,7 @@ $this->image = $this->imgDir."/plakat.jpg";
         erweist sich als starke Belastungsprobe. Und als auch noch das Rendevous mit
         den beiden feschen Italienern aus dem 7. Stock zu scheitern droht, liegen die
         Nerven blank!</p>
-    <h2 class="breakout">Schauspielershy;Innen</h2>
+    <h2 class="breakout">Schauspieler&shy;Innen</h2>
     <p>Roswitha Straub, Lydia Mielke, Barbara Kandler-Schmitt, Inge Kirchhoff, Tatjana
         Zagel, Jasim Hoffmann, Christian Mathes und Chris Markl</p>
 </section>
@@ -34,9 +34,11 @@ $this->image = $this->imgDir."/plakat.jpg";
 </section>
 <section class="element wrapper-wide">
     <h2 class="text-center">Impressionen&#x200b;...</h2>
-    <ul class="gl element-list gallery text-center">
+    <div class="element-list">
+    <ul class="gl gallery text-center">
         <li class="element"><?= Component::get("galleryitem", $this->imgDir."/uepair-impressions-rosinski-02.jpg", "Felizitas hält so manche Überraschung für ihre Freundin bereit. Im Guten und …", "Bild: Hanspeter Rosinski"); ?></li>
         <li class="element"><?= Component::get("galleryitem", $this->imgDir."/uepair-impressions-ptacek-01.jpg", "… im Bösen. Und die Sache mit den beiden Italienern, …", "Bild: Monika Ptacek"); ?></li>
         <li class="element"><?= Component::get("galleryitem", $this->imgDir."/uepair-impressions-ptacek-02.jpg", "… die wirft sogar die Trivial-Pursuit-Runde aus der Bahn.", "Bild: Monika Ptacek"); ?></li>
     </ul>
+    </div>
 </section>

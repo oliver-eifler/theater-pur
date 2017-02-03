@@ -65,3 +65,14 @@ text-align:left;
   display: table;
   clear: both;
 }
+.table {
+  > h2 {
+    margin:0;
+  }
+  > h2 + p {
+    margin-top:0;
+  }
+  > p {
+    margin-left:2em;
+  }
+}

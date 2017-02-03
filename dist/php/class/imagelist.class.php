@@ -87,6 +87,7 @@ class ImageItem {
 
         $aspect = $crop?100:round($this->height * 100 / $this->width,2);
 
+        $file =
 
         $html = "<div";
         foreach ($attrs as $key => $value) {
@@ -95,7 +96,7 @@ class ImageItem {
         $html.=">";
         //Inner Image
             $html .= "<div class='imagebox'>";
-                $html.= "<img src='".$this->path."' alt='".$desc."'>";
+                $html.= "<img src='".$this->getAutoversion()."' alt='".$desc."'>";
                 $html.= "<div style='padding-bottom:".$aspect."%;'></div>";
             $html .= "</div>";
 
@@ -104,7 +105,16 @@ class ImageItem {
 
         return $html;
     }
-
+    protected function getAutoversion()
+    {
+            $parts = pathinfo($this->path);
+            if (!isset($parts["filename"])) {
+                $parts["filename"] = substr($parts["basename"],0,strlen($parts["basename"]) - (isset($parts['extension'])?(strlen($parts["extension"]) + 1):0) );
+            }
+            $dir = ($parts["dirname"]=="."?"":$parts["dirname"]."/");
+            $ver = $this->time;
+            return $dir.$parts["filename"]."_".$ver.".".$parts["extension"];
+    }
     public function renderLimitSize($attrs = [],$desc="") {
         if (!isset($attrs["style"]))
             $attrs["style"] = "width:".$this->width."px;";

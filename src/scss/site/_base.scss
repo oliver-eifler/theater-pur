@@ -35,6 +35,15 @@ body {
   color: #000;
   color: text($colors);
   background-color: inherit;
+  min-width:320px;
+}
+@media only screen and (max-width: 320px) {
+  @-ms-viewport {
+    width: 320px;
+  }
+  @viewport {
+    width: 320px;
+  }
 }
 
 /* lego bricks */
@@ -196,7 +205,8 @@ h6 {
   font-family: $serifFont;
   font-weight: bold;
 
-  color: hilight($colors);
+  //color: hilight($colors);
+  color: $color-brand-1;
   // Change heading typefaces here
   margin: $leading 0;
   line-height: $leading;
@@ -214,9 +224,6 @@ h1, .biggest {
   }
 }
 
-h2 {
-  color: $color-brand-1;
-}
 
 h2, .bigger {
   font-size: 2 * $scale * 1rem;
@@ -229,7 +236,6 @@ h2, .bigger {
 h3, .big {
   font-size: $scale * 1rem;
 }
-
 h4, h5, h6 {
   font-size: $scale / 2 * 1rem;
 }

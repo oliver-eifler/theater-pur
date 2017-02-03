@@ -8,14 +8,27 @@ $this->description = "Eine Komödie über einen Eltern&shy;abend von Lutz Hübne
 $this->image = $this->imgDir."/plakat.jpg";
 ?>
 <section class="element wrapper-narrow">
-    <p><i>Text und Bild geklaut</i></p>
-
     <h2 class="breakout">Inhalt</h2>
-    <p>Die Schulnoten einiger Schüler einer Klasse in einer Dresdner Grundschule werden schlechter. Da nun das Zeugnis naht, das über die Art der weiterführenden Schule entscheidet, sind viele Eltern besorgt. Sie entschließen sich, dafür zu sorgen, dass die Klassenlehrerin Frau Müller die Klasse abgibt. Dazu vereinbaren einige einen Termin mit ihr, übergeben ihr eine Unterschriftenliste und behaupten fest, dass die Lehrerin schuld an den schlechten Noten sei. Den Eltern geht es nicht um die geeignete weiterführende Schule, sondern nur um den formalen Abschluss. Später verlässt die Lehrerin für einige Zeit den Klassenraum und lässt ihre Tasche liegen. Nach verschiedenen Auseinandersetzungen untereinander schauen einige Eltern in die Tasche nach den mündlichen Noten ihrer Kinder. Da die Zensuren viel besser sind als erwartet und somit nichts mehr dagegen spricht, dass ihre Kinder das Gymnasium besuchen können, versuchen sie, Frau Müller, die inzwischen bereit ist, die Klasse abzugeben, nun vom Gegenteil zu überzeugen, was ihnen auch gelingt. Am Ende möchte die Lehrerin den Eltern noch die Noten mitteilen, wobei sich herausstellt, dass sie die aktuellen Zensuren nicht dabei hat und auf dem von den Eltern gefundenen Zettel jene des Vorjahres stehen.</p>
+    <p>Was würden Eltern nicht alles für ihre Kinder machen?
+    Die Hausaufgaben zum Beispiel. Aber wenn das nicht
+    genügt, um den Übertritt ins Gymnasium zu sichern,
+    dann ist die Lehrerin schuld! (Wer denn sonst?)</p>
+    <p>Am Elternabend werden keine Gefangenen gemacht!
+        Das lehrreiche und unterhaltsame Stück über den real
+        existierenden Wahnsinn an unseren Grundschulen
+        ist ein Dauerbrenner auf deutschen Bühnen und kam
+        2015 ins Kino!</p>
 </section>
 <section class="element wrapper-narrow">
-    <h2 class="breakout">Schau&shy;spieler&shy;Innen</h2>
-    <p>Keine Info</p>
+    <h2 class="breakout">SchauspielerInnen</h2>
+    <ul class="sl tl cast leading">
+        <?= Component::get("cast", "Sabine Horak","Fr. Müller"); ?>
+        <?= Component::get("cast", "Lydia Mielke","Jessica"); ?>
+        <?= Component::get("cast", "Melanie Piontek","Katja"); ?>
+        <?= Component::get("cast", "Roswitha Straub","Marina"); ?>
+        <?= Component::get("cast", "Holger Ptacek","Patrick"); ?>
+        <?= Component::get("cast", "Barbara Kandler-Schmitt","Wolfrun"); ?>
+    </ul>
 </section>
 <section class="element wrapper-narrow">
     <div class="p text-center leading">
@@ -25,10 +38,24 @@ $this->image = $this->imgDir."/plakat.jpg";
                     <?= Component::get("cast", "Holger Ptacek"); ?>
                 </ul>
             </div>
-            <?= Component::get("image", $this->imgDir."/plakat.jpg"); ?></div>
+            <?= Component::get("image", $this->imgDir."/entwurf-1.jpg"); ?></div>
     </div>
 </section>
 <section class="element wrapper-wide">
-    <h2 class="text-center">Impres&shy;sionen&shy;...</h2>
-    <p>Keine Bilder</p>
+    <h2 class="text-center">Impressionen&#x200b;...</h2>
+    <div class="element-list">
+        <ul class="gl gallery text-center">
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer01.jpg"); ?></li>
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer02.jpg"); ?></li>
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer03.jpg"); ?></li>
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer04.jpg"); ?></li>
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer05.jpg"); ?></li>
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer06.jpg"); ?></li>
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer07.jpg"); ?></li>
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer08.jpg"); ?></li>
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer09.jpg"); ?></li>
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer10.jpg"); ?></li>
+            <li class="element"><?= Component::get("galleryitem", $this->imgDir."/trailer11.jpg"); ?></li>
+        </ul>
+    </div>
 </section>

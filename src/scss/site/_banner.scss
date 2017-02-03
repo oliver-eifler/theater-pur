@@ -27,8 +27,8 @@ font-size:16px;
 .logo {
   float:left;
 //  flex: 8 1 80%;
-  flex: 0 1 324px;
-  max-width:75%;
+  flex: 1 1 75%;
+  max-width:320px;
   //margin-right:-4px;
   z-index:100;
 }
@@ -49,6 +49,7 @@ font-size:16px;
   float:right;
   flex: 1 0 25%;
   min-width:4em;
+  padding-left:.5em;
   text-align: right;
   li {
     //padding: .25em;
