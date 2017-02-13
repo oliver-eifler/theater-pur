@@ -26,43 +26,11 @@ class ImageItem {
         }
         $this->index = $index;
     }
-    /*
-    public function render($attrs = [],$desc="") {
-        $page = PageData::getInstance();
-        $lightbox = false;
-        if ($desc == "")
-            $desc = ($page->title)." Bild ".($this->index+1);
-
-        if (!isset($attrs["class"]))
-            $attrs["class"] = "imagex";
-        else
-            $attrs["class"] = "imagex ".$attrs["class"];
-
-        if (isset($attrs["lightbox"])) {
-            //$lightbox = ($attrs["lightbox"] === true);
-            unset($attrs["lightbox"]);
-        }
-
-
-
-        $aspect = round($this->height * 100 / $this->width,2);
-
-        $html = "<div";
-        foreach ($attrs as $key => $value) {
-            $html .= " " . $key . "='" . $value . "'";
-        }
-        $html.=" >";
-        $html.= "<div style='padding-bottom:".$aspect."%;'></div>";
-        if ($lightbox)
-            $html.= "<picture data-observe='lightbox'>";
-        $html.= "<img src='".$this->path."' alt='".$desc."'>";
-        if ($lightbox)
-            $html.= "</picture>";
-        $html.= "</div>";
-
-        return $html;
+    public function getUrl() {
+        return $this->getAutoversion();
     }
-    */
+
+
     public function render($attrs = [],$desc="") {
         $page = PageData::getInstance();
         $lightbox = false;

@@ -1,25 +1,25 @@
 /* navbar component
 fontsize:16px
 */
-$color-main: #5c940d;
-$color-main-hover: darken($color-main, 25%);
-$color-main-link: contrast($color-main);
+$color-main: $color-extra-bg;//#5c940d;
+$color-main-hover: $color-extra-hl;
+$color-main-link: $color-extra-fg;//contrast($color-main);
 //$color-main-link-hover: color-contrast($color-main-hover);
 
-$color-menu: $color-brand; //#e07700;
-$color-menu-hover: darken($color-menu, 25%);
-$color-menu-link: contrast($color-menu);
+$color-menu: $color-brand-bg; //#e07700;
+$color-menu-hover: $color-brand-hl;
+$color-menu-link: $color-brand-fg;//contrast($color-menu);
 //$color-menu-link-hover: color-contrast($color-menu-hover);
 
 $color-btn: #e0e0e0; //#F0DD44;//color-contrast($color-menu,20%);//#f08c00;
 $color-btn-hover: darken($color-btn, 25%);
 $color-btn-link: contrast($color-btn);
-$color-btn-link-hover: contrast($color-btn-hover);
+//$color-btn-link-hover: contrast($color-btn-hover);
 
 $color-hidden: $color-btn;
 $color-hidden-hover: $color-btn-hover;
 $color-hidden-link: $color-btn-link;
-$color-hidden-link-hover: $color-btn-link-hover;
+//$color-hidden-link-hover: $color-btn-link-hover;
 
 /* font-size: 16px */
 
@@ -48,14 +48,15 @@ $color-hidden-link-hover: $color-btn-link-hover;
   & a {
     color:inherit;
     transition: .5s background-color;
+    /*
     &:hover {
       background-color: #000;
       background-color: rgba(0, 0, 0, 0.25);
     }
+    */
     &:hover, &:focus, &:visited, &active {
       color:inherit;
     }
-
   }
   & .hidden {
     /* only hide it */
@@ -81,11 +82,17 @@ $color-hidden-link-hover: $color-btn-link-hover;
   & a {
     padding: .5em 1em;
   }
+  & a:hover {
+    background-color: $color-main-hover;
+  }
 
 }
 
 .nav-menu {
   margin-right: .5rem;
+  & a:hover {
+    background-color: $color-menu-hover;
+  }
 }
 
 .nav-hidden {
@@ -99,6 +106,10 @@ $color-hidden-link-hover: $color-btn-link-hover;
   & li , & a {
     display:block;
   }
+  & a:hover {
+    background-color: $color-hidden-hover;
+  }
+
 }
 
 .nav-button {

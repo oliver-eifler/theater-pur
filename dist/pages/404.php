@@ -1,6 +1,7 @@
 <?php
 $this->created = 1467475900;
 $this->modified = filemtime(__FILE__);
+$this->template = "error";
 $this->title = "Page not found";
 ?>
 <div class="error">

@@ -68,7 +68,7 @@ else if (file_exists($config->pageDir.$path."/index.php")) {
     $path = $path."/index.php";
 }
 else {
-    $class = "site404";
+    //$class = "site404";
     $path = "/404.php";
 }
 $pagedata->curDir = $config->pageDir.getDir($path);

@@ -65,6 +65,16 @@
   }
 
 }
+.gallery-rt {
+  & > li  {
+    transition: all .2s linear;
+  }
+  & > li:nth-child(2n+1) {transform: rotate(-2deg);}
+  & > li:nth-child(3n+2) {transform: rotate(-4deg);}
+  & > li:nth-child(5n+3) {transform: rotate(1deg);}
+  & > li:nth-child(7n+5) {transform: rotate(7deg);}
+  & > li:nth-child(11n+7){transform: rotate(5deg);}
+}
 
 /* ie < 9 hacks */
 .lt-ie8 {
@@ -79,6 +89,9 @@
   }
   & .clear {
     zoom:1;
+  }
+  .banner *,.nav *,.hero * {
+    color: #fff !important;
   }
 }
 .lt-ie9 {

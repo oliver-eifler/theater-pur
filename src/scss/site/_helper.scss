@@ -19,6 +19,9 @@ ul,li {
 .tl {
   display:table;
 }
+.tl-inline {
+  display:inline-table;
+}
 .tr {
   display:table-row;
 }
@@ -35,9 +38,11 @@ ul,li {
 /* Block Wrapper*/
 .inline {
   display: inline-block;
+  max-width:100%;
 }
 .block {
   display: block;
+  max-width:100%;
 }
 .center {
   margin-left:auto;
@@ -48,6 +53,9 @@ img.center {
 }
 .text-small {
   font-size:80%;
+}
+.text-bold {
+  font-weight:bold;
 }
 .text-left {
 text-align:left;
@@ -69,10 +77,27 @@ text-align:left;
   > h2 {
     margin:0;
   }
-  > h2 + p {
+  > h2 + * {
     margin-top:0;
   }
-  > p {
+  > *, > .p {
     margin-left:2em;
   }
+}
+q {
+    quotes: "\201e" "\201c" "\201a" "\2018";
+
+  &:before,&:after {
+    font-family: $monospaceFont;
+  }
+  &:before {
+    content: open-quote;
+  }
+  &:after {
+    content: close-quote;
+  }
+}
+.important {
+  color: #AA0044;
+  font-weight:bold;
 }

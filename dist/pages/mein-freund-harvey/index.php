@@ -2,7 +2,7 @@
 $this->created = 1465034394;
 $this->modified = filemtime(__FILE__);
 $this->minify = true;
-$this->title = "\"Mein Freund Harvey\"";
+$this->title = "Mein Freund Harvey";
 $this->subtitle = "eine irre Komödie von Mary Chase";
 $this->description = "eine irre Komödie von Mary Chase";
 $this->image = $this->imgDir."/plakat.jpg";
@@ -68,7 +68,7 @@ $this->image = $this->imgDir."/plakat.jpg";
         <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-06.jpg", "Mit ihrer zupackenden Art ist Pflegerin Mary Wilson (Sabine Horak) eine große Hilfe im Institut. Und manchmal auch ein großes Problem."); ?></li>
         <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-07.jpg", "Prof. Chumley (Holger Ptacek) ist nicht wenig überrascht, als er erfährt, dass seine Mitarbeiter die falsche Patientin einsperrten und der richtige getürmt ist. Und zwar mitsamt seiner Frau."); ?></li>
         <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-08.jpg", "Für Roger Kelly (Stefan Hoffmann) und Dr. Sanderson (Frauke Gerbig) heißt es Abschied nehmen. Und plötzlich wird ihnen klar, wie ungern sie getrennt sein möchten."); ?></li>
-        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-09.jpg", "Und am Ende fragt sich nicht nur Prof. Chumley (Holger Ptacek): <i>Wer ist denn nun eigentlich wirklich verrückt?</i>", "Foto: Fotograf"); ?></li>
+        <li class="element"><?= Component::get("galleryitem", $this->imgDir."/harvey-impressions-09.jpg", "Und am Ende fragt sich nicht nur Prof. Chumley (Holger Ptacek): <i>Wer ist denn nun eigentlich wirklich verrückt?</i>"); ?></li>
     </ul>
 </div>
 </section>

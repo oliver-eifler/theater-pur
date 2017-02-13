@@ -26,11 +26,16 @@
     padding: $padding-outer-y $padding-outer-x;
   }
   .element {
+    max-width:100%;
+  }
+  .element {
     padding: ($padding-y / 2) ($padding-x / 2);
+    /*
     & .breakout {
       margin-left: -$padding-x/2;
       margin-right: -$padding-x/2;
     }
+    */
   }
   .element-list {
     margin: ($padding-y / -2) ($padding-x / -2);
@@ -47,9 +52,11 @@
   .element-full-row:first-child {
     margin: (-$padding-outer-y) (-$padding-outer-x) 0;
     padding: ($padding-y / 2 + $padding-outer-y) ($padding-x / 2 + $padding-outer-x) ($padding-y / 2);
+    /*
     & .breakout {
       margin-left: -($padding-x / 2 + $padding-outer-x);
       margin-right: -($padding-x / 2 + $padding-outer-x);
     }
+    */
   }
 }

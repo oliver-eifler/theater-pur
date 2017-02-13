@@ -8,11 +8,14 @@ $this->description = "Die Gerechten von Albert Camus";
 $this->image = $this->imgDir . "/plakat.jpg";
 ?>
 <section class="element table wrapper-narrow">
-    <h2 class="big">Kritiken</h2>
-    <p><a href="<?= $this->imgDir ?>/trights-review-merkur-20151031.jpg" target="blank">
-            &quot;...die wunderbaren S&auml;tze von Camus bestens zur Geltung kommen...&quot; (Merkur)</a></p>
+    <h2 class="big">Presse</h2>
+    <div class="p">
+    <ul>
+        <li><a href="<?= $this->imgDir ?>/trights-review-merkur-20151031.jpg" target="blank">&quot;...die wunderbaren S&auml;tze von Camus bestens zur Geltung kommen...&quot; (Merkur)</a></li>
+    </ul>
+    </div>
     <h2 class="big">Titel</h2>
-    <p>"die Gerechten" von Albert Camus</p>
+    <p>"die Gerechten" <i>von Albert Camus</i></p>
     <h2 class="big">Regie</h2>
     <p>Holger Ptacek</p>
     <h2 class="big">Premiere</h2>
@@ -78,8 +81,9 @@ $this->image = $this->imgDir . "/plakat.jpg";
     <p>Fotokurs Lars Wunderlich (siehe Bildunterschriften)</p>
 </section>
 <section class="element wrapper-wide">
-    <h2 class="big text-center">Impressionen&#x200b;...</h2>
-    <ul class="gl element-list gallery text-center">
+    <h2 class="text-center">Impressionen&#x200b;...</h2>
+    <div class="element-list">
+    <ul class="gl gallery text-center">
         <li class="element"><?= Component::get("galleryitem", $this->imgDir . "/trights-staging-jung-01.jpg", "", "Bild: Chris Jung"); ?></li>
         <li class="element"><?= Component::get("galleryitem", $this->imgDir . "/trights-staging-jung-02.jpg", "", "Bild: Chris Jung"); ?></li>
         <li class="element"><?= Component::get("galleryitem", $this->imgDir . "/trights-staging-jung-03.jpg", "", "Bild: Chris Jung"); ?></li>
@@ -93,6 +97,7 @@ $this->image = $this->imgDir . "/plakat.jpg";
         <li class="element"><?= Component::get("galleryitem", $this->imgDir . "/trights-staging-steiger-065.jpg", "", "Bild: Gabi Steiger"); ?></li>
         <li class="element"><?= Component::get("galleryitem", $this->imgDir . "/trights-staging-steiger-077.jpg", "", "Bild: Gabi Steiger"); ?></li>
     </ul>
+    </div>
 </section>
     <section class="element wrapper-wide">
     <p class=" text-center">Die Probenarbeit wurde von Fotografen begleitet, die den Entstehungsprozess dokumentierten.

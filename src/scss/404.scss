@@ -25,13 +25,13 @@ body {
   background-image: repeating-linear-gradient(-45deg, transparent, transparent 70px, rgba(255,255,0,.5) 70px, rgba(255,255,0,.5) 140px);
 }
 a {
-  color: $color-link;
+  color: $color-link-bg;
   text-decoration: none;
   &:visited,
   &:hover,
   &:focus,
   &:active {
-    color: $color-link;
+    color: $color-link-hl;
   }
 }
 

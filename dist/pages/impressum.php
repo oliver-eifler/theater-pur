@@ -14,7 +14,7 @@ $this->image = "images/harvey-impressions-01.jpg";
 ?>
 <section class="element wrapper-narrow">
     <h2 class="breakout">Überschrift</h2>
-    <p>Ein ganz normaler Text mit einem <a href="home">Link</a></p>
+    <p>Ein ganz normaler Text mit einem <a href="home">Link</a> <a href="<?= trim($this->uri,"/");?>"><span>Current Link</span></a></p>
 </section>
 <section class="element wrapper-narrow">
     <h2 class="breakout">Farben</h2>

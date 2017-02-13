@@ -2,19 +2,30 @@
 @import 'lib/functions';
 @import 'lib/mixin';
 @import 'lib/theme';
+@import 'lib/material';
 
 $color-page: #fefef8;
 
-$color-brand: #F08800; //#e07700;
-$color-brand-0: text-contrast($color-page,$color_brand);
-$color-brand-1: text-contrast($color-page,adjust_hue($color_brand,90));
-$color-brand-2: text-contrast($color-page,adjust_hue($color_brand,180));
-$color-brand-3: text-contrast($color-page,adjust_hue($color_brand,270));
+$color-brand-bg: $material-amber-bg;//#F08800; //#e07700;
+$color-brand-hl: $material-amber-hl;//#F08800; //#e07700;
+$color-brand-fg: $material-amber-fg;//#F08800; //#e07700;
+
+$color-extra-bg: $material-green-bg;//#F08800; //#e07700;
+$color-extra-hl: $material-green-hl;//#F08800; //#e07700;
+$color-extra-fg: $material-green-fg;//#F08800; //#e07700;
+
+
+$color-brand-0: $color-brand-bg;
+$color-brand-1: $color-extra-bg;
+$color-brand-2: adjust_hue($color_brand-bg,180);
+$color-brand-3: adjust_hue($color_brand-bg,270);
 
 
 $colors: getColors($color-page);
-$color-link: $color-brand-2;
+$color-link-bg: $color-brand-bg;
+$color-link-hl: $color-brand-hl;
 
+$color-important: #840b2a;
 
 $color-codepen: #000;
 $color-facebook: #3b5998;

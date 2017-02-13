@@ -36,6 +36,7 @@ body {
   color: text($colors);
   background-color: inherit;
   min-width:320px;
+  overflow-x:hidden;
 }
 @media only screen and (max-width: 320px) {
   @-ms-viewport {
@@ -102,11 +103,12 @@ body {
   display: block;
   position: relative;
   max-width: 100%;
-  color: $color-brand !important;
+  background-color: base($colors);
   &, & .image {
     border-radius: 50%;
   }
   &-label {
+    max-width:100%;
     position: absolute;
     left: 0;
     right: 0;
@@ -149,15 +151,21 @@ body {
     background-color: ghost($colors);
   }
 }
+/* links */
+a {
+  color: $color-link-bg;
+}
+/*
+a:hover, a:focus, a:active, a:visited {
+  color: $color-link-bg;
+}
+*/
+a:hover {
+  color: $color-link-hl;
+}
 
 article {
-  /* links */
-  & a {
-    color: $color-brand-2;
-  }
-  & a:hover, & a:focus, & a:active, & a:visited {
-    color: $color-brand-2;
-  }
+  min-height:100vh;
   overflow-wrap: break-word;
   word-wrap: break-word;
   -webkit-hyphens: auto;
@@ -206,7 +214,7 @@ h6 {
   font-weight: bold;
 
   //color: hilight($colors);
-  color: $color-brand-1;
+  color: $color-extra-bg;
   // Change heading typefaces here
   margin: $leading 0;
   line-height: $leading;
@@ -268,6 +276,8 @@ h4, h5, h6 {
   $padding-y: map-get($lego, padding-y);
   $padding-outer-x: map-get($lego, padding-outer-x);
   $padding-outer-y: map-get($lego, padding-outer-y);
+  text-shadow:none;
+  color: #000;
 
   position: relative;
   margin-top: -($hero-height/2);
@@ -319,4 +329,29 @@ h4, h5, h6 {
   display: block;
   padding: 0 .25em;
 }
+.termine {
+  & .ti,&-foot {
+    padding: .25em .5em;
+  }
+  & .tr:nth-child(even) {
+    background-color: ghost($colors);
+  }
+}
+.events {
+  display:table;
+}
+.event {
+  display:table-row;
+  & > * {
+    display:table-cell;
+    vertical-align: top;
+    padding:.5rem;
+  }
+}
 
+.zebra {
+  & > *:nth-child(even) {
+    background-color: ghost($colors);
+  }
+
+}

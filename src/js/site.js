@@ -5,13 +5,14 @@
  */
 import actionObserver from './event/action-observer'
 import mainmenu from './component/mainmenu';
-
+/*
 actionObserver.bind("lightbox",function(event,node){
     node.classList.toggle("lightbox");
     event.stopPropagation();
     event.preventDefault();
 
 });
+*/
 µ.ready(function() {
     console.log("Site Code startet");
     mainmenu.init();
