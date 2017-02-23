@@ -1,5 +1,6 @@
 /* olli.web */
 module.exports = function (grunt) {
+    var rollupString = require('rollup-plugin-string');
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -114,6 +115,14 @@ module.exports = function (grunt) {
              },
              */
             jsSite: {
+                options: {
+                    plugins: [
+                        rollupString({
+                            // Required to be specified
+                            include: '**/resource/*.{css,svg,txt,html}'
+                        })
+                    ]
+                },
                 'dest': '<%= dir.build %>/js/site.js',
                 'src': '<%= dir.assets %>/js/site.js' // Only one source file is permitted
             }/*,
@@ -169,7 +178,7 @@ module.exports = function (grunt) {
         },
         /* Compile SASS to CSS */
         sass: {
-            dist: {
+            css: {
                 options: {
                     style: 'expanded',
                     sourcemap: false
@@ -177,9 +186,22 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= dir.assets %>/scss',
-                    src: ['*.scss'],
+                    src: ['*.scss',"!*.js.scss"],
                     dest: '<%= dir.build %>/css',
                     ext: '.css'
+                }]
+            },
+            js: {
+                options: {
+                    style: 'expanded',
+                    sourcemap: false
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= dir.assets %>/scss',
+                    src: ['!*.scss',"*.js.scss"],
+                    dest: '<%= dir.build %>/css',
+                    ext: '.js.css'
                 }]
             }
         },
@@ -197,7 +219,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= dir.build %>/css',
-                    src: ['*.css', '!*.min.css'],
+                    src: ['*.css', '!*.min.css','!*.js.css'],
                     dest: '<%= dir.release %>/css',
                     ext: '.css'
                 }]
@@ -206,6 +228,29 @@ module.exports = function (grunt) {
                 options: {
                     processors: [
                         require('pixrem')(), // rem to pixel the result
+                        require('css-mqpacker')(), // rem to pixel the result
+
+                        require('cssnano')({
+                                safe: false,
+                                autoprefixer: false,
+                                normalizeURL: false,
+                                discardComments: {removeAll: true}
+                            }
+                        ) // minify the result
+
+                    ]
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= dir.build %>/css',
+                    src: ['*.css', '!*.min.css','!*.js.css'],
+                    dest: '<%= dir.release %>/css',
+                    ext: '.css'
+                }]
+            },
+            js: {
+                options: {
+                    processors: [
                         require('css-mqpacker')(), // rem to pixel the result
                         require('cssnano')({
                                 safe: false,
@@ -219,11 +264,12 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= dir.build %>/css',
-                    src: ['*.css', '!*.min.css'],
-                    dest: '<%= dir.release %>/css',
+                    src: ['!*.css', '!*.min.css','*.js.css'],
+                    dest: '<%= dir.assets %>/js/resource',
                     ext: '.css'
                 }]
             }
+
         },
         /*GRUNTICON*/
         watch: {
@@ -254,10 +300,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-svgstore');
     // Default task(s).
     grunt.registerTask('icons', ['imagemin:iconsvg', 'svgstore:iconsvg', 'svg2png:iconpng', 'imagemin:iconpng']);
-    grunt.registerTask('dev-js', ['rollup', 'uglify:dev']);
-    grunt.registerTask('dist-js', ['rollup', 'uglify:dist']);
-    grunt.registerTask('dev-css', ['sass', 'postcss:dev']);
-    grunt.registerTask('dist-css', ['sass', 'postcss:dist']);
+    grunt.registerTask('dev-js', ['sass:js','postcss:js','rollup', 'uglify:dev']);
+    grunt.registerTask('dist-js', ['sass:js','postcss:js','rollup', 'uglify:dist']);
+    grunt.registerTask('dev-css', ['sass:css', 'postcss:dev']);
+    grunt.registerTask('dist-css', ['sass:css', 'postcss:dist']);
 
     grunt.registerTask('default', ['dist-css', 'dist-js']);
 };

@@ -20,15 +20,15 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-responsive-images": "^0.1.9",
-    "grunt-rollup": "^0.7.1",
+    "grunt-rollup": "^1.0.1",
     "grunt-sass": "^1.2.1",
     "grunt-svg2png": "^0.2.7",
     "grunt-svgstore": "^1.0.0",
     "pixrem": "^3.0.1",
-    "postcss-raw": "^0.1.2"
+    "postcss-raw": "^0.1.2",
+    "rollup-plugin-string": "^2.0.2"
   },
   "dependencies": {
-    "grunt": "^1.0.1",
     "imagemin-webp": "^4.0.0",
     "svg2png": "^3.0.1",
     "svgo": "^0.6.6"

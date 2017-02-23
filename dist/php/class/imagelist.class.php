@@ -73,6 +73,25 @@ class ImageItem {
 
         return $html;
     }
+    public function imageBox($width=0,$height=0,$desc="") {
+        $page = PageData::getInstance();
+        if ($desc == "")
+            $desc = ($page->title)." Bild ".($this->index+1);
+        if ($width == 0)
+            $width = $this->width;
+        if ($height == 0)
+            $height = $this->height;
+
+        $aspect = round($height * 100 / $width,2);
+        //Inner Image
+        $html = "<div class='imagebox'>";
+        $html.= "<img src='".$this->getAutoversion()."' alt='".$desc."'>";
+        $html.= "<div style='padding-bottom:".$aspect."%;'></div>";
+        $html .= "</div>";
+
+
+        return $html;
+    }
     protected function getAutoversion()
     {
             $parts = pathinfo($this->path);

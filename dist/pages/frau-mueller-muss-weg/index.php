@@ -8,7 +8,7 @@ $this->title = "Frau Müller muss weg";
 $this->subtitle = "Eine Komödie über einen Elternabend von Lutz Hübner.";
 $this->description = "Eine Komödie über einen Elternabend von Lutz Hübner.";
 $this->image = $this->imgDir."/plakat.jpg";
-$this->imagedesc = "Den Trailer zu <q>Frau Müller muss weg</q> können Sie sich auf unserer <a href='https://www.facebook.com/theaterpur.de/videos/1805472813050188/'>".Component::get("svg","images/svg/facebook.svg",["class"=>"icon"])."Facebook-Seite</a> ansehen";
+$this->imagedesc = "Den Trailer zu <q>Frau Müller muss weg</q> können Sie sich <a href='#video'>hier</a> oder auf unserer <a href='https://www.facebook.com/theaterpur.de/videos/1805472813050188/'>".Component::get("svg","images/svg/facebook.svg",["class"=>"icon icon-facebook"])." Facebook Seite</a> oder <a href='https://www.youtube.com/watch?v=42C3ELzQDFg'>".Component::get("svg","images/svg/video.svg",["class"=>"icon icon-video"])." You Tube</a> ansehen";
 
 ?>
 <?php
@@ -74,9 +74,22 @@ echo $html;
     </div>
 </section>
 <section class="element wrapper-wide">
+    <h2 id='video' class="text-center">Videos&#x200b;...</h2>
+    <div class="element-list">
+        <ul class="gl text-center">
+            <li class="element"><?= Component::get("videoitem",
+                    ["id"=>"42C3ELzQDFg",
+                     "width"=>1280,
+                        "height"=>720,
+                        "thumb"=>$this->imgDir."/trailer.jpg"],
+                    "Trailer"); ?></li>
+        </ul>
+    </div>
+</section>
+<section class="element wrapper-wide">
     <h2 class="text-center">Impressionen&#x200b;...</h2>
     <div class="element-list">
-        <ul class="gl gallery gallery-rt text-center">
+        <ul class="gl gallery-rt text-center">
             <li class="element"><?= Component::get("galleryitem", $this->imgDir."/480/szene01.jpg"); ?></li>
             <li class="element"><?= Component::get("galleryitem", $this->imgDir."/480/szene02.jpg"); ?></li>
             <li class="element"><?= Component::get("galleryitem", $this->imgDir."/480/szene03.jpg"); ?></li>

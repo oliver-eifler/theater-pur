@@ -31,24 +31,6 @@
   width: 4rem;
   height:4rem;
 }
-.lightbox {
-  position: fixed !important;
-  z-index:9999;
-  left: 0;
-  top: 0;
-  display: flex;
-  height: 100%;
-  width: 100%;
-  background: rgba(0,0,0,0.8);
-
-  img {
-    width: auto;
-    height: auto;
-    max-width: 90%;
-    max-height: 90%;
-    margin: auto;
-  }
-}
 
 .badges {
   & > li .image {
@@ -95,7 +77,7 @@
   }
 }
 .lt-ie9 {
-  & .image.crop img {
+  & .image/*.crop*/ img {
     left:0;
     top:0;
   }

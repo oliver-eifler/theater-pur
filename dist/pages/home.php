@@ -23,7 +23,10 @@ $this->description = "Theater PUR präsentiert: Frau Müller muss weg";
                 $html .= "<a class='element badge drop-shadow raised' href='/frau-mueller-muss-weg#top' title='Frau Müller muss weg'>";
                 $img = $images("images/plakatmotiv.jpg");
                 $html .= $img->renderMaxSize("500px",["crop"=>true],"Frau Müller muss weg");
-                $html .= "<div class='badge-label drop-shadow curved curved-hz-2 big text-center'><strong>Frau Müller muss weg</strong></div>";
+                $html .= "<div class='badge-label drop-shadow curved curved-hz-2 text-center'>";
+            $html .= "<div class='big'><strong>Frau Müller muss weg</strong></div>";
+            $html .= "<div>Für weitere Informationen hier klicken...</div>";
+            $html.="</div>";
                 $html .= "</a>";
                 echo $html;
             ?>
@@ -59,7 +62,7 @@ $this->description = "Theater PUR präsentiert: Frau Müller muss weg";
     echo $html;
     ?>
     <ul class="p stroke">
-    <li>Den Trailer zu <q>Frau Müller muss weg</q> können Sie sich auf unserer <a href='https://www.facebook.com/theaterpur.de/videos/1805472813050188/'>Facebook-Seite</a> ansehen</li>
+    <li>Den Trailer zu <q>Frau Müller muss weg</q> können Sie sich <a href='/frau-mueller-muss-weg#video'>hier</a> oder auf unserer <a href='https://www.facebook.com/theaterpur.de/videos/1805472813050188/'>Facebook-Seite</a> oder <a href='https://www.youtube.com/watch?v=42C3ELzQDFg'>You Tube</a> ansehen</li>
     <li>Weitere Informationen zu <q>Frau Müller muss weg</q> <a href="/frau-mueller-muss-weg#top">finden Sie hier...</a></li>
     </ul>
 </section>

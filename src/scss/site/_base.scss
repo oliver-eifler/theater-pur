@@ -85,17 +85,31 @@ body {
   & img {
     position: absolute;
     width: 100%;
-    left: 0;
-    top: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
-
+.image-overlay {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right:0;
+  bottom:0;
+  color: rgba(255,255,255,.5);
+  transition: color .3s linear;
+  a:hover &,a:focus & {
+    color: rgba(255,255,255,1);
+  }
+}
+/*
 .image.crop img {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-
+*/
 .badges {
 }
 
@@ -187,12 +201,16 @@ section {
 }
 
 /*Typography*/
+.icon {
+  height: 1.5em;
+  width: 1em;
+}
+.icon-video {
+  width:1.5em;
+}
+
 p, .p {
   margin: $leading 0;
-  .icon {
-    height: 1.5em;
-    margin-right: .25em;
-  }
 }
 
 .hug {
@@ -220,7 +238,6 @@ h6 {
   line-height: $leading;
   .icon {
     height: $leading;
-    margin-right: .25em;
   }
 }
 

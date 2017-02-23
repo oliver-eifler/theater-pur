@@ -42,9 +42,16 @@ body {
   height:auto;
 }
 .stroke {
-  color:#fff;
+  color:#FFF;
   letter-spacing: 1px;
   @include strokeText(#000);
+  a {
+    color: #0090ff;
+  }
+  a:hover {
+    color: #00aaff;
+  }
+
 }
 /* none critical css
 @import 'site/footer';
