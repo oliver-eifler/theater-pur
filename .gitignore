@@ -6,6 +6,7 @@ components
 bower_components
 images
 dist/**/images
+src/**/images
 dist/cache
 webfonts
 docs

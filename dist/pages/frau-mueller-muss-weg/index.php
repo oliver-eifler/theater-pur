@@ -34,6 +34,7 @@ if ($out != "") {
     $html .= "<section id='termine' class='element wrapper-narrow'>";
     $html .= "<h2 class='breakout'>Termine</h2>";
     $html .= "<ul class='events zebra center'>".$out."</ul>";
+    $html .= "<p class='text-center'><b>Einlass jeweils 2 Stunden vorher</b><br>Karten: 15,-€, Ermäßigt: 10,-€</p>";
     $html .= "<p class='text-center'><b>Vorbestellungen</b>: <a href='mailto:karten@theater-pur.de'>karten@theater-pur.de</a></p>";
     $html .= "</section>";
 }

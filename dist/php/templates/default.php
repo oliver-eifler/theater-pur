@@ -27,6 +27,10 @@ class DefaultTemplate extends Template
     protected function HTML()
     {
         $page = $this->pagedata;
+        $href = trim($page->uri,"/");
+
+
+
         $html = "<!DOCTYPE html>";
         $html .= "<!--[if lt IE 8]> <html class='no-js lt-ie9 lt-ie8' lang='de'> <![endif]-->";
         $html .= "<!--[if IE 8]>    <html class='no-js lt-ie9' lang='de'> <![endif]-->";
@@ -41,12 +45,24 @@ class DefaultTemplate extends Template
         $files["nav.js"] = Component::get("CacheBust","js/site.js");
         $files["html5shiv.js"] = Component::get("CacheBust","js/html5shiv.min.js");
         //$cookie = "critical=".$files["critical.css"]."; expires=Tue, 19 Jan 2038 03:14:07 GMT";
-        $cached = (strcasecmp(($_COOKIE['critical']??""),$files["critical.css"])===0);
+        //$cached = (strcasecmp(($_COOKIE['critical']??""),$files["critical.css"])===0);
 
 
         //if (!$cached) {
             $html .= "<style id='criticalcss'>";
             $html .= file_get_contents("css/critical.css");
+            /* additional css for current page only */
+            $html .= "a[href=".$href." i],";
+            $html .= "a[href^=".$href."_ i]";
+            $html .= "{pointer-events:none;color:inherit !important;}";
+            $html .= "a[href=".$href." i] > span,";
+            $html .= "a[href^=".$href."_ i] > span";
+            $html .= "{border-bottom:1px solid;margin-bottom:-1px;}";
+            /* additional style for the banner background */
+            $images = ImageList::getInstance();
+            $img = $images("images/banner.jpg");
+            $html .= ".banner {background-image:url(".$img->getUrl().")}";
+
             $html .= "</style>";
         //} else {
         //    $html.= "<link rel='stylesheet' href='".$files["critical.css"]."'>";
@@ -75,23 +91,9 @@ class DefaultTemplate extends Template
     {
         $page = $this->pagedata;
         $href = trim($page->uri,"/");
-        /*
-        $geopattern = new \RedeyeVentures\GeoPattern\GeoPattern();
-        $geopattern->setString($page->title);
-        $bgImage = $geopattern->toDataURL();
-        $bgColor = $geopattern->getBackgroundColor();
-        */
+
         $html = "";
         $html .= "<body>";
-        /* additional css for current page only */
-        $html .= "<style>";
-        $html .= "a[href=".$href." i],";
-        $html .= "a[href^=".$href."_ i]";
-        $html .= "{pointer-events:none;color:inherit !important;}";
-        $html .= "a[href=".$href." i] > span,";
-        $html .= "a[href^=".$href."_ i] > span";
-        $html .= "{border-bottom:1px solid;margin-bottom:-1px;}";
-        $html .= "</style>";
 
         $html .= Component::get("Banner");
         $html .= Component::get("MainNav");
@@ -107,7 +109,6 @@ class DefaultTemplate extends Template
 
         $html.= "<script id='domready'>";
         $html.=     "µ.ready(true);";
-        //$html.=     "µ.cache();";
         $html.= "</script>";
         $html .= "</body>";
         return $html;
