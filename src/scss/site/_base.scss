@@ -130,6 +130,9 @@ body {
     padding: .25rem;
     background-color: base($colors);
     border-radius: .25rem;
+    & > * {
+      margin:0;
+    }
   }
 }
 
@@ -168,6 +171,7 @@ body {
 /* links */
 a {
   color: $color-link-bg;
+  transition: all .3s linear;
 }
 /*
 a:hover, a:focus, a:active, a:visited {
@@ -221,7 +225,13 @@ p, .p {
   margin-top: $leading;
   margin-bottom: $leading;
 }
-
+pre {white-space: pre-wrap;
+  word-wrap: break-word;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  -moz-hyphens: none;
+  hyphens: none;
+}
 h1,
 h2,
 h3,
@@ -361,14 +371,36 @@ h4, h5, h6 {
   display:table-row;
   & > * {
     display:table-cell;
-    vertical-align: top;
-    padding:.5rem;
+    vertical-align: baseline;
+    padding:.5rem .25rem;
+  }
+  & > *:first-child {
+    padding-left:.5rem;
+  }
+  & > *:last-child {
+    padding-right:.5rem;
   }
 }
+.event--today .event-day {
+    font-weight:bold;
+    font-style: italic;
+    font-size:125%;
+  }
+.event--tommorow .event-day {
+  font-style: italic;
+}
+
+
 
 .zebra {
   & > *:nth-child(even) {
     background-color: ghost($colors);
   }
 
+}
+.impressum {
+  strong {
+    font-size:1.2em;
+
+  }
 }

@@ -9,6 +9,15 @@
 require_once('php/util/path.inc.php');
 require_once('php/class/pagedata.class.php');
 
+$altpath = array(
+    "/" => "/home",
+    "/index" => "/home",
+    "/start" => "/home",
+    "/aktuell" => "/home",
+    "/info" => "/wer-sind-wir",
+    "/about" => "/wer-sind-wir",
+);
+
 $request_url = get_request_url();
 $parts = parse_url($request_url);
 $request_uri = strtolower($parts['path']);
@@ -53,9 +62,14 @@ $pagedata->request_uri = $request_uri;
 $pagedata->request_json = (isset($_GET['json']) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'));
 
 $path = remove_ext($request_uri);
-if (empty($path) || $path == "/" || $path=="/index" || $path=="/start") {
-    $path="/home"; //later: check short urls ;)
+/* routes to other apps */
+
+if (empty($path)) {
+        $path="/home"; //later: check short urls ;)
+} else if (isset($altpath[$path])) {
+    $path = $altpath[$path];
 }
+
 $pagedata->uri = $path;
 $pagedata->url = get_request_scheme() . '://' . $_SERVER['HTTP_HOST'] . $path;
 

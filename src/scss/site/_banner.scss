@@ -9,7 +9,6 @@ font-size:16px;
   background-color: #840b2a;
   background-size:cover;
   background-position: center right;
-  //background-image: url(images/banner.jpg);
 }
 
 .logo {
@@ -39,15 +38,12 @@ font-size:16px;
   min-width:4em;
   padding-left:.5em;
   text-align: right;
-  li {
-    //padding: .25em;
-  }
-  //margin: -0.25em;
-  //margin-left: 0;
-
-  & a:hover .icon {
-      opacity: 1;
+  a.gallery-item {
+    background-color:rgba(255,255,255,.7);
+    &:hover {
+      background-color:rgba(255,255,255,1);
     }
+  }
   & .icon {
     //opacity: .70;
     width: 2em;

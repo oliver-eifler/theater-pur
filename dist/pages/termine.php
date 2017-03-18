@@ -1,5 +1,5 @@
 <?php
-require_once("php/class/ollidate.class.php");
+require_once("php/class/database.php");
 
 $this->created = 1465034394;
 $this->modified = filemtime(__FILE__);
@@ -10,31 +10,45 @@ $this->image = "images/termine.jpg";
 ?>
 <section class="element wrapper-narrow">
     <?php
-    $termine =PageConfig::getInstance()->getRef('termine');
-    $out = "";
-    foreach($termine as $termin) {
-        $date = new OlliDate($termin->date);
-        if ($date->diffDays() < 0)
-            continue;
-        $out .= "<li class='event'>";
-        $out .= "<div class='event-day text-bold'>".$date->weekday."</div>";
-        $out .= "<div class='event-date text-bold text-right'>".$date->getDateStr()."</div>";
-        $out .= "<div class='event-time text-right'>".$date->getTimeStr()."</div>";
-        $out .= "<div class='event-show'><a href='".$termin->link."'><q>".$termin->name."</q></a></div>";
-        $out .= "<div class='event-location'>".$termin->wo_prefix."<a href='".$termin->wo_link."'>".$termin->wo."</a></div>";
-        $out .= "<div class='event-info'>";
-        if ($termin->premiere === true)
-            $out .="<span class='event-premiere important'>Premiere</span>";
-        $out .= "</div>";
-        $out .= "</li>";
+    $termine = DataBase::getTermine(time());
+    if ($termine === false) {
+        echo "<p class='strong'>".DataBase::getErrorInfo()."</p>";
     }
-    $html ="";
-    if ($out != "") {
-        $html .= "<p class='text-center'><b>Vorbestellungen</b>: <a href='mailto:karten@theater-pur.de'>karten@theater-pur.de</a></p>";
-        $html .= "<ul class='events zebra center'>".$out."</ul>";
+    else if (count($termine) < 1) {
+        echo "<p class='strong'>Die Termine für die nächsten Vorstellungen sind leider noch nicht bekannt!</p>";
+
     } else {
-        $html .= "<p><b>Die Termine für die nächsten Vorstellungen sind leider noch nicht bekannt!</b></p>";
+        $html = "<p class='text-center'><b>Vorbestellungen</b>: <a href='mailto:karten@theater-pur.de'>karten@theater-pur.de</a></p>";
+        $html .= "<ul class='events zebra center'>";
+        foreach($termine as &$termin) {
+            $day = $termin->event_date->weekday;
+            $diff = $termin->event_date->diffDays();
+            $class="event";
+            if ($diff==0) {
+                $day = "<em>Heute</em>";
+                $class .= " event--today";
+            } else if ($diff==1) {
+                $day = "<em>Morgen</em>";
+                $class .= " event--tomorrow";
+            }
+            $html .= "<li class='".$class."'>";
+            $html .= "<div class='event-day'>".$day."</div>";
+            $html .= "<div class='event-date text-right'>".$termin->event_date->getDateStr()."</div>";
+            $html .= "<div class='event-time text-right'>".$termin->event_date->getTimeStr()."</div>";
+            $html .= "<div class='event-show'><a href='".$termin->show_link."'><q>".$termin->show_name."</q></a></div>";
+            $html .= "<div class='event-location'>";
+            if (!empty($termin->stage_prefix))
+                $html .= $termin->stage_prefix." ";
+            $html .= "<a href='".$termin->stage_link."'>".$termin->stage_name."</a></div>";
+            $html .= "<div class='event-info'>";
+            if ($termin->premiere() === true)
+                $html .="<span class='event-premiere important'>Premiere</span>";
+            $html .= "</div>";
+
+            $html .= "</li>";
+        }
+        $html .= "</ul>";
+        echo $html;
     }
-    echo $html;
     ?>
 </section>

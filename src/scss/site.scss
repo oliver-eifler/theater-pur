@@ -57,7 +57,6 @@
   & > li:nth-child(7n+5) {transform: rotate(7deg);}
   & > li:nth-child(11n+7){transform: rotate(5deg);}
 }
-
 /* ie < 9 hacks */
 .lt-ie8 {
  & .inline,
@@ -65,18 +64,21 @@
  & .ti,
  & .gallery-item,
  & .nav *,
- & .image .imagebox {
+ & .event > *,
+ & .gl .image
+ {
     display:inline;
     zoom:1;
   }
   & .clear {
     zoom:1;
   }
-  .banner *,.nav *,.hero * {
-    color: #fff !important;
-  }
-}
+ }
 .lt-ie9 {
+  & a {
+    text-decoration: underline !important;
+    cursor: pointer !important;
+  }
   & .image/*.crop*/ img {
     left:0;
     top:0;
@@ -84,7 +86,6 @@
   & .badge-label {
     position:relative;
   }
-  & .banner {
     & .gallery-item {
       background:none;
     }
@@ -97,5 +98,13 @@
   & .icon-youtube--wide {
     display:none;
   }
+  .banner *,.nav *,.hero * {
+    color: #fff !important;
+    background-color: transparent !important;
   }
+  .hero-image .svg-fallback,
+  .hero-image:before {
+    display:none;
+  }
+
 }

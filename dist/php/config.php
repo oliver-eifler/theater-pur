@@ -27,6 +27,7 @@ $config->avatarDir = "images/avatar";
 $config->avatarSize = 128;
 $config->baseTitle = "Theater PUR";
 $config->baseTime = strtotime("2016-12-01");
+$config->dbDsn = "sqlite:data/db/theaterpur";
 
 
 

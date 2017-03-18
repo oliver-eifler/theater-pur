@@ -285,7 +285,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-svg2png');
     grunt.loadNpmTasks('grunt-svgstore');
     // Default task(s).
-    grunt.registerTask('images', ['image:images']);
+    grunt.loadNpmTasks('grunt-newer');
+    grunt.registerTask('images', ['newer:image:images']);
     grunt.registerTask('dev-js', ['sass:js','postcss:js','rollup', 'uglify:dev']);
     grunt.registerTask('dist-js', ['sass:js','postcss:js','rollup', 'uglify:dist']);
     grunt.registerTask('dev-css', ['sass:css', 'postcss:dev']);

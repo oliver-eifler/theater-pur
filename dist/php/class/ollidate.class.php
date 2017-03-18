@@ -25,8 +25,11 @@ class OlliDate {
     public function __construct($string="") {
         if (empty($string))
             $this->datetime = new DateTime('now');
-        else
+
+        else if (is_string($string))
             $this->datetime = DateTime::createFromFormat("d.m.Y G:i",$string);
+
+        else $this->datetime = DateTime::createFromFormat("d.m.Y G:i",date("d.m.Y G:i",$string));
 
         $this->init();
     }
@@ -51,6 +54,12 @@ class OlliDate {
         $diff = $now->diff($this->datetime);
         $days = $diff->days * ($diff->invert == 1?-1:1);
         return $days;
+    }
+    public function isToday() {
+        return ($this->diffDays()==0);
+    }
+    public function isTomorrow() {
+        return ($this->diffDays()==1);
     }
     public function getDateStr() {
         $str = sprintf("%d. %s %04d",$this->mday,$this->month,$this->year);

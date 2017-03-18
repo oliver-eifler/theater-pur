@@ -59,9 +59,9 @@ class DefaultTemplate extends Template
             $html .= "a[href^=".$href."_ i] > span";
             $html .= "{border-bottom:1px solid;margin-bottom:-1px;}";
             /* additional style for the banner background */
-            $images = ImageList::getInstance();
-            $img = $images("images/banner.jpg");
-            $html .= ".banner {background-image:url(".$img->getUrl().")}";
+            //$images = ImageList::getInstance();
+            //$img = $images("images/banner.jpg");
+            //$html .= ".banner {background-image:url(".$img->getUrl().")}";
 
             $html .= "</style>";
         //} else {
@@ -69,6 +69,7 @@ class DefaultTemplate extends Template
         //}
         $html.= "<link rel='preload' href='".$files["site.css"]."' as='style' onload=\"this.rel='stylesheet'\">";
         $html.= "<noscript><link rel='stylesheet' href='".$files["site.css"]."'></noscript>";
+
         $html.="<!--[if lt IE 9]><script src='".$files["html5shiv.js"]."'></script><![endif]-->";
 
         $html.= "<script id='kickstart'>";

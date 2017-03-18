@@ -30,7 +30,7 @@ ul,li {
   vertical-align: top;
 }
 .ti + .ti {
-  padding-left: 8px;
+  padding-left: .5em;
 }
 .ti-mid,.tr-mid > * {
   vertical-align:middle;
@@ -74,14 +74,14 @@ text-align:left;
   clear: both;
 }
 .table {
-  > h2 {
+  > h2,h3 {
     margin:0;
   }
-  > h2 + * {
+  > h2 + *,h3 + * {
     margin-top:0;
   }
   > *, > .p {
-    margin-left:2em;
+    margin-left:1.5em;
   }
 }
 q {

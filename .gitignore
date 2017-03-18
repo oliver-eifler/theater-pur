@@ -8,6 +8,7 @@ images
 dist/**/images
 src/**/images
 dist/cache
+dist/admin
 webfonts
 docs
 .idea
