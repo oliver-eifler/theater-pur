@@ -28,15 +28,15 @@ $color-hidden-link: $color-btn-link;
 
   position: relative;
   //line-height: 1.5;
-  * {
+  *,&:before {
     position: relative;
     display: inline-block;
+  }
+  & li,& ul,&:before {
     vertical-align: middle;
   }
   &:before {
     content: "";
-    display: inline-block;
-    vertical-align: middle;
     height: 100%;
     width: 1px;
     margin-right: -1px;

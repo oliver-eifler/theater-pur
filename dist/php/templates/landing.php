@@ -41,6 +41,14 @@ class LandingTemplate extends Template
 
             $html .= "<style id='criticalcss'>";
             $html .= file_get_contents("css/landing.css");
+
+            //php generated css;
+            $images = ImageList::getInstance();
+            $img = $images("images/banner.jpg");
+            $html .= "body {background-image:url(".$img->getUrl().")}";
+
+
+
             $html .= "</style>";
 
         $html.= "<link rel='preload' href='".$files["site.css"]."' as='style' onload=\"this.rel='stylesheet'\">";
@@ -65,7 +73,7 @@ class LandingTemplate extends Template
         $img = $images("images/banner.jpg");
 
         $html = "";
-        $html .= "<body style='background-image:url(".$img->getUrl().")'>";
+        $html .= "<body>";
 
         $html .= "<article>";
         $html .= Component::get("Content");

@@ -8,6 +8,7 @@
 
 require_once('php/class/registry.class.php');
 require_once('php/class/pagedata.class.php');
+require_once('php/class/imagelist.class.php');
 require_once('pages/config.php');
 
 class Template extends _registry

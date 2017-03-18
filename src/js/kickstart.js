@@ -65,6 +65,7 @@ html.className = html.className.replace('no-js', sClass.join(' '));
 
 kickstart.ready = createCmdQueue();
 kickstart.loadCSS = loadCSS;
+kickstart.loadJS = loadJS;
 kickstart.i/*nit*/ = function (filelist) {
 
     if (querySelectorAll && classList && flexbox) {

@@ -15,9 +15,7 @@ PageConfig::getInstance()->autoregister(array(
     registry(["name" => "Alles beim Teufel", "link" => "alles-beim-teufel", "year" => 2014]),
     registry(["name" => "Bernarda Albas Haus", "link" => "bernarda-albas-haus", "year" => 2013]),
     registry(["name" => "Der nackte Wahnsinn", "link" => "der-nackte-wahnsinn", "year" => 2012]),
-    /*
-        registry(["name"=>"Die Vögel","link"=>"die-voegel","year"=>2011]),
+    registry(["name"=>"Die Vögel","link"=>"die-voegel","year"=>2011]),
     registry(["name"=>"Altes Eisen","link"=>"altes-eisen","year"=>2009]),
     registry(["name"=>"Die Kriegsberichterstatterin","link"=>"die-kriegsberichterstatterin","year"=>2008]),
-    */
 ));

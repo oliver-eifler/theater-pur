@@ -14,8 +14,6 @@ class GeoPattern {
     protected $hash;
     protected $svg;
 
-    protected $backgroundColor;
-
     protected $patterns = [
         'octogons',
         'overlapping_circles',
@@ -136,7 +134,6 @@ class GeoPattern {
     public function toDataURI()
     {
         return "data:image/svg+xml;base64,{$this->toBase64()}";
-        //return "data;image/svg+xml,".urlencode($this->toSVG());
     }
 
     public function toDataURL()
@@ -169,7 +166,6 @@ class GeoPattern {
         else
             $rgb = $this->hslToRGB($baseColor['h'], $baseColor['s'], $baseColor['l']);
 
-        $this->backgroundColor = $this->rgbToHex($rgb['r'],$rgb['g'], $rgb['b']);
         $this->svg->addRectangle(0, 0, "100%", "100%", ['fill' => "rgb({$rgb['r']}, {$rgb['g']}, {$rgb['b']})"]);
     }
 

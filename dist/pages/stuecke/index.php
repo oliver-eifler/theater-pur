@@ -25,7 +25,7 @@ $this->image = $this->imgDir . "/header.jpg";
 
 
             $html .= "<li class='element'>";
-            $html .= "<a class='element badge drop-shadow raised' href='" . $entry->link . "' title='".$entry->name."'>";
+            $html .= "<a class='element badge drop-shadow raised' href='" . $entry->link . "#top' title='".$entry->name."'>";
             $img = $images("images/" . $entry->link . "/motiv.jpg");
             $html .= $img->renderMaxSize("320px",["crop"=>true],$entry->name);
             $html .= "<div class='badge-label drop-shadow curved curved-hz-2 text-center'><strong>".$entry->name."</strong><br>(".$entry->year.")</div>";

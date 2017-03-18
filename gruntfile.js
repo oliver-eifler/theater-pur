@@ -13,7 +13,7 @@ module.exports = function (grunt) {
             release: 'dist',
             build: 'build',
             assets: 'src',
-            components: 'src/js/components'
+            vendor: 'src/js/vendor'
         },
         /* SVG ICON STUFF */
         svg2png: {
@@ -34,39 +34,25 @@ module.exports = function (grunt) {
             },
         },
         /* IMAGE STUFF */
-        imagemin: {                          // Task
-            iconpng: {                         // Another target
-                options: {                       // Target options
-                    optimizationLevel: 3
+        image: {                          // Task
+            images: {                         // Another target
+                options: {
+                    pngquant: true,
+                    optipng: false,
+                    zopflipng: true,
+                    jpegRecompress: false,
+                    jpegoptim: true,
+                    mozjpeg: true,
+                    gifsicle: true,
+                    svgo: false
                 },
                 files: [{
                     expand: true,                  // Enable dynamic expansion
-                    cwd: '<%= dir.build %>/icons/',                   // Src matches are relative to this path
+                    cwd: '<%= dir.assets %>/images/',                   // Src matches are relative to this path
                     src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
-                    dest: '<%= dir.release %>/images/icons/'                  // Destination path prefix
+                    dest: '<%= dir.release %>/images/'                  // Destination path prefix
                 }]
             },
-            iconsvg: {                         // Another target
-                options: {                       // Target options
-                    optimizationLevel: 1,
-                    svgoPlugins: [
-                        {removeDimensions: true},
-                        {removeMetadata: true},
-                        {removeComments: true},
-                        {convertPathData: true},
-                        {removeUselessStrokeAndFill: false},
-                        {
-                            removeHiddenElems: {
-                                displayNone: false,
-                                opacity0: false
-                            }
-                        }]
-                },
-                files: [{
-                    expand: true,                  // Enable dynamic expansion
-                    cwd: '<%= dir.assets %>/svg/icons/', src: ['**/*.svg'], dest: '<%= dir.build %>/icons/'
-                }]
-            }
         },
         responsive_images: {
             thumbs: {
@@ -150,7 +136,7 @@ module.exports = function (grunt) {
                     '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
                     //'<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
                     //'<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
-                    '<%= dir.release %>/js/site.js': [/*'<%= dir.components %>/native.history.js',*/ '<%= dir.build %>/js/site.js'],
+                    '<%= dir.release %>/js/site.js': ['<%= dir.vendor %>/promise.js', '<%= dir.build %>/js/site.js'],
                     /*polyfills*/
                     //'<%= dir.release %>/js/svgxuse.js': ['<%= dir.components %>/svgxuse.js'],
                     //'<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']
@@ -167,7 +153,7 @@ module.exports = function (grunt) {
                     '<%= dir.release %>/js/kickstart.js': ['<%= dir.build %>/js/kickstart.js'],
                     //'<%= dir.release %>/js/inline.js': ['<%= dir.build %>/js/inline.js'],
                     //'<%= dir.release %>/js/async.js': ['<%= dir.build %>/js/async.js'],
-                    '<%= dir.release %>/js/site.js': [/*'<%= dir.components %>/native.history.js',*/ '<%= dir.build %>/js/site.js'],
+                    '<%= dir.release %>/js/site.js': ['<%= dir.vendor %>/promise.js', '<%= dir.build %>/js/site.js'],
                     /*polyfills*/
                     //'<%= dir.release %>/js/svgxuse.js': ['<%= dir.components %>/svgxuse.js'],
                     //'<%= dir.release %>/js/promise.js': ['<%= dir.components %>/promise.js']
@@ -285,21 +271,21 @@ module.exports = function (grunt) {
             }
         }
     });
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-rollup');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-postcss');
-    //svg stuff
+    //image stuff
     grunt.loadNpmTasks('grunt-responsive-images');
+    grunt.loadNpmTasks('grunt-image');
     //svg stuff
     grunt.loadNpmTasks('grunt-svg2png');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-svgstore');
     // Default task(s).
-    grunt.registerTask('icons', ['imagemin:iconsvg', 'svgstore:iconsvg', 'svg2png:iconpng', 'imagemin:iconpng']);
+    grunt.registerTask('images', ['image:images']);
     grunt.registerTask('dev-js', ['sass:js','postcss:js','rollup', 'uglify:dev']);
     grunt.registerTask('dist-js', ['sass:js','postcss:js','rollup', 'uglify:dist']);
     grunt.registerTask('dev-css', ['sass:css', 'postcss:dev']);
