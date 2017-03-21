@@ -1,12 +1,10 @@
 <?php
 require_once("php/class/database.php");
 
-$this->created = 1465034394;
-$this->modified = filemtime(__FILE__);
 $this->minify = true;
 $this->title = "Frau Müller muss weg";
 $this->subtitle = "Eine Komödie über einen Elternabend von Lutz Hübner.";
-$this->description = "Eine Komödie über einen Elternabend von Lutz Hübner.";
+$this->description = "Eine Komödie über einen Elternabend von Lutz Hübner. Aufgeführt von Theater PUR";
 $this->image = $this->imgDir."/plakat.jpg";
 $this->imagedesc = "Den Trailer zu <q>Frau Müller muss weg</q> können Sie sich <a href='#video'>hier</a> oder auf unserer <a href='https://www.facebook.com/theaterpur.de/videos/1805472813050188/'>".Component::get("svg","images/svg/facebook.svg",["class"=>"icon icon-facebook"])." Facebook Seite</a> oder <a href='https://www.youtube.com/watch?v=42C3ELzQDFg'>".Component::get("svg","images/svg/video.svg",["class"=>"icon icon-video"])." You Tube</a> ansehen";
 $this->showID = DataBase::getShowID($this->uri);

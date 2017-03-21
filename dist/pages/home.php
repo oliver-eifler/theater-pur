@@ -2,13 +2,10 @@
 require_once('php/class/imagelist.class.php');
 require_once("php/class/database.php");
 
-$this->created = 1465034394;
-$this->modified = filemtime(__FILE__);
 $this->template = "landing";
 $this->minify = true;
 $this->title = "Theater PUR";
-$this->subtitle = "Frau Müller muss weg";
-$this->description = "Theater PUR präsentiert: Frau Müller muss weg";
+$this->description = "Theater PUR aus Pullach im Isartal ist eine freie Theatergruppe. Unsere Spielstätten sind das Bürgerhaus Pullach, das Gasthaus Iberl und weitere Bühnen in München u. a. Aktuell spielen wir \"Frau Müller muss weg\"";
 ?>
 <section class="element text-center">
     <header>

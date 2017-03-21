@@ -1,9 +1,8 @@
 <?php
-$this->created = 1465034394;
-$this->modified = filemtime(__FILE__);
 $this->title = "Wer sind Wir";
-$this->subtitle = "Theater PUR Pullach ist eine freie Theatergruppe. Unsere Spielstätten sind das Bürgerhaus Pullach, das Gasthaus Iberl und weitere Bühnen in München u. a.";
-$this->description = "Theater PUR Pullach ist eine freie Theatergruppe. Unsere Spielstätten sind das Bürgerhaus Pullach, das Gasthaus Iberl und weitere Bühnen in München u. a.";
+$this->subtitle = ["Theater PUR aus Pullach im Isartal ist eine freie Theatergruppe.",
+    "Unsere Spielstätten sind das Bürgerhaus Pullach, das Gasthaus Iberl und weitere Bühnen in München u. a."];
+$this->description = "Theater PUR besteht aus begeisterten Amateuren und wird geleitet von dem professionellen Regisseur und Puppenspieler Holger Ptacek. Unser Ziel ist gutes Theater für das Publikum zu bieten und bereichernde Erfahrungen auf der Bühne zu sammeln.";
 $this->image = "images/infomotiv.jpg";
 ?>
 <section class="element wrapper-narrow">

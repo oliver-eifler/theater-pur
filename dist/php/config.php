@@ -19,15 +19,14 @@ define('CLASSES', PHP.DIRECTORY_SEPARATOR."class");
 define('RES', PHP.DIRECTORY_SEPARATOR."res");
 
 $config = Config::getInstance();
-$config->version = "1.03";
+$config->version = "1.04";
 $config->pageDir = "pages";
 $config->imgDir = "images";
 $config->svgDir = "images/svg";
 $config->avatarDir = "images/avatar";
 $config->avatarSize = 128;
-$config->baseTitle = "Theater PUR";
 $config->baseTime = strtotime("2016-12-01");
 $config->dbDsn = "sqlite:data/db/theaterpur";
-
+$config->files = json_decode(file_get_contents("data/files.json"),true);
 
 

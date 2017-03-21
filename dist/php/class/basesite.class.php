@@ -6,9 +6,9 @@
  * Time: 19:51
  */
 
-require_once('php/class/registry.class.php');
 require_once('php/class/pagedata.class.php');
-require_once('pages/config.php');
+require_once('php/class/database.php');
+require_once(Config::getInstance()->pageDir.'/config.php');
 
 class BaseSite extends _registry
 {
@@ -19,7 +19,6 @@ class BaseSite extends _registry
     {
         $this->path = $path;
         $this->pagedata = PageData::getInstance();
-        $this->pagedata->config = PageConfig::getInstance();
         $this->init($path);
     }
     private function __clone() {}
@@ -27,36 +26,63 @@ class BaseSite extends _registry
     /*overwrite*/
     protected function init($path) {return $this;}
     public function render() {
-        if ($this->pagedata->request_json)
+        $page = $this->pagedata;
+        $modified = time();
+
+        if ($page->request_json)
             $content = $this->renderJSON();
         else
             $content = $this->renderHTML();
-        if ($this->pagedata->notFound === true) {
+
+        if ($page->notFound === true) {
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
         } else {
-            $page = $this->pagedata;
-            $lmodified = $page->modified;
-            $md5 = md5($content);
-
-            header("Etag: $md5");
             //make sure caching is turned on
-            header('Cache-Control: public');
-            //header('Cache-Control: no-store, no-cache, must-revalidate',true);
-            //header('Cache-Control: post-check=0, pre-check=0', FALSE);
-            if (/*(isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $lmodified > 0 && @strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $lmodified)||*/
-            (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == $md5)
-            ) {
-                header($_SERVER["SERVER_PROTOCOL"] . ' 304 Not Modified');
-                exit();
+            header('Cache-Control: public, must-revalidate');
+
+            if ($page->nocache !== true) {
+                $md5 = md5($content);
+                $modified = $this->lastModified(trim($page->uri, "/"), $md5, $page->request_json ?? false);
+
+                if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $modified > 0 && @strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $modified) {
+                    header($_SERVER["SERVER_PROTOCOL"] . ' 304 Not Modified');
+                    exit();
+                }
             }
-            if ($lmodified > 0) {
-                header('Last-Modified: ' . gmdate("D, d M Y H:i:s", $lmodified) . " GMT", true);
+
+            if ($modified > 0) {
+                header('Last-Modified: ' . gmdate("D, d M Y H:i:s", $modified) . " GMT", true);
             }
+
         }
-        if ($this->pagedata->request_json)
+
+        if ($page->request_json)
             header("Content-type: application/json; charset=utf-8",true);
         echo $content;
         return $this;
+    }
+    protected function lastModified($path,$hash,$json) {
+        if (empty($path))
+            $path = "*";
+        $table = "xhash_html";
+        if ($json)
+            $table = "xhash_json";
+        $modified = time();
+        $db = DataBase::Connect();
+        if ($db === false)
+            return $modified;
+        $sql = "SELECT hash,modified FROM '".$table."' WHERE uri == '".$path."' LIMIT 1";
+        $stmt = $db->query($sql);
+        if ($stmt === false)
+            return $modified;
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        $stmt->closeCursor();
+        if (!$data || $data->hash != $hash) {
+            $db->query("INSERT OR REPLACE INTO '".$table."' (uri,hash,modified) VALUES ('".$path."','".$hash."',".$modified.")");
+        } else {
+            $modified = (int)$data->modified;
+        }
+        return $modified;
     }
     public function renderHTML() {return "";}
     public function renderJSON() {return "";}

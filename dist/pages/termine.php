@@ -1,11 +1,9 @@
 <?php
 require_once("php/class/database.php");
 
-$this->created = 1465034394;
-$this->modified = filemtime(__FILE__);
 $this->title = "Termine";
 $this->subtitle = "Wann und wo Sie unsere Vorstellungen sehen können";
-$this->description = "Unsere Termine, Wann und wo Sie unsere Vorstellungen sehen können";
+$this->description = "Unsere Termine. Wann und wo Sie unsere Vorstellungen sehen können";
 $this->image = "images/termine.jpg";
 ?>
 <section class="element wrapper-narrow">

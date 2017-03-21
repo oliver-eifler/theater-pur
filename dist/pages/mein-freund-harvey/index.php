@@ -1,6 +1,4 @@
 <?php
-$this->created = 1465034394;
-$this->modified = filemtime(__FILE__);
 $this->minify = true;
 $this->title = "Mein Freund Harvey";
 $this->subtitle = "eine irre Komödie von Mary Chase";

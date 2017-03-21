@@ -31,8 +31,7 @@ class LandingTemplate extends Template
         $html .= "<!--[if gt IE 8]><!--> <html class='no-js no-ie' lang='de'> <!--<![endif]-->";
 
         $html .= Component::get("MetaData");
-        //<link rel="canonical" href="http://example.com/wordpress/seo-plugin/">
-        /*Build the filelist*/
+
         $files = [];
         $files["critical.css"] = Component::get("CacheBust","css/landing.css");
         $files["site.css"] = Component::get("CacheBust","css/site.css");
@@ -51,6 +50,7 @@ class LandingTemplate extends Template
         $html.=     file_get_contents("js/kickstart.js");
         //$html.=     "µ.i(".json_encode($files).");";
         $html.= "</script>";
+
         $html .= "</head>";
             $html .= $this->htmlBody();
         $html .= "</html>";

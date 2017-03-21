@@ -1,6 +1,4 @@
 <?php
-$this->created = 1465034394;
-$this->modified = filemtime(__FILE__);
 $this->title = "Impressum";
 $this->description = "Impressum";
 ?>

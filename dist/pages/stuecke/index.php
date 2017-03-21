@@ -2,8 +2,6 @@
 require_once('php/class/imagelist.class.php');
 require_once('php/class/database.php');
 
-$this->created = 1465034394;
-$this->modified = filemtime(__FILE__);
 $this->minify = true;
 $this->title = "Unsere Theaterstücke";
 $this->subtitle = "Diese Theaterstücke haben wir bereits gespielt";

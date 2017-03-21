@@ -1,6 +1,6 @@
 <?php
-$this->created = 1467475900;
-$this->modified = filemtime(__FILE__);
+require_once("php/class/database.php");
+$this->nocache = true;
 $this->template = "error";
 $this->title = "Page not found";
 ?>
@@ -10,25 +10,50 @@ $this->title = "Page not found";
     <p><strong>Sorry, but the page you were trying to view does not exist.</strong></p>
     <p>Maybe, you try it here:</p>
     <?php
+    function getAktuell()
+    {
+        function aktuell($show_name, $show_link)
+        {
+            return "<a href='" . $show_link . "'>" . $show_name . "</a>";
+        }
+
+        $db = DataBase::Connect();
+        if ($db !== false) {
+            $sql = "SELECT show_name,show_link " .
+                "FROM show " .
+                "WHERE show_valid == 1 AND (show_flags & " . SHOW_FLAGS_AKTUELL . ")==" . SHOW_FLAGS_AKTUELL . " " .
+                "ORDER BY show_date DESC";
+            $stmt = $db->query($sql);
+            return ($stmt === false) ? false : $stmt->fetchAll(PDO::FETCH_FUNC, "aktuell");
+        }
+        return false;
+    }
+
     $html ="";
     $html .=    "<p><ul class='sl'>";
 
     $html .=        "<li><a href='/'>Startseite</a></li>";
-    $menu = ($this->config)->menu;
+    $aktuell = getAktuell();
+    if (!empty($aktuell)) {
+        foreach ($aktuell as &$entry) {
+            $html .= "<li>" . $entry . "</li>";
+        }
+    }
+
+    $menu = Config::getInstance()->getRef('mainMenu');
     foreach($menu as &$entry) {
         $html .=        "<li><a href='".$entry->link."'>".$entry->name."</a></li>";
     }
-    /*
-    $html .=        "<li><a href='termine'>Termine</a></li>";
-    $html .=        "<li><a href='stuecke'>Stücke</a></li>";
-    $html .=        "<li><a href='ueber'>Wer sind wir</a></li>";
-    $html .=        "<li><a href='kontakt'>Kontakt</a></li>";
-    $html .=        "<li><a href='impressum'>Impressum</a></li>";
-    */
     $html .=    "</ul></p>";
 
 
     echo $html;
+
+
+
+
+
+
     ?>
 
 

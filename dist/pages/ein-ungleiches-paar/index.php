@@ -1,6 +1,4 @@
 <?php
-$this->created = 1465034394;
-$this->modified = filemtime(__FILE__);
 $this->minify = true;
 $this->title = "Ein ungleiches Paar";
 $this->subtitle = "female version";

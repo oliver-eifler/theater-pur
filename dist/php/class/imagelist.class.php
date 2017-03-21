@@ -7,6 +7,7 @@
  */
 require_once('php/class/registry.class.php');
 require_once('php/class/pagedata.class.php');
+require_once("php/class/config.class.php");
 
 class ImageItem {
 
@@ -15,15 +16,30 @@ class ImageItem {
     public $path = "images/yawn.png";
     public $width = 128;
     public $height = 128;
-    public $time = 0;
+    public $hash = 0;
     public function __construct($path,$index)
     {
+        $files = Config::getInstance()->files;
+        $fileinfo = $files[$path] ?? false;
+        if ($fileinfo !== false)
+        {
+            $this->hash = $fileinfo["hash"];
+            $this->isFile = true;
+            $this->path = $path;
+            $image = $fileinfo["image"] ?? false;
+            if ($image) {
+                $this->width = $image["width"] ?? $this->width;
+                $this->height = $image["height"] ?? $this->height;
+            }
+        }
+        /*
         if (file_exists($path)) {
             list($this->width,$this->height) = getimagesize($path);
             $this->time = filemtime($path);
             $this->isFile = true;
             $this->path = $path;
         }
+        */
         $this->index = $index;
     }
     public function getUrl() {
@@ -99,8 +115,8 @@ class ImageItem {
                 $parts["filename"] = substr($parts["basename"],0,strlen($parts["basename"]) - (isset($parts['extension'])?(strlen($parts["extension"]) + 1):0) );
             }
             $dir = ($parts["dirname"]=="."?"":$parts["dirname"]."/");
-            $ver = $this->time;
-            return $dir.$parts["filename"]."_".$ver.".".$parts["extension"];
+
+            return $dir.$parts["filename"]."_".$this->hash.".".$parts["extension"];
     }
     public function renderLimitSize($attrs = [],$desc="") {
         if (!isset($attrs["style"]))
@@ -118,8 +134,6 @@ class ImageItem {
 
         return $this->render($attrs,$desc);
     }
-
-
 }
 
 

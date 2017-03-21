@@ -257,6 +257,17 @@ module.exports = function (grunt) {
             }
 
         },
+        xxx: {
+            options: {
+                pre: '',
+                rootPath:'<%= dir.release %>/'
+            },
+            dist: {
+                files: {
+                    '<%= dir.release %>/data/files.json': ['<%= dir.release %>/css/*.css','<%= dir.release %>/js/*.js','<%= dir.release %>/images/**/*.{jpg,png,gif,svg}','!<%= dir.release %>/images/avatar/*.*']
+                }
+            },
+        },
         /*GRUNTICON*/
         watch: {
             sass: {
@@ -284,6 +295,8 @@ module.exports = function (grunt) {
     //svg stuff
     grunt.loadNpmTasks('grunt-svg2png');
     grunt.loadNpmTasks('grunt-svgstore');
+    //olli stuff
+    grunt.loadTasks('grunt_tasks/olli_dump_dir');
     // Default task(s).
     grunt.loadNpmTasks('grunt-newer');
     grunt.registerTask('images', ['newer:image:images']);

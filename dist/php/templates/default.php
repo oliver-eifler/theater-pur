@@ -81,6 +81,10 @@ class DefaultTemplate extends Template
         }
        */
         $html.= "</script>";
+/*
+        if ($page->canonical)
+            $html.="<link rel='canonical' href='".$page->canonical."'>";
+*/
         $html .= "</head>";
             $html .= $this->htmlBody();
         $html .= "</html>";

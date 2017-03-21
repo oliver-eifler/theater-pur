@@ -17,7 +17,6 @@ $altpath = array(
     "/info" => "/wer-sind-wir",
     "/about" => "/wer-sind-wir",
 );
-
 $request_url = get_request_url();
 $parts = parse_url($request_url);
 $request_uri = strtolower($parts['path']);
@@ -63,7 +62,6 @@ $pagedata->request_json = (isset($_GET['json']) || (isset($_SERVER['HTTP_X_REQUE
 
 $path = remove_ext($request_uri);
 /* routes to other apps */
-
 if (empty($path)) {
         $path="/home"; //later: check short urls ;)
 } else if (isset($altpath[$path])) {
@@ -72,6 +70,20 @@ if (empty($path)) {
 
 $pagedata->uri = $path;
 $pagedata->url = get_request_scheme() . '://' . $_SERVER['HTTP_HOST'] . $path;
+
+/* PERMANENT REDIRECT ? */
+$redirect301 = $path;
+if ($redirect301 == "/home")
+    $redirect301="/";
+if ($pagedata->request_uri == $redirect301) {
+    $redirect301 = false;
+}
+if (!$pagedata->request_json && $redirect301 !== false) {
+    header("location:".get_request_scheme() . '://' . $_SERVER['HTTP_HOST'] . $redirect301."",true,301);
+    exit;
+}
+
+//$pagedata->canonical = $canonical===false?false:get_request_scheme() . '://' . $_SERVER['HTTP_HOST'] . $canonical;
 
 $class = "site";
 
@@ -83,6 +95,7 @@ else if (file_exists($config->pageDir.$path."/index.php")) {
 }
 else {
     //$class = "site404";
+    $redirect301 = false;
     $path = "/404.php";
 }
 $pagedata->curDir = $config->pageDir.getDir($path);
@@ -91,6 +104,5 @@ $pagedata->imgDir = $config->imgDir.getDir($path);
 
 
 require_once("php/".$class.".php");
-//ToDo: Check for AJAX Request
 (new $class($config->pageDir.$path))->render();
 exit;
