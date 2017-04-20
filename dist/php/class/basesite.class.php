@@ -58,6 +58,8 @@ class BaseSite extends _registry
 
         if ($page->request_json)
             header("Content-type: application/json; charset=utf-8",true);
+        else
+            header("Content-type: text/html; charset=utf-8",true);
         echo $content;
         return $this;
     }

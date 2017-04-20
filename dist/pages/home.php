@@ -70,7 +70,7 @@ $this->description = "Theater PUR aus Pullach im Isartal ist eine freie Theaterg
     }
     ?>
     <ul class="p stroke">
-    <li>Den Trailer zu <q>Frau Müller muss weg</q> können Sie sich <a href='/frau-mueller-muss-weg#video'>hier</a> oder auf unserer <a href='https://www.facebook.com/theaterpur.de/videos/1805472813050188/'>Facebook-Seite</a> oder <a href='https://www.youtube.com/watch?v=42C3ELzQDFg'>You Tube</a> ansehen</li>
+    <li>Videos zu <q>Frau Müller muss weg</q> können Sie sich <a href='/frau-mueller-muss-weg#video'>hier</a>, auf <a href='https://www.facebook.com/theaterpur.de/videos/1805472813050188/'>Facebook</a> oder auf <a href='https://www.youtube.com/watch?v=42C3ELzQDFg'>You Tube</a> ansehen</li>
     <li>Weitere Informationen zu <q>Frau Müller muss weg</q> <a href="/frau-mueller-muss-weg#top">finden Sie hier...</a></li>
     </ul>
 </section>

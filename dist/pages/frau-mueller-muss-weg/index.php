@@ -6,7 +6,7 @@ $this->title = "Frau Müller muss weg";
 $this->subtitle = "Eine Komödie über einen Elternabend von Lutz Hübner.";
 $this->description = "Eine Komödie über einen Elternabend von Lutz Hübner. Aufgeführt von Theater PUR";
 $this->image = $this->imgDir."/plakat.jpg";
-$this->imagedesc = "Den Trailer zu <q>Frau Müller muss weg</q> können Sie sich <a href='#video'>hier</a> oder auf unserer <a href='https://www.facebook.com/theaterpur.de/videos/1805472813050188/'>".Component::get("svg","images/svg/facebook.svg",["class"=>"icon icon-facebook"])." Facebook Seite</a> oder <a href='https://www.youtube.com/watch?v=42C3ELzQDFg'>".Component::get("svg","images/svg/video.svg",["class"=>"icon icon-video"])." You Tube</a> ansehen";
+$this->imagedesc = "Videos zu <q>Frau Müller muss weg</q> können Sie sich <a href='#video'>hier</a>, auf <a href='https://www.facebook.com/theaterpur.de/videos/1805472813050188/'>".Component::get("svg","images/svg/facebook.svg",["class"=>"icon icon-facebook"])." Facebook</a> oder auf <a href='https://www.youtube.com/watch?v=42C3ELzQDFg'>".Component::get("svg","images/svg/video.svg",["class"=>"icon icon-video"])." You Tube</a> ansehen";
 $this->showID = DataBase::getShowID($this->uri);
 ?>
 <?php
@@ -49,8 +49,11 @@ if (!empty($termine)) {
 
 ?>
 <section id="info" class="element wrapper-narrow">
+    <h2 class="breakout">Presse</h2>
+    <ul><li><a href="<?= $this->imgDir ?>/mueller-kritik-merkur.jpg" target="blank">&quot;Lachtherapie statt Burnout&quot;</a> - Münchner Merkur, 10 April 2017, S.35</li>
+    </ul>
     <h2 class="breakout">Inhalt</h2>
-    <p>In der vierten Klasse werden wichtige Weichen gestellt. Aber in der 4b haben sich die schriftlichen Noten der meisten Kinder sich zum Teil dramatisch verschlechtert. Das Lernklima ist schlecht und die ständige Unruhe in der Klasse, bekommt die Lehrerin, Frau Müller, anscheinend nicht in den Griff. Was bleibt da den besorgten Eltern anderes übrig, als der überforderten oder sogar ausgebrannten Beamtin das Vertrauen zu entziehen? Dabei ist es natürlich Zufall, dass zur Grundschul-Revolte fast genau die Eltern erschienen sind, deren Kinder in der Klasse die größten Probleme verursachen. Ob Frau Müller die als Verhandlungspartner überhaupt ernst nimmt?</p>
+    <p>In der vierten Klasse werden wichtige Weichen gestellt. Aber in der 4b haben sich die schriftlichen Noten der meisten Kinder zum Teil dramatisch verschlechtert. Das Lernklima ist schlecht und die ständige Unruhe in der Klasse, bekommt die Lehrerin, Frau Müller, anscheinend nicht in den Griff. Was bleibt da den besorgten Eltern anderes übrig, als der überforderten oder sogar ausgebrannten Beamtin das Vertrauen zu entziehen? Dabei ist es natürlich Zufall, dass zur Grundschul-Revolte fast genau die Eltern erschienen sind, deren Kinder in der Klasse die größten Probleme verursachen. Ob Frau Müller die als Verhandlungspartner überhaupt ernst nimmt?</p>
     <p>Lutz Hübner war schon 2002 der drittmeist gespielte Dramatiker auf deutschen Bühnen. <q>Frau Müller muss weg</q> (2010) ist seit sieben Jahren ein Dauerbrenner. Die Verfilmung von Sönke Wortmann mit Anke Engelke als taffer, aber betrogener Elternklassensprecherin aus dem Jahr 2015 trägt inzwischen sein übriges dazu bei. Der Grund für diesen Erfolg liegt sicher darin, dass das Stück direkt aus der Alltagswelt seines Publikums schöpft. Auseinandersetzungen zwischen Eltern und Lehrern sind ja ebenfalls ein Dauerbrenner und das Schulsystem wird mindestens genauso lang reformiert und diskutiert, wie das Stück gespielt wird. Hinzu kommt aber noch, dass unter der frechen, bunten Oberfläche ein tieferes Thema anklingt: Die Abstiegsängste der Mittelschicht und ihre oft geradezu grotesk anmutenden Versuche ihren verhätschelten Nachwuchs angesichts der Härte der Welt in Watte zu packen.</p>
 <?php
 $termine = DataBase::getPremiereByID($this->showID,time());
@@ -97,10 +100,16 @@ if (!empty($termine)) {
         <ul class="gl text-center">
             <li class="element"><?= Component::get("videoitem",
                     ["id"=>"42C3ELzQDFg",
-                     "width"=>1280,
+                        "width"=>1280,
                         "height"=>720,
-                        "thumb"=>$this->imgDir."/trailer.jpg"],
+                        "thumb"=>$this->imgDir."/yt-trailer.jpg"],
                     "Trailer"); ?></li>
+            <li class="element"><?= Component::get("videoitem",
+                    ["id"=>"dF8Ta7ZdD7o",
+                        "width"=>1280,
+                        "height"=>720,
+                        "thumb"=>$this->imgDir."/yt-impressionen.jpg"],
+                    "Impressionen"); ?></li>
         </ul>
     </div>
 </section>

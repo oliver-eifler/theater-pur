@@ -14,9 +14,45 @@ $altpath = array(
     "/index" => "/home",
     "/start" => "/home",
     "/aktuell" => "/home",
+    /* short codes */
     "/info" => "/wer-sind-wir",
     "/about" => "/wer-sind-wir",
+    "/mueller" => "/frau-mueller-muss-weg",
+    /* from old side */
+    "/frameset" => "/",
+    "/frameset1" => "/mein-freund-harvey",
+    "/uneven-pair" => "/ein-ungleiches-paar",
+    "/albas-house" => "/bernarda-albas-haus",
+    "/harvey" => "/mein-freund-harvey",
+    "/old-iron" => "/altes-eisen",
+    "/old-iron.x" => "/altes-eisen",
+    "/the-devil" => "/alles-beim-teufel",
+    "/the-devil.x" => "/alles-beim-teufel",
+    "/noises-off" => "/der-nackte-wahnsinn",
+    "/the-birds" => "/die-voegel",
+    "/the-righteous" => "/die-gerechten",
+    "/the-righteous.x" => "/die-gerechten",
+    "/war-correspondent" => "/die-kriegsberichterstatterin",
+    "/wcorr-sz" => "/die-kriegsberichterstatterin",
+    "/director" => "/wer-sind-wir",
+    "/history" => "/wer-sind-wir",
+    "/join" => "/wer-sind-wir",
+    "/vhs" => "/wer-sind-wir",
+"/documents/tdevil-preview-sueddeutsche.pdf" => "/alles-beim-teufel",
+ "/documents/oiron-review.pdf" => "/altes-eisen",
+ "/documents/tdevil-review-merkur.pdf" => "/alles-beim-teufel",
+ "/documents/noff-review.pdf" => "/der-nackte-wahnsinn",
+ "/documents/tbirds-review.pdf" => "/die-voegel",
+ "/documents/trights-review-merkur-20151031.pdf" => "/die-gerechten",
+ "/documents/tdevil-review-augsburger.pdf" => "/alles-beim-teufel",
+ "/documents/ahouse-review.pdf"=> "/bernarda-albas-haus"
+
 );
+
+
+
+
+
 $request_url = get_request_url();
 $parts = parse_url($request_url);
 $request_uri = strtolower($parts['path']);
@@ -100,7 +136,6 @@ else {
 }
 $pagedata->curDir = $config->pageDir.getDir($path);
 $pagedata->imgDir = $config->imgDir.getDir($path);
-
 
 
 require_once("php/".$class.".php");

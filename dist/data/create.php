@@ -20,17 +20,24 @@ try {
 } catch (Throwable $e) {
     echo $e->getMessage();
 }
-insertStage($pdo);
-insertShow($pdo);
-insertEvent($pdo);
+createHash($pdo);
+createStage($pdo);
+createShow($pdo);
+createEvent($pdo);
 
+
+function createHash($pdo) {
+    $sql = "CREATE TABLE IF NOT EXISTS 'xhash_html' ('uri' TEXT PRIMARY KEY NOT NULL, 'hash' TEXT NOT NULL, 'modified' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP);";
+    $sql .= "CREATE TABLE IF NOT EXISTS 'xhash_json' ('uri' TEXT PRIMARY KEY NOT NULL, 'hash' TEXT NOT NULL, 'modified' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP);";
+    $pdo->exec($sql);
+}
 
 
 function ollitimestamp($string) {
     $datetime = DateTime::createFromFormat("d.m.Y G:i",$string);
     return $datetime->getTimestamp();
 }
-function insertStage($pdo) {
+function createStage($pdo) {
     $stage = [
         ["name"=>'Sollner Kultbühne im Iberl',"prefix"=>'in der',"link"=>'http://www.iberls.de/#sonderveranstaltungen',"str" => 'Wilhelm-Leibl-Str. 22',"ort"=>'München',"plz"=>'81479']
     ];
@@ -67,7 +74,7 @@ function insertStage($pdo) {
     }
 }
 
-function insertShow($pdo)
+function createShow($pdo)
 {
     $show_flags_null = 0x00;
     $show_flags_aktuell = 0x01;
@@ -111,7 +118,7 @@ function insertShow($pdo)
         $pdo->rollBack();
     }
 }
-function insertEvent($pdo) {
+function createEvent($pdo) {
     $event_flags_null = 0x00;
     $event_flags_premiere = 0x01;
     $event_flags_ausverkauft = 0x02;
@@ -124,7 +131,7 @@ function insertEvent($pdo) {
         ["show-id"=> 10,"stage-id"=>1,"date"=>"19.03.2017 18:00"],
         ["show-id"=> 10,"stage-id"=>1,"date"=>"24.03.2017 20:00"],
         ["show-id"=> 10,"stage-id"=>1,"date"=>"25.03.2017 20:00"],
-        ["show-id"=> 10,"stage-id"=>1,"date"=>"26.03.2017 19:00"],
+        ["show-id"=> 10,"stage-id"=>1,"date"=>"26.03.2017 18:00"],
         ["show-id"=> 10,"stage-id"=>1,"date"=>"31.03.2017 20:00"],
         ["show-id"=> 10,"stage-id"=>1,"date"=>"01.04.2017 20:00"],
         ["show-id"=> 10,"stage-id"=>1,"date"=>"02.04.2017 18:00"],
