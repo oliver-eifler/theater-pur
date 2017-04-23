@@ -9,6 +9,12 @@ $this->image = $this->imgDir."/plakat.jpg";
 $this->imagedesc = "Videos zu <q>Frau Müller muss weg</q> können Sie sich <a href='#video'>hier</a>, auf <a href='https://www.facebook.com/theaterpur.de/videos/1805472813050188/'>".Component::get("svg","images/svg/facebook.svg",["class"=>"icon icon-facebook"])." Facebook</a> oder auf <a href='https://www.youtube.com/watch?v=42C3ELzQDFg'>".Component::get("svg","images/svg/video.svg",["class"=>"icon icon-video"])." You Tube</a> ansehen";
 $this->showID = DataBase::getShowID($this->uri);
 ?>
+<section id="news" class="element wrapper-narrow">
+    <p class="element" style="background-color:#000;color:#eee;border-radius:4px;text-align:left;"><em>
+            Wir sind unendlich traurig über den viel zu frühen Tod von unserem Freund und Kollegen Hans Horak. Seine Frau Sabine wird 21,22,23 April nicht in der Rolle der "Frau Müller" auf der Bühne stehen.
+            Trotzdem werden wir spielen. Monika Ptacek übernimmt die Rolle der Lehrerin in "Frau Müller muss weg". Wir bitten um Verständnis!
+        </em></p>
+</section>
 <?php
 $termine = DataBase::getTermineByID($this->showID,time());
 if (!empty($termine)) {

@@ -12,6 +12,10 @@ $this->description = "Theater PUR aus Pullach im Isartal ist eine freie Theaterg
     <a class="logo" href="/info#top"><?=Component::get("svg","images/svg/pur.svg",["class"=>"logo-pur","width"=>268,"height"=>132]);?></a>
         <span class="inline bigger stroke"><strong>präsentiert:</strong></span>
     </header>
+    <p class="element" style="background-color:#000;color:#eee;border-radius:4px;text-align:left;max-width:40em;margin:2em auto;"><em>
+            Wir sind unendlich traurig über den viel zu frühen Tod von unserem Freund und Kollegen Hans Horak. Seine Frau Sabine wird 21,22,23 April nicht in der Rolle der "Frau Müller" auf der Bühne stehen.
+            Trotzdem werden wir spielen. Monika Ptacek übernimmt die Rolle der Lehrerin in "Frau Müller muss weg". Wir bitten um Verständnis!
+        </em></p>
     <ul class="element badges inline" style="vertical-align:middle">
     <li>
             <?php
